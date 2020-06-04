@@ -17,4 +17,3 @@ x2 = newton(x02,grad_fct1,hess_fct1)
 #X2fminunc = optimize(f,x02)
 
 x3 = newton(x11,grad_fct2,hess_fct2)
-println(x3)
