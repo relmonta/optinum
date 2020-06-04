@@ -31,8 +31,8 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
       kj = (pj')*hessf(xk)*pj
        if (kj <=0)
           # sigmaj est la solution de l'équation de ‖sj+σpj‖= ∆k
-          x1 = -(norm(sj)+deltak)/norm(pj)
-          x2 = (-norm(sj)+deltak)/norm(pj)
+          x1 = -(norm(sj,2)+deltak)/norm(pj,2)
+          x2 = (-norm(sj,2)+deltak)/norm(pj,2)
           q1 = fk + (gj')*(sj + x1*pj) + 0.5*((sj + x1*pj)')*hessf(xk)*(sj + x1*pj)
           q2 = fk + (gj')*(sj + x2*pj) + 0.5*((sj + x2*pj)')*hessf(xk)*(sj + x2*pj)
 
@@ -47,19 +47,19 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
 
        end
        alphaj = (gj')*gj/kj;
-       if norm(sj .+alphaj*pj) >= deltak
+       if norm(sj .+alphaj*pj,2) >= deltak
               #sigmaj est la solution positive de l’equation ‖sj+σpj‖ = ∆k
-              sigmaj = -norm(sj)+deltak/norm(pj);
+              sigmaj = -norm(sj,2)+deltak/norm(pj,2);
               s = sj .+ sigmaj*pj;
               break
        end
        #Mise à jourdes paramétres
        sj = sj .+ alphaj*pj
        gj1 = gj .+ alphaj*hessf(xk)*pj
-       betaj = (norm(gj1)/norm(gj))^2
+       betaj = (norm(gj1,2)/norm(gj,2))^2
        gj = gj1
        pj = -gj .+ betaj*pj
-       if (norm(gj)<tol*norm((gradf(xk))))
+       if (norm(gj,2)<tol*norm((gradf(xk)),2))
            s = sj
            return
        end
