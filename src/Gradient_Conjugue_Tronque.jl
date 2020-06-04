@@ -28,7 +28,6 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
 
     while  iter <= max_iter
         kj = (pj')*hessf(xk)*pj
-        println(kj)
         if (kj <=0)
             # sigmaj est la solution de l'équation de ‖sj+σpj‖= ∆k
             x1 = -(norm(sj,2)+deltak)/norm(pj,2)
