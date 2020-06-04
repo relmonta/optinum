@@ -1,25 +1,22 @@
 #function f1
-function f(x)
-
-y =  2*(x[1]+x[2]+x[3]-3)^2 + (x[1]-x[2])^2 + (x[2]-x[3])^2
-return [y]
-end
-
+fct1(x) =  2*(x[1]+x[2]+x[3]-3)^2 + (x[1]-x[2])^2 + (x[2]-x[3])^2
 #la gradient de la fonction f1
-function gradf1(x)
+function grad_fct1(x)
 
 y1 = 4*(x[1]+x[2]+x[3]-3) + 2*(x[1]-x[2])
 y2 = 4*(x[1]+x[2]+x[3]-3) - 2*(x[1]-x[2]) +2*(x[2]-x[3])
 y3 = 4*(x[1]+x[2]+x[3]-3) - 2*(x[2]-x[3])
 
-y = [y1 y2 y3]'
+y = [y1;y2;y3]
 return y
 end
+#la hessienne de la fonction f1
+hess_fct1(x) = [6 2 4;2 8 2;4 2 6]
 
-#l'hessienne de la fonction f1
-function hessf1(x)
+""" La deuxieme fonction de test """
+fct2(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
 
-y = [6 2 4;2 8 2;4 2 6]
+grad_fct2(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
 
-return y
-end
+hess_fct2(x)=[-400*(x[2]-3*x[1]^2)+2 -400*x[1];
+                        -400*x[1] 200]

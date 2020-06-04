@@ -26,24 +26,23 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
    iter = 0
    s = zeros(size(gj))
 
-   while  iter <= max_iter
-      kj = (pj')*hessf(xk)*pj
-       if (kj <=0)
-          # sigmaj est la solution de l'équation de ‖sj+σpj‖= ∆k
-          x1 = -(norm(sj,2)+deltak)/norm(pj,2)
-          x2 = (-norm(sj,2)+deltak)/norm(pj,2)
-          q1 = fk + (gj')*(sj + x1*pj) + 0.5*((sj + x1*pj)')*hessf(xk)*(sj + x1*pj)
-          q2 = fk + (gj')*(sj + x2*pj) + 0.5*((sj + x2*pj)')*hessf(xk)*(sj + x2*pj)
+    while  iter <= max_iter
+        kj = (pj')*hessf(xk)*pj
+        println(kj)
+        if (kj <=0)
+            # sigmaj est la solution de l'équation de ‖sj+σpj‖= ∆k
+            x1 = -(norm(sj,2)+deltak)/norm(pj,2)
+            x2 = (-norm(sj,2)+deltak)/norm(pj,2)
+            q1 = fk + (gj')*(sj + x1*pj) + 0.5*((sj + x1*pj)')*hessf(xk)*(sj + x1*pj)
+            q2 = fk + (gj')*(sj + x2*pj) + 0.5*((sj + x2*pj)')*hessf(xk)*(sj + x2*pj)
 
-          if (q1 < q2)
-              sigmaj = x1
-          else
-              sigmaj = x2
-          end
-
-          s = sj + sigmaj*pj
-          return
-
+            if (q1 < q2)
+             sigmaj = x1
+            else
+             sigmaj = x2
+            end
+            s = sj + sigmaj*pj
+            return
        end
        alphaj = (gj')*gj/kj;
        if norm(sj .+alphaj*pj,2) >= deltak
