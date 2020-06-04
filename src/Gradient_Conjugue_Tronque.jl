@@ -16,7 +16,7 @@
         % g=∇f(xk) et H=∇2f(xk)
 %l sortie s est la solution du (P)
 """
-function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,deltak,xk,max_iter)
+function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,deltak,xk,max_iter,tol)
 
    #pj est le vecteur de direction
    pj = -gradf(xk)
@@ -24,7 +24,6 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
    fk = f(xk)
    gj = gradf(xk)
    iter = 0
-   tol = 1e-15
    s = zeros(size(gj))
 
    while  iter <= max_iter
