@@ -5,18 +5,20 @@
 
 #################################################################################
 #Entrées :
-	#la fonction à minimiser : f
-	#la contrainte : c [x est dans le domaine des contraintes ssi c[x]==0]
-	#le gradient de la fonction : gradf
-	#la hessienne de la fonction : hessf
-	#le gradient de la contrainte contrainte : gradc
-	#la hessienne de la contrainte : hessc
-	#la norme de la contrainte : nomrc
-	#le jacobien de la contrainte : jac
-	#le point du départ : x0
 	#l'indice inqiquant l'algorithme sans contraintes à utiliser : algorithme_sans_contrainte
 	#		0 : pour utiliser Newton
 	#		1 : pour utiliser RC
+	#la fonction à minimiser : fonc
+	#la contrainte : contrainte [x est dans le domaine des contraintes ssi c(x)==0]
+	#le gradient de la fonction : gradfonc
+	#la hessienne de la fonction : hessfonc
+	#le gradient de la contrainte contrainte : gradcontrainte
+	#la hessienne de la contrainte : hesscontrainte
+	#la norme de la contrainte : nomrcontrainte
+	#le jacobien de la contrainte : jaccontrainte
+	#le point du départ : x0
+	#variables initiales de l'algorithme : lambda0,mu0,tho
+
 #################################################################################
 
 #################################################################################
@@ -61,7 +63,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     if algorithme_sans_contrainte==0
     	xlocal = newton(xmin,gradL,hessL)
     elseif algorithme_sans_contrainte==1
-    	xlocal = Regionconf(L,xmin,gradL,hessL,5,1,0.25,0.75,0.5,2,epsk,0)	
+    	xlocal = Regionconf(L,xmin,gradL,hessL,5,1,0.25,0.75,0.5,2,epsk,0)
     end
 
     #Test de convergence de l'algorithme global
@@ -69,7 +71,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
         xmin = xlocal
         break
 
-    #Mis-à-jour des variables
+    #Mise à jour des variables
     else
     	#Étape b
         if (norm(contrainte(xlocal),2) <= eta)
@@ -89,4 +91,3 @@ end
 
 return xmin
 end
-
