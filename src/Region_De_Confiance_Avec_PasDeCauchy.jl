@@ -27,10 +27,10 @@ Sorties:
 function Region_De_Confiance_Avec_PasDeCauchy(f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,gamma2,n1,n2,nb_itersMax,tol1,tol2,tol3)
 
 
-    # Initialisation es variables
+    # Initialisation des variables
     nb_iters = 0
     gradZero = gradf(x0)
-    xk = x0'
+    xk = x0
     deltak = delta0
     w = 1e-8
     flag = 0

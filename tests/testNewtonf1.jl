@@ -1,5 +1,5 @@
 #script de test de la fonction Newton à compléter !
-using Optim
+using Optinum
 using LinearAlgebra
 include("../src/newton.jl")
 include("fonctions_de_tests.jl")

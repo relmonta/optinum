@@ -1,7 +1,7 @@
 """
 Pas_De_Cauchy: Calcule le pas de Cauchy
 paramètres:
-    * g: vecteur gradient
+    * g: le gradient
     * H: la matrice hessienne
     * delta: le rayon de la région de confiance
 sorties:

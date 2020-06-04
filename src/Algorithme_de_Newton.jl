@@ -1,14 +1,14 @@
 """
 Algorithme_de_Newton: donne le minimum de la fonction f suivant l'algorithme de Newton
 parametres:
-    * f           : la fonction à minimiser
-    * graf        : le gradient de la fonction f
-    * hessf       : la Hessienne de la fonction f
-    * x0          :  première approximation de la solution cherchée
-    * tol1        : la tolérence pour la 1ere condition d'arrêt
-    * tol2        : la tolérence pour la 2ere condition d'arrêt
-    * tol3        : la tolérence pour la 3ere condition d'arrêt
-    * nb_iters_max: le nombre maximal d'iterations
+    * f               : la fonction à minimiser
+    * graf            : le gradient de la fonction f
+    * hessf           : la Hessienne de la fonction f
+    * x0              :  première approximation de la solution cherchée
+    * tol1            : la tolérence pour la 1ere condition d'arrêt
+    * tol2            : la tolérence pour la 2ere condition d'arrêt
+    * tol3            : la tolérence pour la 3ere condition d'arrêt
+    * nb_iters_max    : le nombre maximal d'iterations
 Sorties:
     * x_min           : le point minimisant la fonction f
     * fx_min          : la valeur de f en x_min
@@ -21,7 +21,7 @@ function Algorithme_de_Newton(f::Function,gradf::Function,hessf::Function,x0,tol
     # Initialisation des variables
     gradZero = gradf(x0)
     nb_iters = 0
-    xk = x0'
+    xk = x0
     x_k1 = xk
     eps = 1e-6
     flag = 0
