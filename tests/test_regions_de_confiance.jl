@@ -19,22 +19,27 @@ RC_x_min11, RC_nb_iters11, RC_fmin11, RC_flag11 = Regions_De_Confiance("cauchy",
 @test norm(RC_x_min11-sol_exacte_fct1,2) < 1e-2
 @test norm(RC_fmin11)<1e-10
 printstyled("=",bold=true,color=:white)
+
 RC_x_min12, RC_nb_iters12, RC_fmin12, RC_flag12 = Regions_De_Confiance("cauchy",fct1,grad_fct1,hess_fct1,x012,deltaMax,delta0_1,gamma1,gamma2,n1,n2,maxits,tol)
 @test norm(RC_x_min12-sol_exacte_fct1,2) < 1e-2
 @test norm(RC_fmin12)<1e-10
 printstyled("=",bold=true,color=:white)
+
 RC_x_min21, RC_nb_iters21, RC_fmin21, RC_flag21 = Regions_De_Confiance("cauchy",fct2,grad_fct2,hess_fct2,x021,deltaMax,delta0_2,gamma1,gamma2,n1,n2,maxits,tol)
 @test norm(RC_x_min21-sol_exacte_fct2,2) < 1e-2
 @test norm(RC_fmin21)<1e-5
 printstyled("=",bold=true,color=:white)
+
 RC_x_min22, RC_nb_iters22, RC_fmin22, RC_flag22 = Regions_De_Confiance("cauchy",fct2,grad_fct2,hess_fct2,x022,deltaMax,delta0_2,gamma1,gamma2,n1,n2,maxits,tol)
 @test norm(RC_x_min22-sol_exacte_fct2,2) < 1e-2
 @test norm(RC_fmin22)<1e-5
 printstyled("=",bold=true,color=:white)
+
 RC_x_min23, RC_nb_iters23, RC_fmin23, RC_flag23 = Regions_De_Confiance("cauchy",fct2,grad_fct2,hess_fct2,x023,deltaMax,delta0_2,gamma1,gamma2,n1,n2,maxits,tol)
 @test norm(RC_x_min23-sol_exacte_fct2,2) < 1e-2
 @test norm(RC_fmin23)<1e-5
 printstyled("=",bold=true,color=:white)
+
 RC_x_min11, RC_nb_iters11, RC_fmin11, RC_flag11 = Regions_De_Confiance("gct",fct1,grad_fct1,hess_fct1,x011,deltaMax,delta0_1,gamma1,gamma2,n1,n2,maxits,tol)
 @test norm(RC_x_min11-sol_exacte_fct1,2) < 1e-2
 @test norm(RC_fmin11)<1e-10
