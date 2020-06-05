@@ -1,80 +1,84 @@
 """
-Algorithme_de_Newton: donne le minimum de la fonction f suivant l'algorithme de Newton
-parametres:
+###################################################################################################
+	Algorithme_de_Newton: donne le minimum de la fonction f suivant l'algorithme de Newton
+###################################################################################################
+
+#################################################################################
+#Entrées :
     * f               : la fonction à minimiser
-    * graf            : le gradient de la fonction f
+    * gradf            : le gradient de la fonction f
     * hessf           : la Hessienne de la fonction f
-    * x0              :  première approximation de la solution cherchée
-    * tol1            : la tolérence pour la 1ere condition d'arrêt
-    * tol2            : la tolérence pour la 2ere condition d'arrêt
-    * tol3            : la tolérence pour la 3ere condition d'arrêt
+    * x0              : première approximation de la solution cherchée
+    * eps             : pour fixer les conditions d'arrêt
     * nb_iters_max    : le nombre maximal d'iterations
-Sorties:
+
+
+#################################################################################
+#Sorties:
     * x_min           : le point minimisant la fonction f
     * fx_min          : la valeur de f en x_min
     * flag            : entier indiquant le critère sur lequel le programme à arrêter
+	        	    0 : Convergence
+	        	    1 : stagnation du xk
+	        	    1 : stagnation du f
+	        	    3 : nombre maximal d'itération dépassé
     * nb_iters        : le nombre d'itérations faites par le programme
+#################################################################################
 """
 
-function Algorithme_de_Newton(f::Function,gradf::Function,hessf::Function,x0,tol1,tol2,tol3,nb_iters_max)
+function Algorithme_de_Newton(f::Function,gradf::Function,hessf::Function,x0,eps,nb_iters_max)
 
-    # Initialisation des variables
-    gradZero = gradf(x0)
-    nb_iters = 0
-    xk = x0
-    x_k1 = xk
-    eps = 1e-6
-    flag = 0
+tol1 = 1e-15
+tol2 = 1e-15
+tol3 = 1e-15
+xk = x0
+flag = 0
+nb_iters = 1
+gradZero = gradf(x0)
+dk = hessf(x0)\(-gradf(x0))
+xk1 = xk + dk
+while true
+    xk = xk1
+   
+   "#direction de Newton"    
+    dk = hessf(xk)\(-gradf(xk)) 
+    
+   "# mise à jour du xk"
+    xk1 = xk + dk 
 
-    # constante utile pour les conditions d'arrêt
-    w = sqrt(eps)
-
-
+   "# le gradient du xk courant"    
+    grad = gradf(xk) 
+    
+    "
     ###########################################################
-    #                        Début                            #
+      #                       Tests d'arrêt                     #
     ###########################################################
+    "
+    
+    "# la CN1"
+    if norm(grad)<(tol1*norm(gradZero) +eps)
+            flag = 0
+            break
+            
+    "# la stagnation du xk"
+    elseif norm(dk) < (tol2*norm(xk) + eps)
+            flag = 1
+            break
+            
+    "# la stagnation du f"
+    elseif abs(f(xk1)-f(xk))< (tol3*abs(f(xk)) + eps)
+            flag = 2
+            break
 
-    while true
-
-        grad = gradf(xk)   # le gradient du xk courant
-        hess = hessf(xk)   # la hessienne du xk courant
-        dk = -hess\grad    # la solution du système
-        x_k1 = xk
-        xk = x_k1 + dk       # mise à jour du xk
-
-        ###########################################################
-        #                       Tests d'arrêt                     #
-        ###########################################################
-
-        # la CN1
-        if norm(grad)<tol1*norm(gradZero)
-                flag = 0
-                break
-        end
-
-        # la stagnation du xk
-        if norm(dk) < tol2*(norm(x_k1) +w )
-                flag = 1
-                break
-        end
-        # la stagnation du f
-        if abs(f(x_k1)-f(xk))< tol3*( abs(f(x_k1))+w )
-                flag = 2
-                break
-        end
-
-        # le nombre d'itérations dépasse le max
-        if nb_iters > nb_iters_max
-                flag = 3
-                break
-        end
-
-        nb_iters = nb_iters +1
-
+    "# le nombre d'itérations dépasse le max"
+    elseif nb_iters > nb_iters_max
+            flag = 3
+            break
     end
-    x_min = x_k1
+    
+    nb_iters = nb_iters +1 
+end
 
-    fx_min = f(x_k1)
-
-    return x_min, fx_min, flag, nb_iters
+fx_min = f(xk)
+return xk,fx_min,flag,nb_iters
 end

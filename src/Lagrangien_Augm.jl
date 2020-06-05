@@ -69,9 +69,9 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     "#Étape a"
     "#Résolution du problème sans contraintes : min L(x,lambdak ,muk)"
     if algorithme_sans_contrainte=="NW"
-	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,tol,tol,tol,itermax)
+	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,epsilon,itermax)
     elseif algorithme_sans_contrainte=="RC"
-    	xlocal = Regionconf(L,xmin,gradL,hessL,5,1,0.25,0.75,0.5,2,epsk,0)
+    	xlocal = Region_De_Confiance_Avec_PasDeCauchy(L,gradL,hessL,xmin,5,1,0.5,2,0.25,0.75,itermax,tol,tol,tol)
     else
     	err = -1
     end
