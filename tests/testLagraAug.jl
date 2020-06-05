@@ -1,7 +1,7 @@
 using LinearAlgebra
 include("fonctions_de_tests.jl")
 include("../src/Lagrangien_Augm.jl")
-include("../src/newton.jl")
+include("../src/Algorithme_de_Newton.jl")
 
 "#test du lagrangien augmenté"
 
