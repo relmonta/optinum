@@ -9,10 +9,10 @@
 	# algorithme_sans_contrainte : l'indice inqiquant l'algorithme sans contraintes à utiliser
 	#		"NW" : pour utiliser l'algo de Newton
 	#		"RC" : pour utiliser l'algo de Région de confiance
-	# fonc : la fonction à minimiser 
+	# fonc : la fonction à minimiser
 	# contrainte : la contrainte [x est dans le domaine des contraintes ssi c(x)==0]
 	# gradfonc : le gradient de la fonction
-	# hessfonc : la hessienne de la fonction 
+	# hessfonc : la hessienne de la fonction
 	# gradcontrainte : le gradient de la contrainte contrainte
 	# hesscontrainte : la hessienne de la contrainte
 	# nomrcontrainte : la norme de la contrainte
@@ -96,7 +96,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
 
     end
     iter = iter +1
-    if iter==itermax 
+    if iter==itermax
     	flag = 1
     end
 end

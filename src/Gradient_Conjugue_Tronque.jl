@@ -19,12 +19,13 @@
 function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,deltak,xk,max_iter,tol)
 
    #pj est le vecteur de direction
+   n = length(xk)
    pj = -gradf(xk)
-   sj = zeros(size(pj))
+   sj = zeros(n)
    fk = f(xk)
    gj = gradf(xk)
    iter = 0
-   s = zeros(size(gj))'
+   s = zeros(n)
    while  iter <= max_iter
         kj = (pj')*hessf(xk)*pj
         if (kj <=0)
@@ -40,14 +41,14 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
              sigmaj = x2
             end
             s = sj + sigmaj*pj
-            return
+            break
        end
        alphaj = (gj')*gj/kj;
        if norm(sj +alphaj*pj,2) >= deltak
-              #sigmaj est la solution positive de l’equation ‖sj+σpj‖ = ∆k
-              sigmaj = -norm(sj,2)+deltak/norm(pj,2);
-              s = sj + sigmaj*pj;
-              break
+            #sigmaj est la solution positive de l’equation ‖sj+σpj‖ = ∆k
+            sigmaj = -norm(sj,2)+deltak/norm(pj,2);
+            s = sj + sigmaj*pj;
+            break
        end
        #Mise à jourdes paramétres
        sj = sj + alphaj*pj
@@ -56,10 +57,13 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
        gj = gj1
        pj = -gj + betaj*pj
        if (norm(gj,2)<tol*norm((gradf(xk)),2))
-           s = sj
-           return s'
+            s = sj
+            break
        end
-        iter = iter + 1
+       iter = iter + 1
    end
-   return s'
+   if (typeof(s)==Nothing)
+       s=zeros(n)
+   end
+   return s
 end

@@ -17,10 +17,7 @@ Paramètres:
     * gradf : le gradient de la fonction f
     * hessf : la hessiene de la fonction à minimiser
     * nb_itersMax : le nombre maximale d'iterations
-    * tol1 : la tolérence pour le 1er critère d'arrêt
-    * tol2 : la tolérence pour le 2eme critère d'arrêt
-    * tol3 : la tolérence pour le 3eme critère d'arrêt
-
+    * tol : la tolérence pour les critères d'arrêt
 Sorties:
 
     * x_min : le point minimisant la fonction f
@@ -29,7 +26,7 @@ Sorties:
     * flag : le critère d'arrêt
 
 """
-function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,gamma2,n1,n2,max_iter,tol1,tol2,tol3)
+function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,gamma2,n1,n2,max_iter,tol)
     # Initialisation des variables
     nb_iters = 0
     gradZero = gradf(x0)
@@ -47,15 +44,10 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         if algo=="cauchy"
             sk, e = Pas_De_Cauchy(gk,Hk,deltak)
         else
-            sk = Gradient_Conjugue_Tronque(f,gradf,hessf,deltak,xk,max_iter,tol1)
+            sk = Gradient_Conjugue_Tronque(f,gradf,hessf,deltak,xk,max_iter,tol)
             e = 0
-            println(sk)
         end
-
-        println("sk=",sk)
-        println("gk= ",gk)
-        #gk = convert(Array{Float64}, gk)
-        decroi = -gk'*sk + -0.5*sk'*Hk*sk
+        decroi = -(gk')*sk + -0.5*(sk')*Hk*sk
         # le ratio de la réduction observée sur f par rapport à réduction prédite sur mk
         rho_k = (f(xk)-f(xk + sk))/(decroi)
         # on garde la val de xk avant de la mettre à jour
@@ -76,17 +68,17 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         #                       Tests d'arrêt                     #
         ###########################################################
         # la CN1
-         if norm(gk,2)<tol1*norm(gradZero,2)
+         if norm(gk,2)<tol*norm(gradZero,2)
             flag = 0
             break
          end
         # la stagnation de x (et le x courant a été changé)
-         if (norm(sk,2) <= tol2*(norm(xk,2) +eps ) && xk_moins_1 != xk)
+         if (norm(sk,2) <= tol*(norm(xk,2) +eps ) && xk_moins_1 != xk)
             flag = 1
             break
          end
          # la stagnation de f (et le x courant a été changé)
-         if (abs(f(xk_moins_1)-f(xk)) <= tol3*( abs(f(xk))+eps ) && xk != xk_moins_1)
+         if (abs(f(xk_moins_1)-f(xk)) <= tol*( abs(f(xk))+eps ) && xk != xk_moins_1)
              flag = 2
              break
          end
