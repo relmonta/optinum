@@ -24,7 +24,7 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
    fk = f(xk)
    gj = gradf(xk)
    iter = 0
-   s = zeros(size(gj))
+   s = zeros(size(gj))'
 
     while  iter <= max_iter
         kj = (pj')*hessf(xk)*pj
@@ -40,7 +40,7 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
             else
              sigmaj = x2
             end
-            s = sj + sigmaj*pj
+            s = sj .+ sigmaj*pj
             return
        end
        alphaj = (gj')*gj/kj;
@@ -62,5 +62,5 @@ function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,d
        end
         iter = iter + 1
    end
-   return s
+   return s'
 end
