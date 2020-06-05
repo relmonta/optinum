@@ -39,32 +39,32 @@ dk = hessf(x0)\(-gradf(x0))
 xk1 = xk + dk
 while true
     xk = xk1
-   
-   "#direction de Newton"    
-    dk = hessf(xk)\(-gradf(xk)) 
-    
-   "# mise à jour du xk"
-    xk1 = xk + dk 
 
-   "# le gradient du xk courant"    
-    grad = gradf(xk) 
-    
+   "#direction de Newton"
+    dk = hessf(xk)\(-gradf(xk))
+
+   "# mise à jour du xk"
+    xk1 = xk + dk
+
+   "# le gradient du xk courant"
+    grad = gradf(xk)
+
     "
     ###########################################################
       #                       Tests d'arrêt                     #
     ###########################################################
     "
-    
+
     "# la CN1"
     if norm(grad)<(tol1*norm(gradZero) +eps)
             flag = 0
             break
-            
+
     "# la stagnation du xk"
     elseif norm(dk) < (tol2*norm(xk) + eps)
             flag = 1
             break
-            
+
     "# la stagnation du f"
     elseif abs(f(xk1)-f(xk))< (tol3*abs(f(xk)) + eps)
             flag = 2
@@ -75,8 +75,8 @@ while true
             flag = 3
             break
     end
-    
-    nb_iters = nb_iters +1 
+
+    nb_iters = nb_iters +1
 end
 
 fx_min = f(xk)

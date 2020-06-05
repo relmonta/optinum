@@ -1,3 +1,4 @@
+
 """ Les points initiaux """
 x011 = [1; 0; 0]
 x012 = [10; 3; -2.2]
@@ -5,7 +6,9 @@ x021 = [-1.2; 1]
 x022 = [10; 0]
 x023 = [0; 1/200 + 1/10^12]
 
-
+""" Les solutions exactes """
+sol_exacte_fct1 = [1;1;1]
+sol_exacte_fct2 = [1;1]
 
 """ La première fonction de test """
 

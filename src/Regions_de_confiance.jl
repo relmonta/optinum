@@ -3,28 +3,38 @@ include("Pas_De_Cauchy.jl")
 include("Gradient_Conjugue_Tronque.jl")
 
 """
+###########################################################################
 Region_De_Confiance: minimiser la fonction f
 en utilisant l'algorithme des régions de confiance avec
     - un pas de Couchy
 ou
     - un pas calculé avec l'algorithme du gradient conjugue tronque
+###########################################################################
 
-Paramètres:
-    * x0 : point de dapart
-    * deltaMax, gamma1, gamma2, n1, n2 : utile pour les mise à jour de delta
-    * delta0 : le rayon de départ
-    * f : la fonction à minimiser
-    * gradf : le gradient de la fonction f
-    * hessf : la hessiene de la fonction à minimiser
+#################################################################################
+#Entrées :
+    * algo        : string indicant la méthode à utiliser pour calculer le pas
+                        - "gct" : pour l'algorithme du gradient conjugué tronqué
+                        - "cauchy": pour le pas de Cauchy
+    * f           : la fonction à minimiser
+    * gradf       : le gradient de la fonction f
+    * hessf       : la hessiene de la fonction à minimiser
+    * x0          : point de dapart
+    * deltaMax, gamma1, gamma2, n1, n2  : utile pour les mise à jour de delta
+    * delta0      : le rayon de départ
     * nb_itersMax : le nombre maximale d'iterations
-    * tol : la tolérence pour les critères d'arrêt
-Sorties:
+    * tol1        : la tolérence pour le 1er critère d'arrêt
+    * tol2        : la tolérence pour le 2eme critère d'arrêt
+    * tol3        : la tolérence pour le 3eme critère d'arrêt
 
-    * x_min : le point minimisant la fonction f
-    * fx_min : la valeur minimale de la fonction f
+###############################################################################
+#Sorties:
+
+    * x_min    : le point minimisant la fonction f
+    * fx_min   : la valeur minimale de la fonction f
     * nb_iters : le nombre d'iteration qu'à fait le programme
-    * flag : le critère d'arrêt
-
+    * flag     : le critère d'arrêt
+################################################################################
 """
 function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,gamma2,n1,n2,max_iter,tol)
     # Initialisation des variables

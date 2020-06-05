@@ -1,6 +1,6 @@
-using LinearAlgebra, Test
 include("fonctions_de_tests.jl")
 include("../src/Regions_de_confiance.jl")
+
 
 tolG = 1e-5
 gamma1 = 0.5
@@ -12,9 +12,10 @@ tol = 1e-8
 maxits = 5000
 delta0_1 = 2
 delta0_2 = 1
-sol_exacte_fct1 = [1;1;1]
-sol_exacte_fct2 = [1;1]
-printstyled("Lancement des tests sur les régions de confiance ",bold=true,color=:white)
+
+
+printstyled("Lancement des tests sur",bold=true,color=:white)
+printstyled(" les régions de confiance ",bold=true,color=:blue)
 RC_x_min11, RC_nb_iters11, RC_fmin11, RC_flag11 = Regions_De_Confiance("cauchy",fct1,grad_fct1,hess_fct1,x011,deltaMax,delta0_1,gamma1,gamma2,n1,n2,maxits,tol)
 @test norm(RC_x_min11-sol_exacte_fct1,2) < 1e-2
 @test norm(RC_fmin11)<1e-10
