@@ -23,9 +23,7 @@ ou
     * deltaMax, gamma1, gamma2, n1, n2  : utile pour les mise à jour de delta
     * delta0      : le rayon de départ
     * nb_itersMax : le nombre maximale d'iterations
-    * tol1        : la tolérence pour le 1er critère d'arrêt
-    * tol2        : la tolérence pour le 2eme critère d'arrêt
-    * tol3        : la tolérence pour le 3eme critère d'arrêt
+    * tol         : la tolérence pour les critères d'arrêt
 
 ###############################################################################
 #Sorties:

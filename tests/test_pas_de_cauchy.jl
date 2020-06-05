@@ -28,4 +28,4 @@ delta3 = 10
 s3, e3 = Pas_De_Cauchy(g3,H3,delta3)
 @test e3 == 1
 printstyled("=>",bold=true,color=:white)
-printstyled(" Tous les tests sont réussis ! ",bold=true,color=:green)
+printstyled(" Tous les tests sont réussis ! \n",bold=true,color=:green)

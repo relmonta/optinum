@@ -74,4 +74,4 @@ println("    * nb_iters = ",nb_iters)
 """
 
 
-printstyled(" Tous les tests sont réussis ! ",bold=true,color=:green)
+printstyled(" Tous les tests sont réussis ! \n",bold=true,color=:green)

@@ -2,12 +2,9 @@ using LinearAlgebra, Test
 
 # Script vérifiant l'algorithme de Newton
 include("test_Algo_Newton.jl")
-println(" ")
 
 # Script vérifiént le pas de Cauchy
 include("test_pas_de_cauchy.jl")
-println(" ")
-
 
 # Script vérifiant l'algorithme de région de confiance avec PasdeCauchy/GCT
 include("test_regions_de_confiance.jl")

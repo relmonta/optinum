@@ -13,7 +13,6 @@ maxits = 5000
 delta0_1 = 2
 delta0_2 = 1
 
-
 printstyled("Lancement des tests sur",bold=true,color=:white)
 printstyled(" les régions de confiance ",bold=true,color=:blue)
 RC_x_min11, RC_nb_iters11, RC_fmin11, RC_flag11 = Regions_De_Confiance("cauchy",fct1,grad_fct1,hess_fct1,x011,deltaMax,delta0_1,gamma1,gamma2,n1,n2,maxits,tol)
@@ -65,4 +64,4 @@ RC_x_min23, RC_nb_iters23, RC_fmin23, RC_flag23 = Regions_De_Confiance("gct",fct
 @test norm(RC_fmin23)<1e-10
 printstyled("=>",bold=true,color=:white)
 
-printstyled(" Tous les tests sont réussis ! ",bold=true,color=:green)
+printstyled(" Tous les tests sont réussis ! \n",bold=true,color=:green)
