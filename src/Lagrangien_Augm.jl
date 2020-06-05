@@ -69,10 +69,9 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     "#Étape a"
     "#Résolution du problème sans contraintes : min L(x,lambdak ,muk)"
     if algorithme_sans_contrainte=="NW"
-    	xlocal = newton(xmin,gradL,hessL)
+	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,tol,tol,tol,itermax)
     elseif algorithme_sans_contrainte=="RC"
     	xlocal = Regionconf(L,xmin,gradL,hessL,5,1,0.25,0.75,0.5,2,epsk,0)
-
     else
     	err = -1
     end
