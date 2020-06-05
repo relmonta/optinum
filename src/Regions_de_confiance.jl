@@ -1,3 +1,4 @@
+
 include("Pas_De_Cauchy.jl")
 include("Gradient_Conjugue_Tronque.jl")
 
@@ -50,7 +51,11 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
             e = 0
             println(sk)
         end
-        decroi = -gk'*sk + -(1/2)*sk'*Hk*sk
+
+        println("sk=",sk)
+        println("gk= ",gk)
+        #gk = convert(Array{Float64}, gk)
+        decroi = -gk'*sk + -0.5*sk'*Hk*sk
         # le ratio de la réduction observée sur f par rapport à réduction prédite sur mk
         rho_k = (f(xk)-f(xk + sk))/(decroi)
         # on garde la val de xk avant de la mettre à jour
