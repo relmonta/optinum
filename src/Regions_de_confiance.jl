@@ -51,9 +51,11 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         # calcul du point sk avec l'algorithme du point de cauchy
         if algo=="cauchy"
             sk, e = Pas_De_Cauchy(gk,Hk,deltak)
-        else
+        elseif algo=="gct"
             sk = Gradient_Conjugue_Tronque(f,gradf,hessf,deltak,xk,max_iter,tol)
             e = 0
+        else
+            error("Pas d'algorithme portant le nom de "*algo*" !, Veuillez choisir \"gct\" ou \"cauchy\"")
         end
         decroi = -(gk')*sk + -0.5*(sk')*Hk*sk
         # le ratio de la réduction observée sur f par rapport à réduction prédite sur mk
