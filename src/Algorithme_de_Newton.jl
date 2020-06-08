@@ -6,7 +6,7 @@
 #################################################################################
 #Entrées :
     * f               : la fonction à minimiser
-    * gradf            : le gradient de la fonction f
+    * gradf           : le gradient de la fonction f
     * hessf           : la Hessienne de la fonction f
     * x0              : première approximation de la solution cherchée
     * eps             : pour fixer les conditions d'arrêt

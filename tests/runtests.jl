@@ -8,3 +8,5 @@ include("test_pas_de_cauchy.jl")
 
 # Script vérifiant l'algorithme de région de confiance avec PasdeCauchy/GCT
 include("test_regions_de_confiance.jl")
+
+include("test_Lagrangien_Aug.jl")
