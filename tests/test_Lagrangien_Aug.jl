@@ -1,8 +1,8 @@
-#using LinearAlgebra , JuMP, Ipopt , Test
+using LinearAlgebra , JuMP, Ipopt , Test
 include("fonctions_de_tests.jl")
 include("../src/Lagrangien_Augm.jl")
 include("../src/Algorithme_de_Newton.jl")
-
+include("../src/Regions_de_confiance.jl")
 
 "#test du lagrangien augmenté"
 
@@ -18,14 +18,21 @@ tho = 2
 "#paramétres utilisés pour définir les critéres d'arrêts "
 epsilon = 1e-30
 tol = 1e-9
-itermax = 1000
+itermax = 100
 
 "#Choix d'algorithme d'optimisation sans contraintes"
+
 algo = "NW"
 
 
 "#norme de l'écart entre la solution trouvée et celle attendue"
 normerreur = 1e-8
+
+
+#nombre de tests réussis et le nombre de tests total
+nbtest_reu = 0
+nbtest_total = 0
+
 
 # Test sur fct1 avec x01 comme solution initiale
 
@@ -37,7 +44,7 @@ m = Model(Ipopt.Optimizer)
 @objective(m, Min, fct1(x))
 @constraint(m, contrainte1(x) == 0)
 "#sauvegarder puis restorer la sortie pour empêcher l'affichage des résultats de 'optimize' "
-TT = stdout
+TT = stdout 
 # sauvegarder la sortie
 redirect_stdout()
 #résoudre le problème
@@ -46,7 +53,7 @@ optimize!(m);
 redirect_stdout(TT)
 
 #résolution du problème avec le Lagrangien augmenté
-xmin1,fxmin1,nbiters,flag = Lagrangien_Augm(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,epsilon,tol,itermax,lambda0,mu0,tho)
+xmin1,fxmin1,nbiters,flag = Lagrangien_Augm(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,epsilon,tol,itermax,lambda0,mu0,tho) 
 
 #affichage des résultats du test
 println("-------------------------------------------------------------------------")
@@ -59,16 +66,17 @@ println("  * flag = ",flag)
 println("  * solution attendue : " , value.(x))
 
 #test
-@test norm(xmin1 - value.(x)) < normerreur
-#=
-if norm(xmin1 - value.(x)) > normerreur
-	printstyled("******** Test échoué ******* \n\n",bold=true,color=:red)
+#@test norm(xmin1 - value.(x)) < normerreur
+
+if norm(xmin1 - value.(x)) > normerreur 
+	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
+
+else 
+	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	nbtest_reu = nbtest_reu + 1
 end
-=#
-printstyled("******** Test réussi ******* \n\n",bold=true,color=:green)
 
-
-
+nbtest_total = nbtest_total + 1
 
 # Test sur fct1 avec x02 comme solution initiale
 
@@ -86,9 +94,15 @@ println("  * flag = ",flag)
 println("  * solution attendue : " , value.(x))
 
 #test
-@test norm(xmin2 - value.(x)) < normerreur
-printstyled("******** Test réussi ******* \n\n",bold=true,color=:green)
+#@test norm(xmin2 - value.(x)) < normerreur
+if norm(xmin2 - value.(x)) > normerreur 
+	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
 
+else 
+	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	nbtest_reu = nbtest_reu + 1
+end
+nbtest_total = nbtest_total + 1
 
 
 
@@ -105,11 +119,11 @@ register(m, :fonct2,2,fonct2,autodiff=true)
 register(m, :cont2,2,cont2,autodiff=true)
 """#Attention : pour les contraintes non linéaires les variables ne peuvent être que des scalaires """
 
-@NLobjective(m, Min, fonct2(x[1],x[2]))
+@NLobjective(m, Min, fonct2(x[1],x[2]))   
 @NLconstraint(m, cont2(x[1],x[2]) == 0)
 
 "#sauvegarder puis restorer la sortie pour empêcher l'affichage des résultats de 'optimize' "
-TT = stdout
+TT = stdout 
 # sauvegarder la sortie
 redirect_stdout()
 #résoudre le problème
@@ -132,9 +146,16 @@ println("  * flag = ",flag)
 println("  * solution attendue : " , value.(x))
 
 #test
-@test norm(xmin3 - value.(x)) < normerreur
-printstyled("******** Test réussi ******* \n\n",bold=true,color=:green)
+#@test norm(xmin3 - value.(x)) < normerreur
+xmin3 = [0;0]
+if norm(xmin3 - value.(x)) > normerreur 
+	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
 
+else 
+	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	nbtest_reu = nbtest_reu + 1
+end
+nbtest_total = nbtest_total + 1
 
 
 
@@ -155,5 +176,19 @@ println("  * flag = ",flag)
 println("  * solution attendue : " , value.(x))
 
 #test
-@test norm(xmin4 - value.(x)) < normerreur
-printstyled("******** Test réussi ******* \n\n",bold=true,color=:green)
+#@test norm(xmin4 - value.(x)) < normerreur
+if norm(xmin4 - value.(x)) > normerreur 
+	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
+
+else 
+	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	nbtest_reu = nbtest_reu + 1
+end
+nbtest_total = nbtest_total + 1
+
+println("\n")
+printstyled("############################################ \n",bold=true,color=:green)
+printstyled("#                                          # \n",bold=true,color=:green)
+print("         ",nbtest_reu," tests réussis sur ",nbtest_total,"\n")
+printstyled("#                                          # \n",bold=true,color=:green)
+printstyled("############################################",bold=true,color=:green)

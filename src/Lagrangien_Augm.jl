@@ -9,10 +9,10 @@
 	# algorithme_sans_contrainte : l'indice inqiquant l'algorithme sans contraintes à utiliser
 	#		"NW" : pour utiliser l'algo de Newton
 	#		"RC" : pour utiliser l'algo de Région de confiance
-	# fonc : la fonction à minimiser
+	# fonc : la fonction à minimiser 
 	# contrainte : la contrainte [x est dans le domaine des contraintes ssi c(x)==0]
 	# gradfonc : le gradient de la fonction
-	# hessfonc : la hessienne de la fonction
+	# hessfonc : la hessienne de la fonction 
 	# gradcontrainte : le gradient de la contrainte contrainte
 	# hesscontrainte : la hessienne de la contrainte
 	# nomrcontrainte : la norme de la contrainte
@@ -61,8 +61,10 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
 
     "#la fonction Lagrangien"
     L(x) = (fonc(x) + (transpose(lambda))*contrainte(x) + 0.5*mu*(normcontrainte(x)^2) )
+    
     "#la fonction gradient de Lagrangien"
     gradL(x) =  (gradfonc(x) + gradcontrainte(x)*lambda + mu*transpose(jaccontrainte(x))*contrainte(x))
+    
     "#la fonction hessienne du Lagrangien"
     hessL(x) = (hessfonc(x) + (transpose(lambda))*hesscontrainte(x) + mu*(transpose(jaccontrainte(x)))*jaccontrainte(x) .+ phi(x) )
 
@@ -71,7 +73,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     if algorithme_sans_contrainte=="NW"
 	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,epsilon,itermax)
     elseif algorithme_sans_contrainte=="RC"
-    	xlocal = Region_De_Confiance_Avec_PasDeCauchy(L,gradL,hessL,xmin,5,1,0.5,2,0.25,0.75,itermax,tol,tol,tol)
+    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,5,1,0.5,2,0.25,0.75,itermax,tol)
     else
     	err = -1
     end
@@ -96,7 +98,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
 
     end
     iter = iter +1
-    if iter==itermax
+    if iter==itermax 
     	flag = 1
     end
 end
