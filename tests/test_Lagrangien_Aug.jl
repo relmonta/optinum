@@ -6,6 +6,16 @@ include("../src/Regions_de_confiance.jl")
 
 "#test du lagrangien augmenté"
 
+"""
+   #Entrées :
+	#affichage : boolean , si true on affiche les sorties de chaque test
+   #Sorties :
+	#nbtest_reu : nombre de tests réussis 
+	#nbtest_total : nombre de tests total effectués
+"""
+
+function test_Lagrangien_Aug(affichage) 
+
 "#initialisation des paramétres"
 x01 = [0; 1; 1]
 x02 = [0.5; 1.25; 1]
@@ -22,7 +32,7 @@ itermax = 1000
 
 "#Choix d'algorithme d'optimisation sans contraintes"
 
-algo = "RC"
+algo = "newton"
 
 
 "#norme de l'écart entre la solution trouvée et celle attendue"
@@ -56,26 +66,31 @@ redirect_stdout(TT)
 xmin1,fxmin1,nbiters,flag = Lagrangien_Augm(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,epsilon,tol,itermax,lambda0,mu0,tho) 
 
 #affichage des résultats du test
-println("-------------------------------------------------------------------------")
-printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct1 et le point initial x01:\n",bold=true,color=:blue)
+if (affichage)
+	println("-------------------------------------------------------------------------")
+	printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct1 et le point initial x01:\n",bold=true,color=:blue)
 
-println("  * solution trouvée (xsol) = ",xmin1)
-println("  * f(xsol) = ",fxmin1)
-println("  * nombre d'itération = ",nbiters)
-println("  * flag = ",flag)
-println("  * solution attendue : " , value.(x))
+	println("  * solution trouvée (xsol) = ",xmin1)
+	println("  * f(xsol) = ",fxmin1)
+	println("  * nombre d'itération = ",nbiters)
+	println("  * flag = ",flag)
+	println("  * solution attendue : " , value.(x))
 
+end
 #test
 #@test norm(xmin1 - value.(x)) < normerreur
 
-if norm(xmin1 - value.(x)) > normerreur 
-	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
-
+if norm(xmin1 - value.(x)) > normerreur
+	if (affichage) 
+		printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
+	end
 else 
-	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	if (affichage)
+		printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	end
 	nbtest_reu = nbtest_reu + 1
 end
-
+printstyled("=",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 # Test sur fct1 avec x02 comme solution initiale
@@ -84,24 +99,29 @@ nbtest_total = nbtest_total + 1
 xmin2 ,fxmin2,nbiters,flag = Lagrangien_Augm(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x02,epsilon,tol,itermax,lambda0,mu0,tho)
 
 #affichage des résultats du test
-println("-------------------------------------------------------------------------")
-printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct1 et le point initial x02:\n",bold=true,color=:blue)
+if (affichage)
+	println("-------------------------------------------------------------------------")
+	printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct1 et le point initial x02:\n",bold=true,color=:blue)
 
-println("  * solution trouvée (xsol) = ",xmin2)
-println("  * f(xsol) = ",fxmin2)
-println("  * nombre d'itération = ",nbiters)
-println("  * flag = ",flag)
-println("  * solution attendue : " , value.(x))
-
+	println("  * solution trouvée (xsol) = ",xmin2)
+	println("  * f(xsol) = ",fxmin2)
+	println("  * nombre d'itération = ",nbiters)
+	println("  * flag = ",flag)
+	println("  * solution attendue : " , value.(x))
+end
 #test
 #@test norm(xmin2 - value.(x)) < normerreur
 if norm(xmin2 - value.(x)) > normerreur 
-	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
-
+	if (affichage)
+		printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
+	end
 else 
-	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	if (affichage)
+		printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	end
 	nbtest_reu = nbtest_reu + 1
 end
+printstyled("=",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 
@@ -136,25 +156,30 @@ xmin3,fxmin3,nbiters,flag = Lagrangien_Augm(algo,fct2,contrainte2,grad_fct2,hess
 
 
 #affichage des résultats du test
-println("-------------------------------------------------------------------------")
-printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct2 et le point initial x03 :\n",bold=true,color=:blue)
+if (affichage)
+	println("-------------------------------------------------------------------------")
+	printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct2 et le point initial x03 :\n",bold=true,color=:blue)
 
-println("  * solution trouvée (xsol) = ",xmin3)
-println("  * f(xsol) = ",fxmin3)
-println("  * nombre d'itération = ",nbiters)
-println("  * flag = ",flag)
-println("  * solution attendue : " , value.(x))
-
+	println("  * solution trouvée (xsol) = ",xmin3)
+	println("  * f(xsol) = ",fxmin3)
+	println("  * nombre d'itération = ",nbiters)
+	println("  * flag = ",flag)
+	println("  * solution attendue : " , value.(x))
+end
 #test
 #@test norm(xmin3 - value.(x)) < normerreur
 #xmin3 = [0;0]
 if norm(xmin3 - value.(x)) > normerreur 
-	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
-
+	if (affichage)
+		printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
+	end
 else 
-	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	if (affichage)
+		printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	end
 	nbtest_reu = nbtest_reu + 1
 end
+printstyled("=",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 
@@ -166,29 +191,41 @@ nbtest_total = nbtest_total + 1
 xmin4 ,fxmin4,nbiters,flag = Lagrangien_Augm(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,hess_contrainte2,norm_contrainte2,jac_contrainte2,phi,x04,epsilon,tol,itermax,lambda0,mu0,tho)
 
 #affichage des résultats du test
-println("-------------------------------------------------------------------------")
-printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct2 et le point initial x04 :\n",bold=true,color=:blue)
+if (affichage)
+	println("-------------------------------------------------------------------------")
+	printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à fct2 et le point initial x04 :\n",bold=true,color=:blue)
 
-println("  * solution trouvée (xsol) = ",xmin4)
-println("  * f(xsol) = ",fxmin4)
-println("  * nombre d'itération = ",nbiters)
-println("  * flag = ",flag)
-println("  * solution attendue : " , value.(x))
-
+	println("  * solution trouvée (xsol) = ",xmin4)
+	println("  * f(xsol) = ",fxmin4)
+	println("  * nombre d'itération = ",nbiters)
+	println("  * flag = ",flag)
+	println("  * solution attendue : " , value.(x))
+end
 #test
 #@test norm(xmin4 - value.(x)) < normerreur
 if norm(xmin4 - value.(x)) > normerreur 
-	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
-
+	if (affichage)
+		printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
+	end
 else 
-	printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	if (affichage)
+		printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+	end
 	nbtest_reu = nbtest_reu + 1
 end
+printstyled("=> ",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
-println("\n")
-printstyled("############################################ \n",bold=true,color=:green)
-printstyled("#                                          # \n",bold=true,color=:green)
-print("         ",nbtest_reu," tests réussis sur ",nbtest_total,"\n")
-printstyled("#                                          # \n",bold=true,color=:green)
-printstyled("############################################",bold=true,color=:green)
+if (affichage)
+	println("\n")
+	printstyled("############################################ \n",bold=true,color=:green)
+	printstyled("#                                          # \n",bold=true,color=:green)
+	print("         ",nbtest_reu," tests réussis sur ",nbtest_total,"\n")
+	printstyled("#                                          # \n",bold=true,color=:green)
+	printstyled("############################################",bold=true,color=:green)
+end
+
+
+return (nbtest_reu,nbtest_total)
+
+end

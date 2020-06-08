@@ -7,8 +7,9 @@
 #################################################################################
 #Entrées :
 	# algorithme_sans_contrainte : l'indice inqiquant l'algorithme sans contraintes à utiliser
-	#		"NW" : pour utiliser l'algo de Newton
-	#		"RC" : pour utiliser l'algo de Région de confiance
+	#		"newton" : pour utiliser l'algo de Newton
+	#		"cauchy" : pour utiliser l'algo de Région de confiance avec cauchy
+	#		"gct" : pour utiliser l'algo de Région de confiance avec gradient conjugué tronqué
 	# fonc : la fonction à minimiser 
 	# contrainte : la contrainte [x est dans le domaine des contraintes ssi c(x)==0]
 	# gradfonc : le gradient de la fonction
@@ -70,12 +71,16 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
 
     "#Étape a"
     "#Résolution du problème sans contraintes : min L(x,lambdak ,muk)"
-    if algorithme_sans_contrainte=="NW"
+    if algorithme_sans_contrainte=="newton"
 	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,epsilon,itermax)
-    elseif algorithme_sans_contrainte=="RC"
-    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,5,1,0.5,2,0.25,0.75,itermax,tol)
+	
+    elseif algorithme_sans_contrainte=="cauchy"
+    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
+    	
+    elseif algorithme_sans_contrainte=="gct"
+    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)    
     else
-    	err = -1
+    	flag = -1
     end
     "#Test de convergence de l'algorithme global"
     if ((norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (normcontrainte(xlocal) <= epsilon))
@@ -91,15 +96,23 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
             eta = eta /mu
     	"#Étape c"
         else
+            l = mu
             mu = tho*mu
             epsk = eps0/mu
-            eta = etac / (mu^alpha)
+            if mu<0
+            	    mu = l
+            	    #println("ancine mu = ",l)
+	            #println("mu < 0")
+	     end
+	     eta = etac / (mu^alpha)          	
+
         end
 
     end
     iter = iter +1
     if iter==itermax 
     	flag = 1
+    	break
     end
 end
 fxmin = fonc(xmin)
