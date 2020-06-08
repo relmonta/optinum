@@ -18,15 +18,15 @@ tho = 2
 "#paramétres utilisés pour définir les critéres d'arrêts "
 epsilon = 1e-30
 tol = 1e-9
-itermax = 100
+itermax = 1000
 
 "#Choix d'algorithme d'optimisation sans contraintes"
 
-algo = "NW"
+algo = "RC"
 
 
 "#norme de l'écart entre la solution trouvée et celle attendue"
-normerreur = 1e-8
+normerreur = 1e-6
 
 
 #nombre de tests réussis et le nombre de tests total
@@ -147,7 +147,7 @@ println("  * solution attendue : " , value.(x))
 
 #test
 #@test norm(xmin3 - value.(x)) < normerreur
-xmin3 = [0;0]
+#xmin3 = [0;0]
 if norm(xmin3 - value.(x)) > normerreur 
 	printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
 
