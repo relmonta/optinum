@@ -1,69 +1,79 @@
 """
- Fonction qui calcule Le sous-problème du règion de confiance avec la mèthode de descente de gradien
- % (P):    min‖s‖≤∆k q(s) = (g')*s+(0.5)*(s')*Hk*s
+###################################################################################################
+	Gradient_Conjugue_Tronque : minimise le problème : min q(s) avec ||s||< deltak
+                                pour l'itération k de l'algorithme des regions de confiance
+###################################################################################################
 
-#Syntaxe
-#Entrée
-#Sortie
-#Exemple d'appel
+#################################################################################
+# Entrées :
+    * fk               : la fonction à minimiser appliqué au point xk
+    * gradfk           : le gradient de la fonction f appliqué au point xk
+    * hessfk           : la Hessienne de la fonction f appliqué au point xk
+    * delta            : le rayon de la région de confiance    
+    * max_iter         : le nombre maximal d'iterations
+    * tol              : la tolerance pour la condition d'arrêt sur le gradient
 
-%la méthode prend en paramétres :
-%la fonction : f
-%le gradient de la fonction : gradf
-%la hessienne de la fonction : hessf
-%le rayon de la boule : deltak
-%le point xk est tel que :
-        % g=∇f(xk) et H=∇2f(xk)
-%l sortie s est la solution du (P)
+#################################################################################
+# Sorties:
+    * s                : le pas s qui approche la solution du problème : min q(s) avec ||s||< deltak
+#################################################################################
+# Exemple d'appel:
+    * >> include("fonctions_de_tests.jl")
+    * >> s_min1=Gradient_Conjugue_Tronque(fct1([10;0;3]),grad_fct1([10;0;3]),hess_fct1([10;0;3]),1,[10;0;3],100,1e-15)
 """
-function Gradient_Conjugue_Tronque(f::Function,gradf::Function,hessf::Function,deltak,xk,max_iter,tol)
+function Gradient_Conjugue_Tronque(fk,gradfk,hessfk,deltak,max_iter,tol)
 
    #pj est le vecteur de direction
-   n = length(xk)
-   pj = -gradf(xk)
+   n = length(gradfk)
+   pj = -gradfk
    sj = zeros(n)
-   fk = f(xk)
-   gj = gradf(xk)
+   gj = gradfk
    iter = 0
    s = zeros(n)
    while  iter <= max_iter
-        kj = (pj')*hessf(xk)*pj
-        if (kj <=0)
-            # sigmaj est la solution de l'équation de ‖sj+σpj‖= ∆k
-            x1 = -(norm(sj,2)+deltak)/norm(pj,2)
-            x2 = (-norm(sj,2)+deltak)/norm(pj,2)
-            q1 = fk + (gj')*(sj + x1*pj) + 0.5*((sj + x1*pj)')*hessf(xk)*(sj + x1*pj)
-            q2 = fk + (gj')*(sj + x2*pj) + 0.5*((sj + x2*pj)')*hessf(xk)*(sj + x2*pj)
-
-            if (q1 < q2)
-             sigmaj = x1
+        kappa_j = (pj') * hessfk * pj
+        # version saloua
+        if kappa_j <= 0
+            # on écrit l'équation ||sj +x*pj|| = delta sous forme a*x^2 + b*x + c = 0 avec :
+            a = norm(pj)^2
+            b = 2 * (sj') * pj
+            c = norm(sj)^2 - deltak^2
+            sqrt_determinant = sqrt(b^2 -4 * a * c)
+            # les racines de l'équation sont
+            racine1 = (- b - sqrt_determinant) / (2 * a)
+            racine2 = (- b + sqrt_determinant) / (2 * a)
+            # q(sj + racine1*pj)
+            q_racine1 = (gj')*(sj + racine1*pj) +(1 / 2) * ((sj + racine1*pj)') * hessfk * (sj + racine1 * pj)
+            # q(sj + racine2*pj)
+            q_racine2 = (gj')*(sj + racine2*pj) +(1 / 2) * ((sj + racine2*pj)') * hessfk * (sj + racine2 * pj)
+            # on garde le s pour lequel la valeur de q est la plus petite
+            if q_racine1 > q_racine2
+                sigma = racine1
             else
-             sigmaj = x2
+                sigma = racine2
             end
-            s = sj + sigmaj*pj
+            s = sj + sigma * pj
+            break
+        end
+
+       alphaj = norm(gj,2)^2 / kappa_j
+       if norm(sj + alphaj * pj,2) >= deltak
+            # sigmaj est la solution positive de l’equation ‖sj+σpj‖ = ∆k
+            sigmaj = - norm(sj,2) + deltak / norm(pj,2)
+            s = sj + sigmaj * pj
             break
        end
-       alphaj = (gj')*gj/kj;
-       if norm(sj +alphaj*pj,2) >= deltak
-            #sigmaj est la solution positive de l’equation ‖sj+σpj‖ = ∆k
-            sigmaj = -norm(sj,2)+deltak/norm(pj,2);
-            s = sj + sigmaj*pj;
-            break
-       end
-       #Mise à jourdes paramétres
+       # Mise à jour des paramétres
        sj = sj + alphaj*pj
-       gj1 = gj + alphaj*hessf(xk)*pj
-       betaj = (norm(gj1,2)/norm(gj,2))^2
-       gj = gj1
-       pj = -gj + betaj*pj
-       if (norm(gj,2)<tol*norm((gradf(xk)),2))
+       gjplus1 = gj + alphaj * hessfk * pj
+       betaj = (norm(gjplus1,2) / norm(gj,2))^2
+       pj = -gjplus1 + betaj * pj
+       gj = gjplus1
+       if (norm(gj,2)<tol*norm((gradfk),2))
             s = sj
             break
        end
        iter = iter + 1
-   end
-   if (typeof(s)==Nothing)
-       s=zeros(n)
    end
    return s
 end
