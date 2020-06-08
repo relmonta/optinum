@@ -34,7 +34,8 @@ ou
     * flag     : le critère d'arrêt
 ################################################################################
 """
-function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,gamma2,eta1,eta2,max_iter,tol)
+function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,
+    gamma2,eta1,eta2,max_iter,tol)
     # Initialisation des variables
     nb_iters = 1
     max_iter_gct = max_iter

@@ -50,14 +50,14 @@ function test_Lagrangien_Aug(afficher)
 	lambda0 = 2
 	mu0 = 100000
 	tho = 2
-
+	##
 	"#paramétres utilisés pour définir les critéres d'arrêts "
 	epsilon = 1e-30
 	tol = 1e-9
 	itermax = 1000
 
 	"#Choix d'algorithme d'optimisation sans contraintes"
-	algo = "newton"
+	algo = "gct"
 	"#norme de l'écart entre la solution trouvée et celle attendue"
 	normerreur = 1e-6
 	#nombre de tests réussis et le nombre de tests total

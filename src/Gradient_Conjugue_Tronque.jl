@@ -9,7 +9,7 @@
     * fk               : la fonction à minimiser appliqué au point xk
     * gradfk           : le gradient de la fonction f appliqué au point xk
     * hessfk           : la Hessienne de la fonction f appliqué au point xk
-    * delta            : le rayon de la région de confiance    
+    * delta            : le rayon de la région de confiance
     * max_iter         : le nombre maximal d'iterations
     * tol              : la tolerance pour la condition d'arrêt sur le gradient
 

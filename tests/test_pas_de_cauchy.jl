@@ -9,7 +9,7 @@ include("../src/Pas_De_Cauchy.jl")
    #Entrées :
 	#affichage : boolean , si true on affiche les sorties de chaque test
    #Sorties :
-	#nbtest_reu : nombre de tests réussis 
+	#nbtest_reu : nombre de tests réussis
 	#nbtest_total : nombre de tests total effectués
 """
 
@@ -50,7 +50,7 @@ g3 = [-2; 1]
 H3 = [-2 0 ; 0 10]
 delta3 = 10
 s3, e3 = Pas_De_Cauchy(g3,H3,delta3)
-#@test e3 == 1
+#@test e3 == (norm(g3)!=0)
 if (e3==1)
 	nbtest_reu = nbtest_reu + 1
 end
