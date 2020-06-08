@@ -1,4 +1,4 @@
-#using LinearAlgebra , JuMP, Ipopt , Test
+ #using LinearAlgebra , JuMP, Ipopt , Test
 include("fonctions_de_tests.jl")
 include("../src/Lagrangien_Augm.jl")
 include("../src/Algorithme_de_Newton.jl")
@@ -21,7 +21,7 @@ tol = 1e-9
 itermax = 1000
 
 "#Choix d'algorithme d'optimisation sans contraintes"
-algo = "NW"
+algo = "RC"
 
 
 "#norme de l'écart entre la solution trouvée et celle attendue"
