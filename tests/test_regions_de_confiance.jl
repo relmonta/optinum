@@ -8,8 +8,8 @@ include("../src/Regions_de_confiance.jl")
    #Entrées :
 	#affichage : boolean , si true on affiche les sorties de chaque test
    #Sorties :
-	#nbtest_reu : nombre de tests réussis
-	#nbtest_total : nombre de tests total effectués
+	#nbTests_reussis : nombre de tests réussis
+	#nbTests_total : nombre de tests total effectués
 """
 
 function test_regions_de_confiance(affichage)
@@ -26,8 +26,8 @@ maxits = 5000
 delta0_1 = 2
 delta0_2 = 1
 
-nbtest_reu = 0
-nbtest_total = 0
+nbTests_reussis = 0
+nbTests_total = 0
 
 
 "#test avec la fonction f1 et point initial x01"
@@ -35,10 +35,10 @@ RC_x_min11, RC_nb_iters11, RC_fmin11, RC_flag11 = Regions_De_Confiance("cauchy",
 #@test norm(RC_x_min11-sol_exacte_fct1,2) < 1e-2
 #@test norm(RC_fmin11)<1e-10
 if norm(RC_x_min11-sol_exacte_fct1,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f1 et point initial x02"
@@ -46,10 +46,10 @@ RC_x_min12, RC_nb_iters12, RC_fmin12, RC_flag12 = Regions_De_Confiance("cauchy",
 #@test norm(RC_x_min12-sol_exacte_fct1,2) < 1e-2
 #@test norm(RC_fmin12)<1e-10
 if norm(RC_x_min12-sol_exacte_fct1,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f2 et point initial x02"
@@ -57,10 +57,10 @@ RC_x_min21, RC_nb_iters21, RC_fmin21, RC_flag21 = Regions_De_Confiance("cauchy",
 #@test norm(RC_x_min21-sol_exacte_fct2,2) < 1e-2
 #@test norm(RC_fmin21)<1e-5
 if norm(RC_x_min21-sol_exacte_fct2,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f2 et point initial x022"
@@ -68,10 +68,10 @@ RC_x_min22, RC_nb_iters22, RC_fmin22, RC_flag22 = Regions_De_Confiance("cauchy",
 #@test norm(RC_x_min22-sol_exacte_fct2,2) < 1e-2
 #@test norm(RC_fmin22)<1e-5
 if norm(RC_x_min22-sol_exacte_fct2,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f2 et point initial x023"
@@ -79,10 +79,10 @@ RC_x_min23, RC_nb_iters23, RC_fmin23, RC_flag23 = Regions_De_Confiance("cauchy",
 #@test norm(RC_x_min23-sol_exacte_fct2,2) < 1e-2
 #@test norm(RC_fmin23)<1e-5
 if norm(RC_x_min23-sol_exacte_fct2,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f1 et point initial x011"
@@ -90,10 +90,10 @@ RC_x_min11, RC_nb_iters11, RC_fmin11, RC_flag11 = Regions_De_Confiance("gct",fct
 #@test norm(RC_x_min11-sol_exacte_fct1,2) < 1e-2
 #@test norm(RC_fmin11)<1e-10
 if norm(RC_x_min11-sol_exacte_fct1,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f1 et point initial x012"
@@ -101,10 +101,10 @@ RC_x_min12, RC_nb_iters12, RC_fmin12, RC_flag12 = Regions_De_Confiance("gct",fct
 #@test norm(RC_x_min12-sol_exacte_fct1,2) < 1e-2
 #@test norm(RC_fmin12)<1e-10
 if norm(RC_x_min12-sol_exacte_fct1,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f2 et point initial x021"
@@ -112,10 +112,10 @@ RC_x_min21, RC_nb_iters21, RC_fmin21, RC_flag21 = Regions_De_Confiance("gct",fct
 #@test norm(RC_x_min21-sol_exacte_fct2,2) < 1e-2
 #@test norm(RC_fmin21)<1e-10
 if norm(RC_x_min21-sol_exacte_fct2,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f2 et point initial x022"
@@ -123,10 +123,10 @@ RC_x_min22, RC_nb_iters22, RC_fmin22, RC_flag22 = Regions_De_Confiance("gct",fct
 #@test norm(RC_x_min22-sol_exacte_fct2,2) < 1e-2
 #@test norm(RC_fmin22)<1e-10
 if norm(RC_x_min22-sol_exacte_fct2,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 "#test avec la fonction f2 et point initial x023"
@@ -134,14 +134,14 @@ RC_x_min23, RC_nb_iters23, RC_fmin23, RC_flag23 = Regions_De_Confiance("gct",fct
 #@test norm(RC_x_min23-sol_exacte_fct2,2) < 1e-2
 #@test norm(RC_fmin23)<1e-10
 if norm(RC_x_min23-sol_exacte_fct2,2) < 1e-2
-	nbtest_reu = nbtest_reu + 1
+	nbTests_reussis = nbTests_reussis + 1
 end
 printstyled("=> ",bold=true,color=:white)
-nbtest_total = nbtest_total + 1
+nbTests_total = nbTests_total + 1
 
 
 #printstyled(" Tous les tests sont réussis ! \n",bold=true,color=:green)
 
-return (nbtest_reu,nbtest_total)
+return (nbTests_reussis,nbTests_total)
 
 end

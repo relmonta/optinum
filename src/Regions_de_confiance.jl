@@ -41,13 +41,13 @@ ou
 function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,
     gamma2,eta1,eta2,max_iter,tol)
     # Initialisation des variables
-    nb_iters = 1
+    nb_iters     = 1
     max_iter_gct = max_iter
-    grad0 = gradf(x0)
-    xk = x0
-    deltak = delta0
-    eps = 1e-8
-    flag = 0
+    grad0        = gradf(x0)
+    xk           = x0
+    deltak       = delta0
+    eps          = 1e-8
+    flag         = 0
     ###########################################################
     #                        Début                            #
     ###########################################################
