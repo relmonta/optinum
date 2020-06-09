@@ -47,9 +47,9 @@ function test_Lagrangien_Aug(afficher)
 
 	"#initialisation des paramétres"
 	lambda0 = 2
-	mu0 = 100000
+	mu0 = 10
 	tho = 2
-	##
+	
 	"#paramétres utilisés pour définir les critéres d'arrêts "
 	epsilon = 1e-30
 	tol = 1e-9
@@ -57,6 +57,7 @@ function test_Lagrangien_Aug(afficher)
 
 	"#Choix d'algorithme d'optimisation sans contraintes"
 	algo = "gct"
+	
 	"#norme de l'écart entre la solution trouvée et celle attendue"
 	normerreur = 1e-6
 	#nombre de tests réussis et le nombre de tests total
@@ -158,7 +159,7 @@ function test_Lagrangien_Aug(afficher)
 	nbTests_reussis = nbTests_reussis + VerifierTest(xmin4,value.(x),normerreur,afficher)
 	nbTests_total = nbTests_total + 1
 
-	printstyled(">",bold=true,color=:white)
+	printstyled("> ",bold=true,color=:white)
 	if (afficher)
 		println("\n")
 		printstyled("############################################ \n",bold=true,color=:green)

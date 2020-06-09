@@ -2,7 +2,7 @@ include("fonctions_de_tests.jl")
 include("../src/Regions_de_confiance.jl")
 
 
-"#test de l'algorithme de la region de confiance """
+" #test de l'algorithme de la region de confiance "
 
 """
    #Entrées :

@@ -99,13 +99,10 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
             eta = eta /mu
     	"#Étape c"
         else
-            l = mu
+
             mu = tho*mu
             epsk = eps0/mu
-            if mu<0
-            	    mu = l
-	     	end
-	     	eta = etac / (mu^alpha)
+	    eta = etac / (mu^alpha)
         end
     end
     iter = iter +1
