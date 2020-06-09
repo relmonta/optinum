@@ -38,7 +38,7 @@
 #################################################################################
 
 """
-function Lagrangien_Augm(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
+function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
 	hessfonc::Function,gradcontrainte::Function,hesscontrainte::Function,normcontrainte::Function,
 	jaccontrainte::Function,phi::Function,x0,epsilon,tol,itermax,lambda0,mu0,tho)
 
@@ -77,14 +77,14 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
 	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,epsilon,itermax)
 
     elseif algorithme_sans_contrainte=="cauchy"
-    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
+    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,100000,tol)
 
     elseif algorithme_sans_contrainte=="gct"
     	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
     else
     	flag = -1
     end
-    
+
     "#Test de convergence de l'algorithme global"
     if (norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (normcontrainte(xlocal) <= (normcontrainte(x0)*tol+epsilon))
         xmin = xlocal
@@ -106,7 +106,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
         end
     end
     iter = iter +1
-    
+
     "#Tester si le nombre d'itération max est atteint"
     if iter==itermax
     	flag = 1

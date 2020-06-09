@@ -30,10 +30,10 @@ printstyled(string(nbTests_reussis) * " tests réussis sur " * string(nbtest_tot
 
 
 # Script vérifiant l'algorithme de Lagrangien augmenté
-include("test_Lagrangien_Aug.jl")
+include("test_Lagrangien_Augmente.jl")
 
 printstyled("Lancement des tests sur ",bold=true,color=:white)
 printstyled("le Lagrangien augmenté ",bold=true,color=:blue)
-nbTests_reussis , nbtest_total = test_Lagrangien_Aug(false)
+nbTests_reussis , nbtest_total = test_Lagrangien_Augmente(false)
 
 printstyled(string(nbTests_reussis) * " tests réussis sur " * string(nbtest_total) * "\n",bold=true,color=:green)
