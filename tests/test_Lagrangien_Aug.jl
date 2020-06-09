@@ -1,4 +1,4 @@
- #using LinearAlgebra , JuMP, Ipopt , Test
+
 include("fonctions_de_tests.jl")
 include("../src/Lagrangien_Augm.jl")
 include("../src/Algorithme_de_Newton.jl")

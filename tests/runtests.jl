@@ -1,4 +1,3 @@
-using LinearAlgebra, Test, JuMP, Ipopt
 
 #Script vérifiant l'algorithme de Newton
 include("test_Algo_Newton.jl")
