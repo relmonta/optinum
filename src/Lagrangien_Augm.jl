@@ -84,6 +84,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     else
     	flag = -1
     end
+    
     "#Test de convergence de l'algorithme global"
     if (norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (normcontrainte(xlocal) <= (normcontrainte(x0)*tol+epsilon))
         xmin = xlocal
@@ -108,6 +109,8 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
         end
     end
     iter = iter +1
+    
+    "Tester si le nombre d'itération max est atteint"
     if iter==itermax
     	flag = 1
     	break

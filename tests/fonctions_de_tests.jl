@@ -1,16 +1,16 @@
 
-""" Les points initiaux """
+""" # Les points initiaux """
 x011 = [1; 0; 0]
 x012 = [10; 3; -2.2]
 x021 = [-1.2; 1]
 x022 = [10; 0]
 x023 = [0; 1/200 + 1/10^12]
 
-""" Les solutions exactes """
+""" # Les solutions exactes """
 sol_exacte_fct1 = [1;1;1]
 sol_exacte_fct2 = [1;1]
 
-""" La première fonction de test """
+""" # La première fonction de test """
 
 fct1(x) =  2*(x[1]+x[2]+x[3]-3)^2 + (x[1]-x[2])^2 + (x[2]-x[3])^2
 
@@ -26,7 +26,7 @@ end
 hess_fct1(x) = [6 2 4;2 8 2;4 2 6]
 
 
-""" La deuxieme fonction de test """
+""" # La deuxieme fonction de test """
 fct2(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
 fonct2(x,y)=100*(y-x^2)^2+(1-x)^2
 
@@ -35,7 +35,7 @@ grad_fct2(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
 
 hess_fct2(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
 
-""" Les fonctions lié aux contraintes """
+""" # Les fonctions lié aux contraintes """
 #contrainte : x1 + x3 = 1
 contrainte1(x) =  x[1]+x[3]-1
 

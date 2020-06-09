@@ -20,7 +20,7 @@
     * flag            : entier indiquant le critère sur lequel le programme à arrêter
 	        	    0 : Convergence
 	        	    1 : stagnation du xk
-	        	    1 : stagnation du f
+	        	    2 : stagnation du f
 	        	    3 : nombre maximal d'itération dépassé
     * nb_iters        : le nombre d'itérations faites par le programme
 #################################################################################

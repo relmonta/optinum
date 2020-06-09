@@ -31,6 +31,7 @@
 function Pas_De_Cauchy(g,H,delta)
 
     norme_de_g = norm(g);
+    
     # si g != 0
     if norme_de_g > 0
         t = norme_de_g^2 / (g' * H * g)     #t = -b/2a
