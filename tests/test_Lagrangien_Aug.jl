@@ -43,10 +43,6 @@ end
 function test_Lagrangien_Aug(afficher)
 
 	"#initialisation des paramétres"
-	x01 = [0; 1; 1]
-	x02 = [0.5; 1.25; 1]
-	x03 = [1; 0]
-	x04 = [sqrt(3)/2 ;sqrt(3)/2]
 	lambda0 = 2
 	mu0 = 100000
 	tho = 2

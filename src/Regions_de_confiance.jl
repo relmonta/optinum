@@ -31,7 +31,11 @@ ou
     * x_min    : le point minimisant la fonction f
     * fx_min   : la valeur minimale de la fonction f
     * nb_iters : le nombre d'iteration qu'à fait le programme
-    * flag     : le critère d'arrêt
+    * flag            : entier indiquant le critère sur lequel le programme à arrêter
+	        	    0 : Convergence
+	        	    1 : stagnation du x
+	        	    2 : stagnation du f
+	        	    3 : nombre maximal d'itération dépassé
 ################################################################################
 """
 function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,

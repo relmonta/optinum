@@ -19,8 +19,6 @@ nbtest_reu = 0
 nbtest_total = 0
 
 
-#printstyled("Lancement des tests sur ",bold=true,color=:white)
-#printstyled("l'algorithme de Newton",bold=true,color=:blue)
 
 x_min, fx_min, flag, nb_iters = Algorithme_de_Newton(fct1,grad_fct1,hess_fct1,x011,eps,maxits)
 #@test norm(x_min-sol_exacte_fct1,2) < 1e-2

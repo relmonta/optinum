@@ -23,31 +23,36 @@
 """
 function Gradient_Conjugue_Tronque(fk,gradfk,hessfk,deltak,max_iter,tol)
 
-   #pj est le vecteur de direction
+   "#pj est le vecteur de direction"
    n = length(gradfk)
    pj = -gradfk
    sj = zeros(n)
    gj = gradfk
    iter = 0
    s = zeros(n)
+   
    while  iter <= max_iter
         kappa_j = (pj') * hessfk * pj
-        # version saloua
+
         if kappa_j <= 0
-            # on écrit l'équation ||sj +x*pj|| = delta sous forme a*x^2 + b*x + c = 0 avec :
+        
+            "# on écrit l'équation ||sj +x*pj|| = delta sous forme a*x^2 + b*x + c = 0 avec :"
             a = norm(pj)^2
             b = 2 * (sj') * pj
             c = norm(sj)^2 - deltak^2
             sqrt_determinant = sqrt(b^2 -4 * a * c)
-            # les racines de l'équation sont
+            
+            "# les racines de l'équation sont"
             racine1 = (- b - sqrt_determinant) / (2 * a)
             racine2 = (- b + sqrt_determinant) / (2 * a)
-            # q(sj + racine1*pj)
+            
+            "# calcul de q(sj + racine1*pj)"
             q_racine1 = (gj')*(sj + racine1*pj) +(1 / 2) * ((sj + racine1*pj)') * hessfk * (sj + racine1 * pj)
-            # q(sj + racine2*pj)
+            "# calcul de q(sj + racine2*pj)"
             q_racine2 = (gj')*(sj + racine2*pj) +(1 / 2) * ((sj + racine2*pj)') * hessfk * (sj + racine2 * pj)
-            # on garde le s pour lequel la valeur de q est la plus petite
-            if q_racine1 > q_racine2
+            
+            "# on garde le s pour lequel la valeur de q est la plus petite"
+            if q_racine1 < q_racine2
                 sigma = racine1
             else
                 sigma = racine2
@@ -58,12 +63,14 @@ function Gradient_Conjugue_Tronque(fk,gradfk,hessfk,deltak,max_iter,tol)
 
        alphaj = norm(gj,2)^2 / kappa_j
        if norm(sj + alphaj * pj,2) >= deltak
-            # sigmaj est la solution positive de l’equation ‖sj+σpj‖ = ∆k
+       
+            "# sigmaj est la racine positive de l’equation ‖sj+σpj‖ = ∆k"
             sigmaj = - norm(sj,2) + deltak / norm(pj,2)
             s = sj + sigmaj * pj
             break
        end
-       # Mise à jour des paramétres
+       
+       "# Mise à jour des paramétres"
        sj = sj + alphaj*pj
        gjplus1 = gj + alphaj * hessfk * pj
        betaj = (norm(gjplus1,2) / norm(gj,2))^2

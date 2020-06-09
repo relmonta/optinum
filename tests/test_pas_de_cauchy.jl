@@ -1,9 +1,8 @@
 include("../src/Pas_De_Cauchy.jl")
 
-#printstyled("Lancement des tests sur",bold=true,color=:white)
-#printstyled(" le pas de cauchy ",bold=true,color=:blue)
 
-"#test de l'algorithme de pas de cauchy"
+"#test de l'algorithme de pas de cauchy :
+ #on test : la saturation/non satiration de la boule et la nullité du gradient"
 
 """
    #Entrées :
@@ -19,7 +18,7 @@ nbtest_reu = 0
 nbtest_total = 0
 
 
-# Pour la quadratique 1
+"# Pour la quadratique 1"
 g1 = [0; 0]
 H1 = [7 0 ; 0 2]
 delta1 = 1
@@ -32,7 +31,7 @@ printstyled("=",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 
-# Pour la quadratique 2
+"# Pour la quadratique 2"
 g2 = [6; 2]
 H2 = [7 0 ; 0 2]
 delta2 =3
@@ -45,7 +44,7 @@ printstyled("=",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 
-# Pour la quadratique 3
+"# Pour la quadratique 3"
 g3 = [-2; 1]
 H3 = [-2 0 ; 0 10]
 delta3 = 10

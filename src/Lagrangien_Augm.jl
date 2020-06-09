@@ -110,7 +110,7 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     end
     iter = iter +1
     
-    "Tester si le nombre d'itération max est atteint"
+    "#Tester si le nombre d'itération max est atteint"
     if iter==itermax
     	flag = 1
     	break
