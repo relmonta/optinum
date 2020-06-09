@@ -4,8 +4,7 @@ include("Gradient_Conjugue_Tronque.jl")
 
 """
 ###########################################################################
-Region_De_Confiance: minimiser la fonction f
-en utilisant l'algorithme des régions de confiance avec
+Region_De_Confiance: minimiser la fonction f en utilisant l'algorithme des régions de confiance avec
     - un pas de Couchy
 ou
     - un pas calculé avec l'algorithme du gradient conjugue tronque
@@ -26,12 +25,12 @@ ou
     * tol         : la tolérence pour les critères d'arrêt
 
 ###############################################################################
-#Sorties:
+#Sorties :
 
-    * x_min    : le point minimisant la fonction f
-    * fx_min   : la valeur minimale de la fonction f
-    * nb_iters : le nombre d'iteration qu'à fait le programme
-    * flag            : entier indiquant le critère sur lequel le programme à arrêter
+    * x_min       : le point minimisant la fonction f
+    * fx_min      : la valeur minimale de la fonction f
+    * nb_iters    : le nombre d'iteration qu'à fait le programme
+    * flag        : entier indiquant le critère sur lequel le programme à arrêter
 	        	    0 : Convergence
 	        	    1 : stagnation du x
 	        	    2 : stagnation du f
