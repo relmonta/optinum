@@ -4,6 +4,7 @@ include("../src/Lagrangien_Augm.jl")
 include("../src/Algorithme_de_Newton.jl")
 include("../src/Regions_de_confiance.jl")
 
+"#afficher_resultats nous affiche les sorties du lagrangien augmenté"
 function afficher_resultats(algo,nom_fct,point_init,xmin,fxmin,flag,sol_exacte,nbiters)
 	println("-------------------------------------------------------------------------")
 	printstyled("Résultats de l'algorithme du Lagrangien augmenté avec ",algo," appliquée à "*nom_fct*" et au point initial "*point_init*" :\n",bold=true,color=:blue)
@@ -14,6 +15,7 @@ function afficher_resultats(algo,nom_fct,point_init,xmin,fxmin,flag,sol_exacte,n
 	println("  * solution attendue : " , sol_exacte)
 end
 
+"#VerifierTest renvoie 1 si le test réussi et 0 sinon"
 function VerifierTest(xmin,sol_exacte,tolerance,afficher)
 	if norm(xmin - sol_exacte) > tolerance
 		if (afficher)
@@ -29,6 +31,7 @@ function VerifierTest(xmin,sol_exacte,tolerance,afficher)
 	printstyled("=",bold=true,color=:white)
 	return estreussi
 end
+
 
 "#test du lagrangien augmenté"
 
