@@ -56,7 +56,7 @@ function test_Lagrangien_Augmente(afficher)
 	itermax = 1000
 
 	"#Choix d'algorithme d'optimisation sans contraintes"
-	algo = "gct"
+	algo = "newton"
 
 
 	"#solutions exactes"
