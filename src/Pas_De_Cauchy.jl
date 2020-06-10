@@ -31,21 +31,21 @@
 function Pas_De_Cauchy(g,H,delta)
 
     norme_de_g = norm(g);
-    
-    "# si le gradient est non null "
+
+    "# si le gradient est non nul "
     if norme_de_g > 0
         t = norme_de_g^2 / (g' * H * g)     #t = -b/2a
         s = -t*g
         e = 1
-        
+
         "# si on sature la boule on change le s par le point limite"
         if norm(s) > delta
                 s = - (delta / norme_de_g) * g
                 e = -1
         end
         "# sinon on a deja calculer le s"
-    
-    "# si le gradient est null"
+
+    "# si le gradient est nul"
     else
         t = 0
         s = t*g

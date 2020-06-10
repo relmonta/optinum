@@ -77,10 +77,10 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
 	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,epsilon,itermax)
 
     elseif algorithme_sans_contrainte=="cauchy"
-    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,100000,tol)
+    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,100,20,0.4,2,0.05,0.5,500,tol)
 
     elseif algorithme_sans_contrainte=="gct"
-    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
+    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,50,tol)
     else
     	flag = -1
     end
@@ -99,10 +99,9 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
             eta = eta /mu
     	"#Étape c"
         else
-
             mu = tho*mu
             epsk = eps0/mu
-	    eta = etac / (mu^alpha)
+	    	eta = etac / (mu^alpha)
         end
     end
     iter = iter +1

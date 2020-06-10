@@ -25,6 +25,7 @@ function VerifierTest(xmin,sol_exacte,tolerance,afficher)
 	else
 		if (afficher)
 			printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
+			@test true
 		end
 		estreussi = 1
 	end
@@ -48,11 +49,11 @@ function test_Lagrangien_Augmente(afficher)
 	"#initialisation des paramétres"
 	lambda0 = 2
 	mu0 = 10
-	tho = 2
+	tho = 1
 
 	"#paramétres utilisés pour définir les critéres d'arrêts "
-	epsilon = 1e-30
-	tol = 1e-9
+	epsilon = 1e-8
+	tol = 1e-5
 	itermax = 1000
 
 	"#Choix d'algorithme d'optimisation sans contraintes"

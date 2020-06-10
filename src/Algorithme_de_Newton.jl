@@ -39,7 +39,7 @@ dk = hessf(x0)\(-gradf(x0))
 xk1 = xk + dk
 while true
     xk = xk1
-
+    
    "#direction de Newton"
     dk = hessf(xk)\(-gradf(xk))
 

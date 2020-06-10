@@ -4,12 +4,6 @@ TP d'optimisation numérique 2A SN N7.
 https://travis-ci.com/github/mathn7/optinum
 
 ## lancement de l'ensemble des tests
-il faut dabord inclure les librairies nécessaires avec :
-
-```julia
-include("librairies.jl") 
-```
-
 dans le dossier tests faire :
 
 ```julia
