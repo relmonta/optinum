@@ -1,6 +1,6 @@
-# Index des fonctions
+# Documentation des fonctions
 
-Documentation de toute les fonctions du package MTH2210
+Documentation de toute les fonctions du package Optinum
 
 ```@index
 Pages = ["fct_index.md"]
