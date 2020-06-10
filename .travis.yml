@@ -10,7 +10,7 @@ branches:
   only:
     - master
 before_script:
-    - git clone --depth=1 https://github.com/mathn7/optinum.git mathn7/optinum
+    - #git clone --depth=1 https://github.com/mathn7/optinum.git mathn7/optinum
 jobs:
   allow_failures:
     - julia: nightly
