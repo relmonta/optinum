@@ -45,6 +45,6 @@ printstyled("le Lagrangien augmenté ",bold=true,color=:blue)
 println("")
 
 #nbTests_reussis , nbtest_total = test_Lagrangien_Augmente(false)
-#test_Lagrangien_Augmente(false)
+test_Lagrangien_Augmente(false)
 
 #printstyled(string(nbTests_reussis) * " tests réussis sur " * string(nbtest_total) * "\n",bold=true,color=:green)
