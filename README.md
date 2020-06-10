@@ -1,7 +1,9 @@
 # optinum
 TP d'optimisation numérique 2A SN N7.
 
-https://travis-ci.com/github/mathn7/optinum
+| **Documentation** | **Intégration continue** |
+|:-----------------:|:------------------------:|
+| [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://mathn7.github.io/optinum/dev/accueil) | [![Build Status](https://travis-ci.com/mathn7/optinum.svg?branch=master)](https://travis-ci.com/github/mathn7/optinum) |
 
 ## lancement de l'ensemble des tests
 dans le dossier tests faire :
