@@ -8,7 +8,6 @@ using Ipopt
 include("Algorithme_de_Newton.jl")
 include("Gradient_Conjugue_Tronque.jl")
 include("Lagrangien_Augmente.jl")
-include("Optinum.jl")
 include("Pas_De_Cauchy.jl")
 include("Regions_de_confiance.jl")
 
