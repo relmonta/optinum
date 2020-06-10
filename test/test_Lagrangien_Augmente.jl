@@ -24,8 +24,7 @@ function VerifierTest(xmin,sol_exacte,tolerance,afficher)
 		estreussi = 0
 	else
 		if (afficher)
-			printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
-			@test true
+			printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)			
 		end
 		estreussi = 1
 	end
@@ -57,7 +56,7 @@ function test_Lagrangien_Augmente(afficher)
 	itermax = 1000
 
 	"#Choix d'algorithme d'optimisation sans contraintes"
-	algo = "newton"
+	algo = "gct"
 
 
 	"#solutions exactes"
