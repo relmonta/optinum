@@ -2,7 +2,7 @@ module Optinum
 
 using LinearAlgebra
 using Test
-using JuMP
+
 
 include("Algorithme_de_Newton.jl")
 include("Gradient_Conjugue_Tronque.jl")
