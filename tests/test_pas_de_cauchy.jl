@@ -27,7 +27,7 @@ s1, e1 = Pas_De_Cauchy(g1,H1,delta1)
 if (e1==0)
 	nbtest_reu = nbtest_reu + 1
 end
-printstyled("=",bold=true,color=:white)
+#printstyled("=",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 
@@ -40,7 +40,7 @@ s2, e2 = Pas_De_Cauchy(g2,H2,delta2)
 if (e2==1)
 	nbtest_reu = nbtest_reu + 1
 end
-printstyled("=",bold=true,color=:white)
+#printstyled("=",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 
@@ -53,11 +53,17 @@ s3, e3 = Pas_De_Cauchy(g3,H3,delta3)
 if (e3==1)
 	nbtest_reu = nbtest_reu + 1
 end
-printstyled("=> ",bold=true,color=:white)
+#printstyled("=> ",bold=true,color=:white)
 nbtest_total = nbtest_total + 1
 
 #printstyled(" Tous les tests sont réussis ! \n",bold=true,color=:green)
+res = @testset "cauchy" begin 
+           @test e1 == 0
+           @test e2 == 1
+           @test e3 == 1
+end
+println("\n")
 
-return (nbtest_reu,nbtest_total)
+return 
 
 end

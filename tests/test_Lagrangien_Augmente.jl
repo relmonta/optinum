@@ -28,7 +28,7 @@ function VerifierTest(xmin,sol_exacte,tolerance,afficher)
 		end
 		estreussi = 1
 	end
-	printstyled("=",bold=true,color=:white)
+	#printstyled("=",bold=true,color=:white)
 	return estreussi
 end
 
@@ -56,16 +56,26 @@ function test_Lagrangien_Augmente(afficher)
 	itermax = 1000
 
 	"#Choix d'algorithme d'optimisation sans contraintes"
-	algo = "gct"
+	algo = "newton"
+
+
+	"#solutions exactes"
+	sol_exacte_fct1 = [0.5 ; 1.25 ; 0.5]
+	sol_exacte_fct2 = [0.9072339605110892; 0.82275545631455]
+
 
 	"#norme de l'écart entre la solution trouvée et celle attendue"
 	normerreur = 1e-6
+	
+	
 	#nombre de tests réussis et le nombre de tests total
 	nbTests_total = 0
 	nbTests_reussis = 0
 	# Test sur fct1 avec x01 comme solution initiale
 
-	#résolution du problème avec la libraire JumP
+	
+	"#résolution du problème avec la libraire JumP"
+	#=
 	#création du model
 	m = Model(Ipopt.Optimizer)
 	#définir les paramétres du model (faites attention à la dimension de x !)
@@ -81,16 +91,19 @@ function test_Lagrangien_Augmente(afficher)
 	# restaurer la sortie
 	redirect_stdout(TT)
 
+	=#
+	
+	
 	#résolution du problème avec le Lagrangien augmenté
 	xmin1,fxmin1,nbiters,flag = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
 	hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,epsilon,tol,itermax,lambda0,mu0,tho)
 
 	#affichage des résultats du test
 	if (afficher)
-		afficher_resultats(algo,"fonction 1","x01",xmin1,fxmin1,flag,value.(x),nbiters)
+		afficher_resultats(algo,"fonction 1","x01",xmin1,fxmin1,flag,sol_exacte_fct1,nbiters)
 	end
 	#test
-	nbTests_reussis=nbTests_reussis + VerifierTest(xmin1,value.(x),normerreur,afficher)
+	nbTests_reussis=nbTests_reussis + VerifierTest(xmin1,sol_exacte_fct1,normerreur,afficher)
 	nbTests_total = nbTests_total + 1
 	# Test sur fct1 avec x02 comme solution initiale
 
@@ -100,15 +113,16 @@ function test_Lagrangien_Augmente(afficher)
 
 	#affichage des résultats du test
 	if (afficher)
-		afficher_resultats(algo,"fonction 1","x02",xmin2,fxmin2,flag,value.(x),nbiters)
+		afficher_resultats(algo,"fonction 1","x02",xmin2,fxmin2,flag,sol_exacte_fct1,nbiters)
 	end
 	# test
-	nbTests_reussis=nbTests_reussis + VerifierTest(xmin2,value.(x),normerreur,afficher)
+	nbTests_reussis=nbTests_reussis + VerifierTest(xmin2,sol_exacte_fct1,normerreur,afficher)
 	nbTests_total = nbTests_total + 1
 	# Test sur fct2 avec x03 comme solution initiale
 
-	#résolution du problème avec la libraire JumP
-
+	
+	"#résolution du problème avec la libraire JumP"
+	#=
 	#création du model
 	m = Model(Ipopt.Optimizer)
 
@@ -129,6 +143,8 @@ function test_Lagrangien_Augmente(afficher)
 	optimize!(m);
 	# restaurer la sortie
 	redirect_stdout(TT)
+	
+	=#
 
 	#résolution du problème avec le Lagrangien augmenté
 	xmin3,fxmin3,nbiters,flag = Lagrangien_Augmente(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,
@@ -137,12 +153,12 @@ function test_Lagrangien_Augmente(afficher)
 
 	#affichage des résultats du test
 	if (afficher)
-		afficher_resultats(algo,"fonction 2","x03",xmin3,fxmin3,flag,value.(x),nbiters)
+		afficher_resultats(algo,"fonction 2","x03",xmin3,fxmin3,flag,sol_exacte_fct2,nbiters)
 	end
 	#test
 	#@test norm(xmin3 - value.(x)) < normerreur
 	#xmin3 = [0;0]
-	nbTests_reussis = nbTests_reussis + VerifierTest(xmin3,value.(x),normerreur,afficher)
+	nbTests_reussis = nbTests_reussis + VerifierTest(xmin3,sol_exacte_fct2,normerreur,afficher)
 	nbTests_total = nbTests_total + 1
 	"# Test sur fct2 avec x04 comme solution initiale"
 
@@ -152,14 +168,15 @@ function test_Lagrangien_Augmente(afficher)
 
 	#affichage des résultats du test
 	if (afficher)
-		afficher_resultats(algo,"fonction 2","x04",xmin4,fxmin4,flag,value.(x),nbiters)
+		afficher_resultats(algo,"fonction 2","x04",xmin4,fxmin4,flag,sol_exacte_fct2,nbiters)
 	end
 	#test
 	#@test norm(xmin4 - value.(x)) < normerreur
-	nbTests_reussis = nbTests_reussis + VerifierTest(xmin4,value.(x),normerreur,afficher)
+	nbTests_reussis = nbTests_reussis + VerifierTest(xmin4,sol_exacte_fct2,normerreur,afficher)
 	nbTests_total = nbTests_total + 1
 
-	printstyled("> ",bold=true,color=:white)
+	#printstyled("> ",bold=true,color=:white)
+	
 	if (afficher)
 		println("\n")
 		printstyled("############################################ \n",bold=true,color=:green)
@@ -168,5 +185,20 @@ function test_Lagrangien_Augmente(afficher)
 		printstyled("#                                          # \n",bold=true,color=:green)
 		printstyled("############################################",bold=true,color=:green)
 	end
-	return (nbTests_reussis,nbTests_total)
+	
+	
+	"#tester les résultats obtenues"
+	nom_algo = "Lagrangien augmenté avec "*algo
+	
+	res = @testset "$nom_algo"  begin 
+           @test isapprox(xmin1,sol_exacte_fct1 ,atol=normerreur)
+           @test xmin2 ≈ sol_exacte_fct1 atol=normerreur
+           @test xmin3 ≈ sol_exacte_fct2 atol=normerreur
+           @test xmin4 ≈ sol_exacte_fct2 atol=normerreur
+
+	end	
+	println("\n")
+	
+	
+	return
 end
