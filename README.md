@@ -3,7 +3,7 @@ TP d'optimisation numérique 2A SN N7.
 
 | **Documentation** | **Intégration continue** |
 |:-----------------:|:------------------------:|
-| [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://mathn7.github.io/optinum/dev/) |[![Build Status](https://travis-ci.com/mathn7/optinum.svg?token=7MnuezU9siusbUxpxFBx&branch=master)](https://travis-ci.com/mathn7/optinum)|
+| [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://mathn7.github.io/optinum/) |[![Build Status](https://travis-ci.com/mathn7/optinum.svg?token=7MnuezU9siusbUxpxFBx&branch=master)](https://travis-ci.com/mathn7/optinum)|
 
 
 ## lancement de l'ensemble des tests
