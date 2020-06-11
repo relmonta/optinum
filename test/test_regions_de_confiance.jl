@@ -1,3 +1,4 @@
+using LinearAlgebra, Test
 include("fonctions_de_tests.jl")
 include("../src/Regions_de_confiance.jl")
 

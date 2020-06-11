@@ -1,3 +1,5 @@
+using LinearAlgebra, Test
+
 include("../src/Pas_De_Cauchy.jl")
 
 

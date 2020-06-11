@@ -1,4 +1,4 @@
-
+using LinearAlgebra, Test
 include("fonctions_de_tests.jl")
 include("../src/Lagrangien_Augmente.jl")
 include("../src/Algorithme_de_Newton.jl")
