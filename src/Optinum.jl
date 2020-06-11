@@ -2,14 +2,20 @@ module Optinum
 
 using LinearAlgebra
 using Test
+using Markdown
 
 
-include("Algorithme_de_Newton.jl")
-include("Gradient_Conjugue_Tronque.jl")
-include("Lagrangien_Augmente.jl")
+include("Algorithme_De_Newton.jl")
+export  Algorithme_De_Newton
+
+include("Gradient_Conjugue_Tronque.jl") 
 include("Pas_De_Cauchy.jl")
-include("Regions_de_confiance.jl")
+export Pas_De_Cauchy, Gradient_Conjugue_Tronque
 
-export  Algorithme_de_Newton, Gradient_Conjugue_Tronque, Lagrangien_Augmente, Pas_De_Cauchy, Regions_de_confiance
+include("Regions_De_Confiance.jl")
+export Regions_De_Confiance
+
+include("Lagrangien_Augmente.jl")
+export Lagrangien_Augmente
 
 end # module

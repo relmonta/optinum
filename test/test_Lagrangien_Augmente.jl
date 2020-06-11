@@ -1,8 +1,8 @@
 using LinearAlgebra, Test
 include("fonctions_de_tests.jl")
 include("../src/Lagrangien_Augmente.jl")
-include("../src/Algorithme_de_Newton.jl")
-include("../src/Regions_de_confiance.jl")
+include("../src/Algorithme_De_Newton.jl")
+include("../src/Regions_De_Confiance.jl")
 
 "#afficher_resultats nous affiche les sorties du lagrangien augmenté"
 function afficher_resultats(algo,nom_fct,point_init,xmin,fxmin,flag,sol_exacte,nbiters)

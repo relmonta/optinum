@@ -1,6 +1,6 @@
 using LinearAlgebra, Test
 include("fonctions_de_tests.jl")
-include("../src/Algorithme_de_Newton.jl")
+include("../src/Algorithme_De_Newton.jl")
 
 "#test de l'algorithme de newton"
 
@@ -32,27 +32,27 @@ option = [eps;maxits;tol]
 normerreur = 1e-2
 
 
-x_min11, fx_min, flag, nb_iters = Algorithme_de_Newton(fct1,grad_fct1,hess_fct1,x011,option)
+x_min11, fx_min, flag, nb_iters = Algorithme_De_Newton(fct1,grad_fct1,hess_fct1,x011,option)
 if (affichage)
 	afficher_resultats("fct1","x011",x_min11,fx_min,flag,sol_exacte_fct1,nb_iters)
 end
 
 
-x_min12, fx_min, flag, nb_iters = Algorithme_de_Newton(fct1,grad_fct1,hess_fct1,x012,[])
+x_min12, fx_min, flag, nb_iters = Algorithme_De_Newton(fct1,grad_fct1,hess_fct1,x012,[])
 
 if (affichage)
 	afficher_resultats("fct1","x012",x_min12,fx_min,flag,sol_exacte_fct1,nb_iters)
 end
 
 
-x_min21, fx_min, flag, nb_iters = Algorithme_de_Newton(fct2,grad_fct2,hess_fct2,x021,[])
+x_min21, fx_min, flag, nb_iters = Algorithme_De_Newton(fct2,grad_fct2,hess_fct2,x021,[])
 
 if (affichage)
 	afficher_resultats("fct2","x021",x_min21,fx_min,flag,sol_exacte_fct2,nb_iters)
 end
 
 
-x_min22, fx_min, flag, nb_iters = Algorithme_de_Newton(fct2,grad_fct2,hess_fct2,x022,[])
+x_min22, fx_min, flag, nb_iters = Algorithme_De_Newton(fct2,grad_fct2,hess_fct2,x022,[])
 
 
 if (affichage)
@@ -62,7 +62,7 @@ end
 
 
 #=
-x_min, fx_min, flag, nb_iters = Algorithme_de_Newton(fct2,grad_fct2,hess_fct2,x023,eps,maxits)
+x_min, fx_min, flag, nb_iters = Algorithme_De_Newton(fct2,grad_fct2,hess_fct2,x023,eps,maxits)
 #@test norm(x_min-sol_exacte_fct2,2) < 1e-2
 #@test norm(fx_min)<1e-5
 if norm(x_min-sol_exacte_fct2,2) < 1e-2

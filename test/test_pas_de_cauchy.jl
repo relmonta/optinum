@@ -2,7 +2,6 @@ using LinearAlgebra, Test
 
 include("../src/Pas_De_Cauchy.jl")
 
-
 "#test de l'algorithme de pas de cauchy :
  #on test : la saturation/non satiration de la boule et la nullité du gradient"
 

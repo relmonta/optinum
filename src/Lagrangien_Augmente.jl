@@ -1,50 +1,50 @@
-"""
+@doc doc"""
 Resolution des problèmes de minimisation sous contraintes d'égalités
-	
+
 # Syntaxe
 ```julia
-Lagrangien_Augmente(algorithme_sans_contrainte,fonc,contrainte,gradfonc,hessfonc,gradcontrainte,
-					hesscontrainte,normcontrainte,jaccontrainte,phi,x0,option)
+Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
+					hess_contrainte,norm_contrainte,jac_contrainte,phi,x0,option)
 ```
 
 # Entrées
-	* algorithme_sans_contrainte : l'indice inqiquant l'algorithme sans contraintes à utiliser
-	* "newton" 					 : pour utiliser l'algo de Newton
-	* "cauchy" 					 : pour utiliser l'algo de Région de confiance avec cauchy
-	* "gct" 				 	 : pour utiliser l'algo de Région de confiance avec gradient conjugué tronqué
-	* fonc 						 : la fonction à minimiser
-	* contrainte 				 : la contrainte [x est dans le domaine des contraintes ssi c(x)==0]
-	* gradfonc					 : le gradient de la fonction
-	* hessfonc 					 : la hessienne de la fonction
-	* gradcontrainte 			 : le gradient de la contrainte contrainte
-	* hesscontrainte 			 : la hessienne de la contrainte
-	* nomrcontrainte 			 : la norme de la contrainte
-	* jaccontrainte 			 : le jacobien de la contrainte
-	* x0 						 : le point du départ
-	* options      				:
-			* epsilon 					 : utilisé dans les critéres d'arrêt
-			* tol 						 : utilisé dans les critéres d'arrêt
-			* itermax 					 : nombre maximal d'itération dans la boucle principale
-			* lambda0,mu0,tho 			 : valeurs initiales des variables de l'algorithme
+ *  algo 		   : l'indice inqiquant l'algorithme sans contraintes à utiliser
+ 	* "newton" 	   : pour Newton
+ 	* "cauchy" 	   : pour les régions de confiance avec le pas de Cauchy
+ 	* "gct" 	   : pour les régions de confiance avec le gradient conjugué tronqué
+ * fonc 		   : la fonction à minimiser
+ * contrainte 	   : la contrainte [x est dans le domaine des contraintes ssi ``c(x)==0``]
+ * gradfonc		   : le gradient de la fonction
+ * hessfonc 	   : la hessienne de la fonction
+ * grad_contrainte : le gradient de la contrainte
+ * hess_contrainte : la hessienne de la contrainte
+ * norm_contrainte : la norme de la contrainte
+ * jac_contrainte  : la jacobienne de la contrainte
+ * x0 			   : la première composante du point de départ du Lagrangien
+ * options
+ 	* epsilon 	   : utilisé dans les critères d'arrêt
+ 	* tol 		   : la tolérance utilisée dans les critères d'arrêt
+ 	* itermax 	   : nombre maximal d'itération dans la boucle principale
+	* lambda0	   : la deuxième composante du point de départ du Lagrangien
+	* mu0,tho 	   : valeurs initiales des variables de l'algorithme
 
 # Sorties
-	* xmin 				:Le minumum du problème avec contraintes
-	* fxmin 			: l'image de xmin par la fonction objectif
-	* flag 				: indicateur du déroulement de l'algorithme
-	* niters 			: nombre d'itérations
-
-	 	 0 : Convergence
-	 	 1 : nombre maximal d'itération atteint
-	 	-1 : une erreur s'est produite
+	* xmin 		   : une approximation de la solution du problème avec contraintes
+	* fxmin 	   : ``f(x_{min}``
+	* flag 		   : indicateur du déroulement de l'algorithme
+			0 	   : Convergence
+			1 	   : nombre maximal d'itération atteint
+   	   	   -1 	   : une erreur s'est produite
+	* niters 	   : nombre d'itérations réalisées
 
 # Exemple d'appel
 ```julia
 
 ```
 """
-function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
-	hessfonc::Function,gradcontrainte::Function,hesscontrainte::Function,normcontrainte::Function,
-	jaccontrainte::Function,phi::Function,x0,options)
+function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::Function,
+	hessfonc::Function,grad_contrainte::Function,hess_contrainte::Function,norm_contrainte::Function,
+	jac_contrainte::Function,phi::Function,x0,options)
 
 	if options == []
 		epsilon = 1e-30
@@ -63,76 +63,76 @@ function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contraint
 	end
 
 
-"#initialisation des variables de l'algorithme"
-flag = 0
-xmin = x0
-lambda = lambda0
-mu = mu0
-eps0 = 1/mu0
-epsk = eps0
-alpha = 0.1
-beta = 0.9
-etac = 0.1258925
-eta0 = etac / (mu0^alpha)
-eta = eta0
-iter = 0
-gradL0 = (gradfonc(x0) + transpose(lambda0)*gradcontrainte(x0) + mu0*transpose(jaccontrainte(x0))*contrainte(x0))
+	"#initialisation des variables de l'algorithme"
+	flag = 0
+	xmin = x0
+	lambda = lambda0
+	mu = mu0
+	eps0 = 1/mu0
+	epsk = eps0
+	alpha = 0.1
+	beta = 0.9
+	etac = 0.1258925
+	eta0 = etac / (mu0^alpha)
+	eta = eta0
+	iter = 0
+	gradL0 = (gradfonc(x0) + transpose(lambda0)*grad_contrainte(x0) + mu0*transpose(jac_contrainte(x0))*contrainte(x0))
 
-"#boucle principale"
-while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normcontrainte(xmin) .> (normcontrainte(x0)*tol+ epsilon)) && iter < itermax ) )
+	"#boucle principale"
+	while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((norm_contrainte(xmin) .> (norm_contrainte(x0)*tol+ epsilon)) && iter < itermax ) )
 
-    "#la fonction Lagrangien"
-    L(x) = (fonc(x) + (transpose(lambda))*contrainte(x) + 0.5*mu*(normcontrainte(x)^2) )
+		"#la fonction Lagrangien"
+		L(x) = (fonc(x) + (transpose(lambda))*contrainte(x) + 0.5*mu*(norm_contrainte(x)^2) )
 
-    "#la fonction gradient de Lagrangien"
-    gradL(x) =  (gradfonc(x) + gradcontrainte(x)*lambda + mu*transpose(jaccontrainte(x))*contrainte(x))
+		"#la fonction gradient de Lagrangien"
+		gradL(x) =  (gradfonc(x) + grad_contrainte(x)*lambda + mu*transpose(jac_contrainte(x))*contrainte(x))
 
-    "#la fonction hessienne du Lagrangien"
-    hessL(x) = (hessfonc(x) + (transpose(lambda))*hesscontrainte(x) + mu*(transpose(jaccontrainte(x)))*jaccontrainte(x) .+ phi(x) )
+		"#la fonction hessienne du Lagrangien"
+		hessL(x) = (hessfonc(x) + (transpose(lambda))*hess_contrainte(x) + mu*(transpose(jac_contrainte(x)))*jac_contrainte(x) .+ phi(x) )
 
-    "#Étape a"
-    "#Résolution du problème sans contraintes : min L(x,lambdak ,muk)"
-    if algorithme_sans_contrainte=="newton"
+		"#Étape a"
+		"#Résolution du problème sans contraintes : min L(x,lambdak ,muk)"
+		if algo=="newton"
 
-	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,[])
+		xlocal,~ = Algorithme_De_Newton(L,gradL,hessL,xmin,[])
 
-    elseif algorithme_sans_contrainte=="cauchy"
-    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,[])
+		elseif algo=="cauchy"
+			xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,[])
 
-    elseif algorithme_sans_contrainte=="gct"
-    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,[])
-    else
-    	flag = -1
-    end
-    
-    "#Test de convergence de l'algorithme global"
-    if (norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (normcontrainte(xlocal) <= (normcontrainte(x0)*tol+epsilon))
-        xmin = xlocal
-        break
+		elseif algo=="gct"
+			xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,[])
+		else
+			flag = -1
+		end
 
-    "#Mise à jour des variables"
-    else
-    	"#Étape b"
-        if (norm(contrainte(xlocal),2) <= eta)
-            lambda = lambda + mu*contrainte(xlocal)
-            epsk = epsk/(mu^beta)
-            eta = eta /mu
-    	"#Étape c"
-        else
+		"#Test de convergence de l'algorithme global"
+		if (norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (norm_contrainte(xlocal) <= (norm_contrainte(x0)*tol+epsilon))
+			xmin = xlocal
+			break
 
-            mu = tho*mu
-            epsk = eps0/mu
-	    eta = etac / (mu^alpha)
-        end
-    end
-    iter = iter +1
-    
-    "#Tester si le nombre d'itération max est atteint"
-    if iter==itermax
-    	flag = 1
-    	break
-    end
-end
-fxmin = fonc(xmin)
-return xmin,fxmin,flag,iter
+		"#Mise à jour des variables"
+		else
+			"#Étape b"
+			if (norm(contrainte(xlocal),2) <= eta)
+				lambda = lambda + mu*contrainte(xlocal)
+				epsk = epsk/(mu^beta)
+				eta = eta /mu
+			"#Étape c"
+			else
+
+				mu = tho*mu
+				epsk = eps0/mu
+			eta = etac / (mu^alpha)
+			end
+		end
+		iter = iter +1
+
+		"#Tester si le nombre d'itération max est atteint"
+		if iter==itermax
+			flag = 1
+			break
+		end
+	end
+	fxmin = fonc(xmin)
+	return xmin,fxmin,flag,iter
 end
