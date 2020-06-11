@@ -48,7 +48,7 @@ function test_Lagrangien_Augmente(afficher)
 	"#initialisation des paramétres"
 	lambda0 = 2
 	mu0 = 10
-	tho = 1
+	tho = 2
 
 	"#paramétres utilisés pour définir les critéres d'arrêts "
 	epsilon = 1e-8
@@ -184,6 +184,7 @@ function test_Lagrangien_Augmente(afficher)
 		print("         ",nbTests_reussis," tests réussis sur ",nbTests_total,"\n")
 		printstyled("#                                          # \n",bold=true,color=:green)
 		printstyled("############################################",bold=true,color=:green)
+		println("")
 	end
 	
 	
