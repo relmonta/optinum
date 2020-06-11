@@ -9,8 +9,8 @@ println("")
 
 try
 	test_Algo_Newton(false)
-catch
-	println("\n")
+catch exception
+	printstyled("$exception "*"\n"*"\n",bold=true,color=:red)
 end
 
 
@@ -24,8 +24,8 @@ println("")
 
 try
 	test_pas_de_cauchy(false)
-catch
-	println("Impossible de compiler : tests ignorés ")
+catch exception
+	printstyled("$exception "*"\n"*"\n",bold=true,color=:red)
 end
 
 
@@ -38,8 +38,8 @@ println("")
 
 try 
 	test_regions_de_confiance(false)
-catch
-	println("\n")
+catch exception
+	printstyled("$exception "*"\n"*"\n",bold=true,color=:red)
 end
 
 
@@ -53,7 +53,7 @@ println("")
 
 try
 	test_Lagrangien_Augmente(false)
-catch
-	println("\n")
+catch exception
+	printstyled("$exception "*"\n"*"\n",bold=true,color=:red)
 end
 
