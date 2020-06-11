@@ -75,7 +75,7 @@ function test_Lagrangien_Augmente(afficher)
 
 
 			#résolution du problème avec le Lagrangien augmenté
-			xmin1,fxmin1,nbiters,flag = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
+			xmin1,fxmin1,flag,nbiters = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
 			hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,option)
 
 			#affichage des résultats du test
@@ -86,7 +86,7 @@ function test_Lagrangien_Augmente(afficher)
 			# Test sur fct1 avec x02 comme solution initiale
 
 			#résolution du problème avec le Lagrangien augmenté
-			xmin2 ,fxmin2,nbiters,flag = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
+			xmin2 ,fxmin2,flag,nbiters = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
 			hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x02,[])
 
 			#affichage des résultats du test
@@ -123,7 +123,7 @@ function test_Lagrangien_Augmente(afficher)
 			=#
 
 			#résolution du problème avec le Lagrangien augmenté
-			xmin3,fxmin3,nbiters,flag = Lagrangien_Augmente(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,
+			xmin3,fxmin3,flag,nbiters = Lagrangien_Augmente(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,
 			hess_contrainte2,norm_contrainte2,jac_contrainte2,phi,x03,[])
 
 
@@ -136,7 +136,7 @@ function test_Lagrangien_Augmente(afficher)
 			"# Test sur fct2 avec x04 comme solution initiale"
 
 			#résolution du problème avec le Lagrangien augmenté
-			xmin4 ,fxmin4,nbiters,flag = Lagrangien_Augmente(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,
+			xmin4 ,fxmin4,flag,nbiters = Lagrangien_Augmente(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,
 			hess_contrainte2,norm_contrainte2,jac_contrainte2,phi,x04,[])
 
 			#affichage des résultats du test

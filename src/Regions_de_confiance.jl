@@ -18,7 +18,7 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
     * gradf       : le gradient de la fonction f
     * hessf       : la hessiene de la fonction à minimiser
     * x0          : point de dapart
-    * option : 
+    * options     : 
                 * deltaMax, 0 < gamma1 < 1, 1 < gamma2, 0 < eta1, eta1 < eta2 < 1  : utile pour les m-à-j de la region de confiance
                 * delta0      : le rayon de départ
                 * max_iter    : le nombre maximale d'iterations
@@ -29,8 +29,9 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
 
     * x_min    : le point minimisant la fonction f
     * fx_min   : la valeur minimale de la fonction f
+    * flag     : entier indiquant le critère sur lequel le programme à arrêter
     * nb_iters : le nombre d'iteration qu'à fait le programme
-    * flag            : entier indiquant le critère sur lequel le programme à arrêter
+
 	        	    0 : Convergence
 	        	    1 : stagnation du x
 	        	    2 : stagnation du f
@@ -40,10 +41,10 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
 
 ```
 """
-function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,option)
+function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,options)
 
 
-    if option == []
+    if options == []
         deltaMax = 10
         gamma1 = 0.5
         gamma2 = 2.00
@@ -53,14 +54,14 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         max_iter = 1000
         tol = 1e-15
     else
-        deltaMax = option[1]
-        gamma1 = option[2]
-        gamma2 = option[3]
-        eta1 = option[4]
-        eta2 = option[5]
-        delta0 = option[6]
-        max_iter = option[7]
-        tol = option[8]
+        deltaMax = options[1]
+        gamma1 = options[2]
+        gamma2 = options[3]
+        eta1 = options[4]
+        eta2 = options[5]
+        delta0 = options[6]
+        max_iter = options[7]
+        tol = options[8]
     end
     # Initialisation des variables
     nb_iters = 1
@@ -131,5 +132,5 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
          nb_iters = nb_iters +1
     end
 
-    return xk, nb_iters, f(xk), flag
+    return xk, f(xk), flag, nb_iters
 end

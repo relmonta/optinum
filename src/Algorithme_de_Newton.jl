@@ -34,17 +34,17 @@ xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
 ```
 """
 
-function Algorithme_de_Newton(f::Function,gradf::Function,hessf::Function,x0,option)
+function Algorithme_de_Newton(f::Function,gradf::Function,hessf::Function,x0,options)
 
         "# Si option est vide on initialise les 3 paramètres par défaut"       
-        if option == []
+        if options == []
                 eps = 1e-8
                 nb_iters_max = 100
                 tol = 1e-15
         else
-                eps = option[1]
-                nb_iters_max = option[2]
-                tol = option[3]
+                eps = options[1]
+                nb_iters_max = options[2]
+                tol = options[3]
 
         end
 

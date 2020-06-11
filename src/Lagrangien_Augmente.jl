@@ -21,7 +21,7 @@ Lagrangien_Augmente(algorithme_sans_contrainte,fonc,contrainte,gradfonc,hessfonc
 	* nomrcontrainte 			 : la norme de la contrainte
 	* jaccontrainte 			 : le jacobien de la contrainte
 	* x0 						 : le point du départ
-	* option      				:
+	* options      				:
 			* epsilon 					 : utilisé dans les critéres d'arrêt
 			* tol 						 : utilisé dans les critéres d'arrêt
 			* itermax 					 : nombre maximal d'itération dans la boucle principale
@@ -30,8 +30,9 @@ Lagrangien_Augmente(algorithme_sans_contrainte,fonc,contrainte,gradfonc,hessfonc
 # Sorties
 	* xmin 				:Le minumum du problème avec contraintes
 	* fxmin 			: l'image de xmin par la fonction objectif
-	* niters 			: nombre d'itérations
 	* flag 				: indicateur du déroulement de l'algorithme
+	* niters 			: nombre d'itérations
+
 	 	 0 : Convergence
 	 	 1 : nombre maximal d'itération atteint
 	 	-1 : une erreur s'est produite
@@ -43,9 +44,9 @@ Lagrangien_Augmente(algorithme_sans_contrainte,fonc,contrainte,gradfonc,hessfonc
 """
 function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
 	hessfonc::Function,gradcontrainte::Function,hesscontrainte::Function,normcontrainte::Function,
-	jaccontrainte::Function,phi::Function,x0,option)
+	jaccontrainte::Function,phi::Function,x0,options)
 
-	if option == []
+	if options == []
 		epsilon = 1e-30
 		tol = 1e-3
 		itermax = 1000
@@ -53,12 +54,12 @@ function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contraint
 		mu0 = 0.5
 		tho = 2
 	else
-		epsilon = option[1]
-		tol = option[2]
-		itermax = option[3]
-		lambda0 = option[4]
-		mu0 = option[5]
-		tho = option[6]
+		epsilon = options[1]
+		tol = options[2]
+		itermax = options[3]
+		lambda0 = options[4]
+		mu0 = options[5]
+		tho = options[6]
 	end
 
 
@@ -133,5 +134,5 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     end
 end
 fxmin = fonc(xmin)
-return xmin,fxmin,iter,flag
+return xmin,fxmin,flag,iter
 end
