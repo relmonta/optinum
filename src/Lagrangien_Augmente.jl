@@ -39,7 +39,7 @@
 #################################################################################
 
 """
-function Lagrangien_Augm(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
+function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
 	hessfonc::Function,gradcontrainte::Function,hesscontrainte::Function,normcontrainte::Function,
 	jaccontrainte::Function,phi::Function,x0,option)
 
@@ -90,13 +90,14 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
     "#Étape a"
     "#Résolution du problème sans contraintes : min L(x,lambdak ,muk)"
     if algorithme_sans_contrainte=="newton"
-	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,epsilon,itermax)
+
+	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,[])
 
     elseif algorithme_sans_contrainte=="cauchy"
-    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
+    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,[])
 
     elseif algorithme_sans_contrainte=="gct"
-    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
+    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,[])
     else
     	flag = -1
     end
