@@ -25,7 +25,7 @@ println("")
 try
 	test_pas_de_cauchy(false)
 catch
-	println("\n")
+	println("Impossible de compiler : tests ignorés ")
 end
 
 

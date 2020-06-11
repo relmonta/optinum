@@ -39,7 +39,7 @@ s3, e3 = Pas_De_Cauchy(g3,H3,delta3)
 
 
 res = @testset "cauchy" begin 
-           @test e1 == 0
+           @test e1 == 1
            @test e2 == 1
            @test e3 == 1
 end
