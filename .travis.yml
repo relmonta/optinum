@@ -6,10 +6,7 @@ os:
   - windows
   
 julia:
-  - 1.4
-  
-before_script:
-    -# git clone --depth=1 https://github.com/mathn7/optinum.git mathn7/optinum
+  - 1.4  
 jobs:
   allow_failures:
     - julia: nightly
