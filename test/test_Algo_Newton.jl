@@ -26,12 +26,16 @@ function test_Algo_Newton(affichage)
 
 eps = 1e-6
 maxits = 50
+tol = 1e-15
+
+option = [eps;maxits;tol]
+
 nbtest_reu = 0
 nbtest_total = 0
 normerreur = 1e-2
 
 
-x_min11, fx_min, flag, nb_iters = Algorithme_de_Newton(fct1,grad_fct1,hess_fct1,x011,eps,maxits)
+x_min11, fx_min, flag, nb_iters = Algorithme_de_Newton(fct1,grad_fct1,hess_fct1,x011,option)
 #@test norm(x_min-sol_exacte_fct1,2) < 1e-2
 #@test norm(fx_min)<1e-10
 if norm(x_min11-sol_exacte_fct1,2) < 1e-2
@@ -44,7 +48,7 @@ nbtest_total = nbtest_total + 1
 if (affichage)
 	afficher_resultats("fct1","x011",x_min11,fx_min,flag,sol_exacte_fct1,nb_iters)
 end
-x_min12, fx_min, flag, nb_iters = Algorithme_de_Newton(fct1,grad_fct1,hess_fct1,x012,eps,maxits)
+x_min12, fx_min, flag, nb_iters = Algorithme_de_Newton(fct1,grad_fct1,hess_fct1,x012,[])
 #@test norm(x_min-sol_exacte_fct1,2) < 1e-2
 #@test norm(fx_min)<1e-10
 if norm(x_min12-sol_exacte_fct1,2) < 1e-2
@@ -56,7 +60,7 @@ nbtest_total = nbtest_total + 1
 if (affichage)
 	afficher_resultats("fct1","x012",x_min12,fx_min,flag,sol_exacte_fct1,nb_iters)
 end
-x_min21, fx_min, flag, nb_iters = Algorithme_de_Newton(fct2,grad_fct2,hess_fct2,x021,eps,maxits)
+x_min21, fx_min, flag, nb_iters = Algorithme_de_Newton(fct2,grad_fct2,hess_fct2,x021,[])
 #@test norm(x_min-sol_exacte_fct2,2) < 1e-2
 #@test norm(fx_min)<1e-5
 if norm(x_min21-sol_exacte_fct2,2) < 1e-2
@@ -68,7 +72,7 @@ nbtest_total = nbtest_total + 1
 if (affichage)
 	afficher_resultats("fct2","x021",x_min21,fx_min,flag,sol_exacte_fct2,nb_iters)
 end
-x_min22, fx_min, flag, nb_iters = Algorithme_de_Newton(fct2,grad_fct2,hess_fct2,x022,eps,maxits)
+x_min22, fx_min, flag, nb_iters = Algorithme_de_Newton(fct2,grad_fct2,hess_fct2,x022,[])
 #@test norm(x_min-sol_exacte_fct2,2) < 1e-2
 #@test norm(fx_min)<1e-5
 if norm(x_min22-sol_exacte_fct2,2) < 1e-2
