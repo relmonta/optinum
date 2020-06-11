@@ -19,10 +19,11 @@
 	* nomrcontrainte 			 : la norme de la contrainte
 	* jaccontrainte 			 : le jacobien de la contrainte
 	* x0 						 : le point du départ
-	* epsilon 					 : utilisé dans les critéres d'arrêt
-	* tol 						 : utilisé dans les critéres d'arrêt
-	* itermax 					 : nombre maximal d'itération dans la boucle principale
-	* lambda0,mu0,tho 			 : valeurs initiales des variables de l'algorithme
+	* option      				:
+			* epsilon 					 : utilisé dans les critéres d'arrêt
+			* tol 						 : utilisé dans les critéres d'arrêt
+			* itermax 					 : nombre maximal d'itération dans la boucle principale
+			* lambda0,mu0,tho 			 : valeurs initiales des variables de l'algorithme
 
 #################################################################################
 
@@ -38,10 +39,25 @@
 #################################################################################
 
 """
-function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
+function Lagrangien_Augm(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
 	hessfonc::Function,gradcontrainte::Function,hesscontrainte::Function,normcontrainte::Function,
-	jaccontrainte::Function,phi::Function,x0,epsilon,tol,itermax,lambda0,mu0,tho)
+	jaccontrainte::Function,phi::Function,x0,option)
 
+	if option == []
+		epsilon = 1e-30
+		tol = 1e-3
+		itermax = 1000
+		lambda0 = 0.3
+		mu0 = 0.5
+		tho = 2
+	else
+		epsilon = option[1]
+		tol = option[2]
+		itermax = option[3]
+		lambda0 = option[4]
+		mu0 = option[5]
+		tho = option[6]
+	end
 
 
 "#initialisation des variables de l'algorithme"
@@ -77,14 +93,14 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
 	xlocal,~ = Algorithme_de_Newton(L,gradL,hessL,xmin,epsilon,itermax)
 
     elseif algorithme_sans_contrainte=="cauchy"
-    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,100,20,0.4,2,0.05,0.5,500,tol)
+    	xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
 
     elseif algorithme_sans_contrainte=="gct"
-    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,50,tol)
+    	xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,10,2,0.5,2,0.25,0.75,itermax,tol)
     else
     	flag = -1
     end
-
+    
     "#Test de convergence de l'algorithme global"
     if (norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (normcontrainte(xlocal) <= (normcontrainte(x0)*tol+epsilon))
         xmin = xlocal
@@ -99,13 +115,14 @@ while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((normc
             eta = eta /mu
     	"#Étape c"
         else
+
             mu = tho*mu
             epsk = eps0/mu
-	    	eta = etac / (mu^alpha)
+	    eta = etac / (mu^alpha)
         end
     end
     iter = iter +1
-
+    
     "#Tester si le nombre d'itération max est atteint"
     if iter==itermax
     	flag = 1
