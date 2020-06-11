@@ -1,6 +1,8 @@
 using LinearAlgebra, Test
 include("fonctions_de_tests.jl")
 include("../src/Regions_de_confiance.jl")
+include("../src/Pas_De_Cauchy.jl")
+include("../src/Gradient_Conjugue_Tronque.jl")
 
 
 "#afficher_resultats nous affiche les sorties de l'algorithme de Région de confiance"
