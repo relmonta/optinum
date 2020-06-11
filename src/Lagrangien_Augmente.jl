@@ -1,11 +1,13 @@
 """
-#################################################################################
-	# Algorithme du lagrangien augmenté pour le
-	 calcul du minimum d'une fonction avec des contraintes d'égalités
-#################################################################################
+Resolution des problèmes de minimisation sous contraintes d'égalités
+	
+# Syntaxe
+```julia
+Lagrangien_Augmente(algorithme_sans_contrainte,fonc,contrainte,gradfonc,hessfonc,gradcontrainte,
+					hesscontrainte,normcontrainte,jaccontrainte,phi,x0,option)
+```
 
-#################################################################################
-#Entrées :
+# Entrées
 	* algorithme_sans_contrainte : l'indice inqiquant l'algorithme sans contraintes à utiliser
 	* "newton" 					 : pour utiliser l'algo de Newton
 	* "cauchy" 					 : pour utiliser l'algo de Région de confiance avec cauchy
@@ -25,10 +27,7 @@
 			* itermax 					 : nombre maximal d'itération dans la boucle principale
 			* lambda0,mu0,tho 			 : valeurs initiales des variables de l'algorithme
 
-#################################################################################
-
-#################################################################################
-#Sorties :
+# Sorties
 	* xmin 				:Le minumum du problème avec contraintes
 	* fxmin 			: l'image de xmin par la fonction objectif
 	* niters 			: nombre d'itérations
@@ -36,8 +35,11 @@
 	 	 0 : Convergence
 	 	 1 : nombre maximal d'itération atteint
 	 	-1 : une erreur s'est produite
-#################################################################################
 
+# Exemple d'appel
+```julia
+
+```
 """
 function Lagrangien_Augmente(algorithme_sans_contrainte,fonc::Function,contrainte::Function,gradfonc::Function,
 	hessfonc::Function,gradcontrainte::Function,hesscontrainte::Function,normcontrainte::Function,

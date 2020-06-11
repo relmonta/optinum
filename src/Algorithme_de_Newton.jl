@@ -1,10 +1,12 @@
 """
-###################################################################################################
-	Algorithme_de_Newton: donne le minimum de la fonction f suivant l'algorithme de Newton
-###################################################################################################
+Minimise une fonction en utilisant l'algorithme de Newton
 
-#################################################################################
-#Entrées :
+# Syntaxe
+```julia
+xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
+```
+
+# Entrées :
     * f               : la fonction à minimiser
     * gradf           : le gradient de la fonction f
     * hessf           : la Hessienne de la fonction f
@@ -15,8 +17,8 @@
                 * tol             : pour les condition d'arrêts
 
 
-#################################################################################
-#Sorties:
+
+# Sorties:
     * x_min           : le point minimisant la fonction f
     * fx_min          : la valeur de f en x_min
     * flag            : entier indiquant le critère sur lequel le programme à arrêter
@@ -25,7 +27,11 @@
 	        	    2 : stagnation du f
 	        	    3 : nombre maximal d'itération dépassé
     * nb_iters        : le nombre d'itérations faites par le programme
-#################################################################################
+
+# Exemple d'appel
+```julia
+
+```
 """
 
 function Algorithme_de_Newton(f::Function,gradf::Function,hessf::Function,x0,option)
@@ -62,9 +68,9 @@ function Algorithme_de_Newton(f::Function,gradf::Function,hessf::Function,x0,opt
         grad = gradf(xk)
 
         "
-        ###########################################################
+        #####
         #                       Tests d'arrêt                     #
-        ###########################################################
+        #####
         "
 
         "# la CN1"

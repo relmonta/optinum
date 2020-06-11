@@ -1,18 +1,16 @@
-
-include("Pas_De_Cauchy.jl")
-include("Gradient_Conjugue_Tronque.jl")
-
 """
-###########################################################################
-Region_De_Confiance: minimiser la fonction f
-en utilisant l'algorithme des régions de confiance avec
-    - un pas de Couchy
-ou
-    - un pas calculé avec l'algorithme du gradient conjugue tronque
-###########################################################################
 
-#################################################################################
-#Entrées :
+Minimise une fonction en utilisant l'algorithme des régions de confiance avec
+    - le pas de Couchy
+ou
+    - le pas issu de l'algorithme du gradient conjugue tronqué
+
+# Syntaxe 
+```julia 
+xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
+```
+
+# Entrées :
     * algo        : string indicant la méthode à utiliser pour calculer le pas
                         - "gct" : pour l'algorithme du gradient conjugué tronqué
                         - "cauchy": pour le pas de Cauchy
@@ -26,8 +24,8 @@ ou
                 * max_iter    : le nombre maximale d'iterations
                 * tol         : la tolérence pour les critères d'arrêt
 
-###############################################################################
-#Sorties:
+
+# Sorties:
 
     * x_min    : le point minimisant la fonction f
     * fx_min   : la valeur minimale de la fonction f
@@ -37,7 +35,10 @@ ou
 	        	    1 : stagnation du x
 	        	    2 : stagnation du f
 	        	    3 : nombre maximal d'itération dépassé
-################################################################################
+# Exemple d'appel
+```julia
+
+```
 """
 function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,option)
 
@@ -69,9 +70,9 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
     deltak = delta0
     eps = 1e-8
     flag = 0
-    ###########################################################
+    ###
     #                        Début                            #
-    ###########################################################
+    ###
     while true
         gradk = gradf(xk)
         hessk = hessf(xk)
@@ -104,9 +105,9 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         else
             deltak = gamma1*deltak
         end
-        ###########################################################
+        ###
         #                       Tests d'arrêt                     #
-        ###########################################################
+        ###
         # la CN1
          if norm(gradk,2)<=tol*norm(grad0,2)
             flag = 0

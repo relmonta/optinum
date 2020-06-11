@@ -1,10 +1,12 @@
 """
-###################################################################################################
-	Gradient_Conjugue_Tronque : minimise le problème : min q(s) avec ||s||< deltak
+Minimise le problème : min q(s) avec ``||s||< deltak``
                                 pour l'itération k de l'algorithme des regions de confiance
-###################################################################################################
 
-#################################################################################
+# Syntaxe
+```julia
+sk = Gradient_Conjugue_Tronque(fk,gradfk,hessfk,option)
+```
+
 # Entrées :
     * fk               : la fonction à minimiser appliqué au point xk
     * gradfk           : le gradient de la fonction f appliqué au point xk
@@ -14,13 +16,15 @@
             * max_iter         : le nombre maximal d'iterations
             * tol              : la tolerance pour la condition d'arrêt sur le gradient
 
-#################################################################################
+
 # Sorties:
     * s                : le pas s qui approche la solution du problème : min q(s) avec ||s||< deltak
-#################################################################################
+
 # Exemple d'appel:
-    * >> include("fonctions_de_tests.jl")
-    * >> s_min1=Gradient_Conjugue_Tronque(fct1([10;0;3]),grad_fct1([10;0;3]),hess_fct1([10;0;3]),1,[10;0;3],100,1e-15)
+```julia
+include("fonctions_de_tests.jl")
+s = Gradient_Conjugue_Tronque(fct1([10;0;3]),grad_fct1([10;0;3]),hess_fct1([10;0;3]),1,[10;0;3],100,1e-15)
+```
 """
 function Gradient_Conjugue_Tronque(fk,gradfk,hessfk,option)
 
