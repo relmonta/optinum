@@ -15,32 +15,13 @@ function afficher_resultats(algo,nom_fct,point_init,xmin,fxmin,flag,sol_exacte,n
 	println("  * solution attendue : " , sol_exacte)
 end
 
-"#VerifierTest renvoie 1 si le test réussi et 0 sinon"
-function VerifierTest(xmin,sol_exacte,tolerance,afficher)
-	if norm(xmin - sol_exacte) > tolerance
-		if (afficher)
-			printstyled("\n ******** Test échoué ******* \n\n",bold=true,color=:red)
-		end
-		estreussi = 0
-	else
-		if (afficher)
-			printstyled("\n ******** Test réussi ******* \n\n",bold=true,color=:green)
-		end
-		estreussi = 1
-	end
-	#printstyled("=",bold=true,color=:white)
-	return estreussi
-end
-
 
 "#test du lagrangien augmenté"
 
 """
    #Entrées :
 	#afficher : boolean , si true on affiche les sorties de chaque test
-   #Sorties :
-	#nbTests_reussis : nombre de tests réussis
-	#nbtest_total : nombre de tests total effectués
+	
 """
 
 function test_Lagrangien_Augmente(afficher)
@@ -69,13 +50,10 @@ function test_Lagrangien_Augmente(afficher)
 	normerreur = 1e-4
 
 
-	#nombre de tests réussis et le nombre de tests total
-	nbTests_total = 0
-	nbTests_reussis = 0
-	# Test sur fct1 avec x01 comme solution initiale
 
 	for algo in algos 
 
+			"# Test sur fct1 avec x01 comme solution initiale"
 			"#résolution du problème avec la libraire JumP"
 			#=
 			#création du model
@@ -104,9 +82,7 @@ function test_Lagrangien_Augmente(afficher)
 			if (afficher)
 				afficher_resultats(algo,"fonction 1","x01",xmin1,fxmin1,flag,sol_exacte_fct1,nbiters)
 			end
-			#test
-			nbTests_reussis=nbTests_reussis + VerifierTest(xmin1,sol_exacte_fct1,normerreur,afficher)
-			nbTests_total = nbTests_total + 1
+
 			# Test sur fct1 avec x02 comme solution initiale
 
 			#résolution du problème avec le Lagrangien augmenté
@@ -117,11 +93,9 @@ function test_Lagrangien_Augmente(afficher)
 			if (afficher)
 				afficher_resultats(algo,"fonction 1","x02",xmin2,fxmin2,flag,sol_exacte_fct1,nbiters)
 			end
-			# test
-			nbTests_reussis=nbTests_reussis + VerifierTest(xmin2,sol_exacte_fct1,normerreur,afficher)
-			nbTests_total = nbTests_total + 1
-			# Test sur fct2 avec x03 comme solution initiale
 
+
+			"# Test sur fct2 avec x03 comme solution initiale"
 
 			"#résolution du problème avec la libraire JumP"
 			#=
@@ -157,11 +131,8 @@ function test_Lagrangien_Augmente(afficher)
 			if (afficher)
 				afficher_resultats(algo,"fonction 2","x03",xmin3,fxmin3,flag,sol_exacte_fct2,nbiters)
 			end
-			#test
-			#@test norm(xmin3 - value.(x)) < normerreur
-			#xmin3 = [0;0]
-			nbTests_reussis = nbTests_reussis + VerifierTest(xmin3,sol_exacte_fct2,normerreur,afficher)
-			nbTests_total = nbTests_total + 1
+			
+			
 			"# Test sur fct2 avec x04 comme solution initiale"
 
 			#résolution du problème avec le Lagrangien augmenté
@@ -172,12 +143,7 @@ function test_Lagrangien_Augmente(afficher)
 			if (afficher)
 				afficher_resultats(algo,"fonction 2","x04",xmin4,fxmin4,flag,sol_exacte_fct2,nbiters)
 			end
-			#test
-			#@test norm(xmin4 - value.(x)) < normerreur
-			nbTests_reussis = nbTests_reussis + VerifierTest(xmin4,sol_exacte_fct2,normerreur,afficher)
-			nbTests_total = nbTests_total + 1
 
-			#printstyled("> ",bold=true,color=:white)
 
 			if (afficher)
 				println("\n")
@@ -192,13 +158,16 @@ function test_Lagrangien_Augmente(afficher)
 
 			"#tester les résultats obtenues"
 			nom_algo = "Lagrangien augmenté avec "*algo
-
-			res = @testset "$nom_algo"  begin
-		           @test isapprox(xmin1,sol_exacte_fct1 ,atol=normerreur)
-		           @test xmin2 ≈ sol_exacte_fct1 atol=normerreur
-		           @test xmin3 ≈ sol_exacte_fct2 atol=normerreur
-		           @test xmin4 ≈ sol_exacte_fct2 atol=normerreur
-
+			
+			try
+				res = @testset "$nom_algo"  begin
+		          	 	@test isapprox(xmin1,sol_exacte_fct1 ,atol=normerreur)
+		          	 	@test xmin2 ≈ sol_exacte_fct1 atol=normerreur
+		           	 	@test xmin3 ≈ sol_exacte_fct2 atol=normerreur
+		           	 	@test xmin4 ≈ sol_exacte_fct2 atol=normerreur
+		           	 end
+			catch
+				println("\n")			
 			end
 			println("\n")
 			
