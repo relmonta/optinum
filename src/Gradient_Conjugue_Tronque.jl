@@ -9,9 +9,10 @@
     * fk               : la fonction à minimiser appliqué au point xk
     * gradfk           : le gradient de la fonction f appliqué au point xk
     * hessfk           : la Hessienne de la fonction f appliqué au point xk
-    * delta            : le rayon de la région de confiance
-    * max_iter         : le nombre maximal d'iterations
-    * tol              : la tolerance pour la condition d'arrêt sur le gradient
+    * option           :
+            * delta            : le rayon de la région de confiance
+            * max_iter         : le nombre maximal d'iterations
+            * tol              : la tolerance pour la condition d'arrêt sur le gradient
 
 #################################################################################
 # Sorties:
@@ -21,7 +22,18 @@
     * >> include("fonctions_de_tests.jl")
     * >> s_min1=Gradient_Conjugue_Tronque(fct1([10;0;3]),grad_fct1([10;0;3]),hess_fct1([10;0;3]),1,[10;0;3],100,1e-15)
 """
-function Gradient_Conjugue_Tronque(fk,gradfk,hessfk,deltak,max_iter,tol)
+function Gradient_Conjugue_Tronque(fk,gradfk,hessfk,option)
+
+    "# Si option est vide on initialise les 3 paramètres par défaut"       
+    if option == []
+        deltak = 2
+        max_iter = 1000
+        tol = 1e-6
+    else 
+        deltak = option[1]
+        max_iter = option[2]
+        tol = option[3]
+    end
 
    "#pj est le vecteur de direction"
    n = length(gradfk)

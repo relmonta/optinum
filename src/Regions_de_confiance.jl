@@ -4,7 +4,8 @@ include("Gradient_Conjugue_Tronque.jl")
 
 """
 ###########################################################################
-Region_De_Confiance: minimiser la fonction f en utilisant l'algorithme des régions de confiance avec
+Region_De_Confiance: minimiser la fonction f
+en utilisant l'algorithme des régions de confiance avec
     - un pas de Couchy
 ou
     - un pas calculé avec l'algorithme du gradient conjugue tronque
@@ -19,34 +20,55 @@ ou
     * gradf       : le gradient de la fonction f
     * hessf       : la hessiene de la fonction à minimiser
     * x0          : point de dapart
-    * deltaMax, 0 < gamma1 < 1, 1 < gamma2, 0 < eta1, eta1 < eta2 < 1  : utile pour les m-à-j de la region de confiance
-    * delta0      : le rayon de départ
-    * nb_itersMax : le nombre maximale d'iterations
-    * tol         : la tolérence pour les critères d'arrêt
+    * option : 
+                * deltaMax, 0 < gamma1 < 1, 1 < gamma2, 0 < eta1, eta1 < eta2 < 1  : utile pour les m-à-j de la region de confiance
+                * delta0      : le rayon de départ
+                * max_iter    : le nombre maximale d'iterations
+                * tol         : la tolérence pour les critères d'arrêt
 
 ###############################################################################
-#Sorties :
+#Sorties:
 
-    * x_min       : le point minimisant la fonction f
-    * fx_min      : la valeur minimale de la fonction f
-    * nb_iters    : le nombre d'iteration qu'à fait le programme
-    * flag        : entier indiquant le critère sur lequel le programme à arrêter
+    * x_min    : le point minimisant la fonction f
+    * fx_min   : la valeur minimale de la fonction f
+    * nb_iters : le nombre d'iteration qu'à fait le programme
+    * flag            : entier indiquant le critère sur lequel le programme à arrêter
 	        	    0 : Convergence
 	        	    1 : stagnation du x
 	        	    2 : stagnation du f
 	        	    3 : nombre maximal d'itération dépassé
 ################################################################################
 """
-function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,deltaMax,delta0,gamma1,
-    gamma2,eta1,eta2,max_iter,tol)
+function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,option)
+
+
+    if option == []
+        deltaMax = 10
+        gamma1 = 0.5
+        gamma2 = 2.00
+        eta1 = 0.25
+        eta2 = 0.75
+        delta0 = 2
+        max_iter = 1000
+        tol = 1e-15
+    else
+        deltaMax = option[1]
+        gamma1 = option[2]
+        gamma2 = option[3]
+        eta1 = option[4]
+        eta2 = option[5]
+        delta0 = option[6]
+        max_iter = option[7]
+        tol = option[8]
+    end
     # Initialisation des variables
-    nb_iters     = 1
+    nb_iters = 1
     max_iter_gct = max_iter
-    grad0        = gradf(x0)
-    xk           = x0
-    deltak       = delta0
-    eps          = 1e-8
-    flag         = 0
+    grad0 = gradf(x0)
+    xk = x0
+    deltak = delta0
+    eps = 1e-8
+    flag = 0
     ###########################################################
     #                        Début                            #
     ###########################################################
@@ -57,7 +79,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         if algo=="cauchy"
             sk, ~ = Pas_De_Cauchy(gradk,hessk,deltak)
         elseif algo=="gct"
-            sk = Gradient_Conjugue_Tronque(f(xk),gradk,hessk,deltak,max_iter_gct,tol)
+            sk = Gradient_Conjugue_Tronque(f(xk),gradk,hessk,[deltak,max_iter_gct,tol])
         else
             error("Pas d'algorithme portant le nom de "*algo*" !, Veuillez choisir \"gct\" ou \"cauchy\"")
         end
