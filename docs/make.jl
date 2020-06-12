@@ -12,7 +12,7 @@ makedocs(
             "Algorithmes" => ["Lagrangien augmenté" => "Lagrangien_augmente.md"]
             "Mise en place" => "mise_en_place.md", 
             "Génération du rapport" => "generate_pdf.md",
-            "Documentation des fonctions" =>"fct_index.md",          
+            "Documentation des fonctions" =>"fct_index.md"          
             ]
     )
 
