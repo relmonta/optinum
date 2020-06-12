@@ -31,5 +31,10 @@ makedocs(
 
 deploydocs(
     repo   = "github.com/mathn7/Optinum.git",
-    branch = "gh-pages",   
+    branch = "gh-pages",  
+    latest = "master",
+    osname = "linux",
+    julia  = "1.4",
+    deps = nothing,
+    make = nothing
 )
