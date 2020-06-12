@@ -8,6 +8,8 @@ makedocs(
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
     pages = [
             "Accueil" => "index.md",
+            "Sujet" => "Sujet.md"
+            "Algorithmes" => ["Lagrangien augmenté" => "Lagrangien_augmente.md"]
             "Mise en place" => "mise_en_place.md", 
             "Génération du rapport" => "generate_pdf.md",
             "Documentation des fonctions" =>"fct_index.md",          
