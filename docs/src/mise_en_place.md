@@ -24,7 +24,7 @@ et exécuter cette fonction avec le paramétre 'true' pour l'affichage
 #### exemple (tester l'algorithme du Lagrangien augmenté ) :
 
 ```julia
-include("test_Lagrangien_Aug.jl") 
+include("test_Lagrangien_Augmente.jl") 
 ```
 
 ```julia

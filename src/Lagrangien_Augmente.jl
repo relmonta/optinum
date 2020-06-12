@@ -4,38 +4,38 @@ Resolution des problèmes de minimisation sous contraintes d'égalités
 # Syntaxe
 ```julia
 Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
-					hess_contrainte,norm_contrainte,jac_contrainte,phi,x0,option)
+			hess_contrainte,norm_contrainte,jac_contrainte,phi,x0,option)
 ```
 
 # Entrées
- *  algo 		   : l'indice inqiquant l'algorithme sans contraintes à utiliser
- 	* "newton" 	   : pour Newton
- 	* "cauchy" 	   : pour les régions de confiance avec le pas de Cauchy
- 	* "gct" 	   : pour les régions de confiance avec le gradient conjugué tronqué
- * fonc 		   : la fonction à minimiser
- * contrainte 	   : la contrainte [x est dans le domaine des contraintes ssi ``c(x)==0``]
- * gradfonc		   : le gradient de la fonction
- * hessfonc 	   : la hessienne de la fonction
- * grad_contrainte : le gradient de la contrainte
- * hess_contrainte : la hessienne de la contrainte
- * norm_contrainte : la norme de la contrainte
- * jac_contrainte  : la jacobienne de la contrainte
- * x0 			   : la première composante du point de départ du Lagrangien
- * options
- 	* epsilon 	   : utilisé dans les critères d'arrêt
- 	* tol 		   : la tolérance utilisée dans les critères d'arrêt
- 	* itermax 	   : nombre maximal d'itération dans la boucle principale
-	* lambda0	   : la deuxième composante du point de départ du Lagrangien
-	* mu0,tho 	   : valeurs initiales des variables de l'algorithme
+  * **algo** 		   : l'algorithme sans contraintes à utiliser:
+    - **"newton"**  : pour l'algorithme de Newton
+    - **"cauchy"**  : pour le pas de Cauchy
+    - **"gct"**     : pour le gradient conjugué tronqué
+  * **fonc** 		   : la fonction à minimiser
+  * **contrainte**	   : la contrainte [x est dans le domaine des contraintes ssi ``c(x)=0``]
+  * **gradfonc**       : le gradient de la fonction
+  * **hessfonc** 	   : la hessienne de la fonction
+  * **grad_contrainte** : le gradient de la contrainte
+  * **hess_contrainte** : la hessienne de la contrainte
+  * **norm_contrainte** : la norme de la contrainte
+  * **jac_contrainte** : la jacobienne de la contrainte
+  * **x0** 			   : la première composante du point de départ du Lagrangien
+  * **options**
+    1. **epsilon** 	   : utilisé dans les critères d'arrêt
+    2. **tol**         : la tolérance utilisée dans les critères d'arrêt
+    3. **itermax** 	   : nombre maximal d'itération dans la boucle principale
+    4. **lambda0**	   : la deuxième composante du point de départ du Lagrangien
+    5. **mu0,tho** 	   : valeurs initiales des variables de l'algorithme
 
 # Sorties
-	* xmin 		   : une approximation de la solution du problème avec contraintes
-	* fxmin 	   : ``f(x_{min}``
-	* flag 		   : indicateur du déroulement de l'algorithme
-			0 	   : Convergence
-			1 	   : nombre maximal d'itération atteint
-   	   	   -1 	   : une erreur s'est produite
-	* niters 	   : nombre d'itérations réalisées
+* **xmin**		   : une approximation de la solution du problème avec contraintes
+* **fxmin** 	   : ``f(x_{min})``
+* **flag**		   : indicateur du déroulement de l'algorithme
+   - **0**    : Convergence
+   - **1**    : nombre maximal d'itération atteint
+   - **(-1)** : une erreur s'est produite
+* **niters** 	   : nombre d'itérations réalisées
 
 # Exemple d'appel
 ```julia

@@ -3,17 +3,22 @@ using Optinum
 
 makedocs(
     modules = [Optinum],
-    sitename = "Optinum",
+    sitename = "optinum",
     authors = "Saloua Naama, Mohamed El Waghf and Rachid ELMontassir",
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
     pages = [
             "Accueil" => "index.md",
+            "Sujet" => "Sujet.md",
+            "Algorithmes" => [
+                "Algorithme de Newton" => "Algorithme_de_newton.md",
+                "Les Régions de Confiance" => "Regions_de_confiance.md",    
+                "Lagrangien augmenté" => "Lagrangien_augmente.md"                
+                ],
             "Mise en place" => "mise_en_place.md", 
             "Génération du rapport" => "generate_pdf.md",
-            "Documentation des fonctions" =>"fct_index.md",
-	    "Sujet" => "Sujet.md",  
-	    "Algorithme de Newton" => "Algorithme_de_newton.md",          
+            "Documentation des fonctions" =>"fct_index.md"          
+
             ]
     )
 
-deploydocs(repo = "github.com/mathn7/Optinum.git")
+#deploydocs(repo = "github.com/mathn7/Optinum.git")
