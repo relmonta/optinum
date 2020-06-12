@@ -1,0 +1,4 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Optinum = "d9fbbd2f-b07c-4129-9383-1eb96f1f244d"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
