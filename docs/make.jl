@@ -21,4 +21,4 @@ makedocs(
             ]
     )
 
-#deploydocs(repo = "github.com/mathn7/Optinum.git")
+deploydocs(repo = "github.com/mathn7/Optinum.git")
