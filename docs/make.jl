@@ -3,7 +3,7 @@ using Optinum
 
 makedocs(
     modules = [Optinum],
-    sitename = "Optinum",
+    sitename = "optinum",
     authors = "Saloua Naama, Mohamed El Waghf and Rachid ELMontassir",
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
     pages = [
