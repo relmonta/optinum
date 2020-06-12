@@ -20,6 +20,7 @@ makedocs(
 		"Pour Région de confiance avec le gradient conjugué tronqué" => "Questions_GCT.md",
 		"Pour Lagrangien Augmenté" => "Questions_Lagrangien_Augmente.md"
              ],
+            "Annexes" => "Annexes.md",
             "Mise en place" => "mise_en_place.md", 
             "Génération du rapport" => "generate_pdf.md",
             "Documentation des fonctions" =>"fct_index.md"          
