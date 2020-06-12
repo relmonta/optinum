@@ -36,7 +36,6 @@ options = []
 xk,fx_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,options)
 ```
 """
-
 function Algorithme_De_Newton(f::Function,gradf::Function,hessf::Function,x0,options)
 
         "# Si option est vide on initialise les 3 paramètres par défaut"
