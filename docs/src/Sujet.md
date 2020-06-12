@@ -20,7 +20,7 @@ gradient ![\nabla f (x) \in R^{n}](https://render.githubusercontent.com/render/m
 
 [1) Algorithme de Newton local](../src/Algorithme_de_newton.md)
 
-[2) Région de confiance](../src/Region_de_confiance.md)
+[2) Région de confiance](../src/Regions_de_confiance.md)
 
 [3) Région de confiance-Partie 2: Avec l'agorithme du Gradient Conjugué Tronqué](../src/Region_de_confiance_avec_gradient_conjugue_tronque.md)
 
