@@ -30,7 +30,7 @@ makedocs(
     )
 
 deploydocs(
-    repo   = "https://github.com/mathn7/Optinum.git",
+    repo   = "https://github.com/mathn7/optinum.git",
     branch = "gh-pages",  
     devbranch = "master",
 )
