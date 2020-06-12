@@ -32,7 +32,6 @@ delta1 = 1
 s1, e1 = Pas_De_Cauchy(g1,H1,delta1)
 ```
 """
-
 function Pas_De_Cauchy(g,H,delta)
 
     norme_de_g = norm(g);
