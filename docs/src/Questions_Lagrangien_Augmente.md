@@ -11,9 +11,9 @@ contraintes.
 3.Tester les différentes variantes sur les problèmes en Annexe D.
  
  ### Interprétation
- 1.Commenter les résultats obtenus, en étudiant notamment les valeurs de ```λ_{k}``` et ```μ_{k}```.
+ 1.Commenter les résultats obtenus, en étudiant notamment les valeurs de ``λ_{k}`` et ``μ_{k}``.
  
- 2.Étudier l'influence du paramètre ```τ``` dans la performance de l'algorithme.
+ 2.Étudier l'influence du paramètre ``τ`` dans la performance de l'algorithme.
  
  3.**Supplémentaire** : 
       Que proposez-vous comme méthode pour la résolution des problèmes avec
