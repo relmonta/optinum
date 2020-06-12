@@ -206,9 +206,9 @@ version = "1.1.1+2"
 
 [[Optinum]]
 deps = ["Documenter", "LinearAlgebra", "Markdown", "Test"]
-git-tree-sha1 = "9e15b40621c70c5a0090048c1e33393cf0f10763"
+git-tree-sha1 = "c64618c7be3e617b8766f887b17dd137674f2ab3"
 repo-rev = "master"
-repo-url = ".."
+repo-url = "https://github.com/mathn7/optinum.git"
 uuid = "d9fbbd2f-b07c-4129-9383-1eb96f1f244d"
 version = "0.1.0"
 

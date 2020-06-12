@@ -18,9 +18,9 @@ où la fonction ``f`` est de classe ![C^{2}](https://render.githubusercontent.co
 par ses dérivées première et seconde, que l’on représente en tout point x par le vecteur
 gradient ![\nabla f (x) \in R^{n}](https://render.githubusercontent.com/render/math?math=%5Cnabla%20f%20(x)%20%5Cin%20R%5E%7Bn%7D) et la matrice Hessienne ![\nabla^{2} f (x) \in R^{nxn}](https://render.githubusercontent.com/render/math?math=%5Cnabla%5E%7B2%7D%20f%20(x)%20%5Cin%20R%5E%7Bnxn%7D).
 
-[1) Algorithme de Newton local](../build/Algorithme_de_newton.html)
+[1) Algorithme de Newton local](Algorithme_de_newton.md)
 
-[2) Région de confiance](../build/Regions_de_confiance.html)
+[2) Région de confiance](Regions_de_confiance.md)
 
 
 
@@ -33,4 +33,4 @@ Dans cette partie, nous nous intéressons à la résolution des problèmes sous 
 
 où C est un sous-ensemble non vide de ![\mathbb{R}^{n}](https://render.githubusercontent.com/render/math?math=%5Cmathbb%7BR%7D%5E%7Bn%7D)
 
-[Lagrangien Augmenté](../build/Lagrangien_augmente.html)
+[Lagrangien Augmenté](Lagrangien_augmente.md)
