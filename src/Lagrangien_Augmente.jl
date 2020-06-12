@@ -1,5 +1,5 @@
 @doc doc"""
-Resolution des problèmes de minimisation sous contraintes d'égalités
+Résolution des problèmes de minimisation sous contraintes d'égalités
 
 # Syntaxe
 ```julia
@@ -32,7 +32,7 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
 * **xmin**		   : une approximation de la solution du problème avec contraintes
 * **fxmin** 	   : ``f(x_{min})``
 * **flag**		   : indicateur du déroulement de l'algorithme
-   - **0**    : Convergence
+   - **0**    : convergence
    - **1**    : nombre maximal d'itération atteint
    - **(-1)** : une erreur s'est produite
 * **niters** 	   : nombre d'itérations réalisées
