@@ -9,7 +9,11 @@ makedocs(
     pages = [
             "Accueil" => "index.md",
             "Sujet" => "Sujet.md"
-            "Algorithmes" => ["Lagrangien augmenté" => "Lagrangien_augmente.md"]
+            "Algorithmes" => [
+                "Algorithme de Newton" => "Algorithme_de_newton.md",
+                "Les Régions de Confiance" => "Regions_de_confiance.md",    
+                "Lagrangien augmenté" => "Lagrangien_augmente.md"                
+                ],
             "Mise en place" => "mise_en_place.md", 
             "Génération du rapport" => "generate_pdf.md",
             "Documentation des fonctions" =>"fct_index.md"          

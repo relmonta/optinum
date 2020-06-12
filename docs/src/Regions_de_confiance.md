@@ -1,4 +1,4 @@
-# Région de confiance
+# les Régions de confiance
 
   L’introduction d’une région de confiance dans la méthode de Newton permet de garantir
 la convergence globale de celle-ci, i.e. la convergence vers un optimum local quel que soit
