@@ -35,6 +35,6 @@ Si convergence de l'algorithme global, s'arrêter , sinon aller en b
   
   c. Autrement, mettre à jour (entre autres) le paramétre de pénalité :
   
-   <img src="http://www.sciweavers.org/tex2img.php?eq=%5Cleft%5C%7B%5Cbegin%7Baligned%7D%5Clambda_%7Bk%2B1%7D%20%26%3D%5Clambda_%7Bk%7D%20%5C%5C%5Cmu_%7Bk%2B1%7D%20%26%3D%5Ctau%20%5Cmu_%7Bk%7D%20%5C%5C%5Cepsilon_%7Bk%2B1%7D%20%26%3D%5Cepsilon_%7B0%7D%20%2F%20%5Cmu_%7Bk%2B1%7D%20%5C%5C%5Ceta_%7Bk%2B1%7D%20%26%3D%5Chat%7B%5Ceta%7D_%7B0%7D%20%2F%20%5Cmu_%7Bk%2B1%7D%5E%7B%5Calpha%7D%20%5C%5Ck%20%26%3Dk%2B1%5Cend%7Baligned%7D%5Cright.&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="\left\{\begin{aligned}\lambda_{k+1} &=\lambda_{k} \\\mu_{k+1} &=\tau \mu_{k} \\\epsilon_{k+1} &=\epsilon_{0} / \mu_{k+1} \\\eta_{k+1} &=\hat{\eta}_{0} / \mu_{k+1}^{\alpha} \\k &=k+1\end{aligned}\right." width="143" height="125" />
+<img src="https://bit.ly/2BRIN8v" align="center" border="0" alt="\left\{\begin{aligned}\lambda_{k+1} &=\lambda_{k} \\\mu_{k+1} &=\tau \mu_{k} \\\epsilon_{k+1} &=\epsilon_{0} / \mu_{k+1} \\\eta_{k+1} &=\hat{\eta}_{0} / \mu_{k+1}^{\alpha} \\k &=k+1\end{aligned}\right." width="143" height="125" />
   
 ### 2. Retourner ![x_{k},\lambda_{k},\mu_{k}](https://render.githubusercontent.com/render/math?math=x_%7Bk%7D%2C%5Clambda_%7Bk%7D%2C%5Cmu_%7Bk%7D) . 
