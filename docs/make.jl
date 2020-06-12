@@ -4,7 +4,7 @@ using Optinum
 makedocs(
     modules = [Optinum],
     sitename = "optinum",
-    authors = "Saloua Naama, Mohamed El Waghf and Rachid ELMontassir",
+    authors = "Saloua Naama, Mohamed El Waghf et Rachid ELMontassir",
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
     pages = [
             "Accueil" => "index.md",
@@ -18,6 +18,7 @@ makedocs(
                 "Pour l'algorithme de Newton" => "Questions_Newton.md",
 		"Pour Région de confiance avec pas de cauchy" => "Questions_Pas_De_Cauchy.md",
 		"Pour Région de confiance avec le gradient conjugué tronqué" => "Questions_GCT.md",
+		"Pour Lagrangien Augmenté" => "Questions_Lagrangien_Augmente.md"
              ],
             "Mise en place" => "mise_en_place.md", 
             "Génération du rapport" => "generate_pdf.md",
