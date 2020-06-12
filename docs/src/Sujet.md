@@ -34,4 +34,4 @@ Dans cette partie, nous nous intéressons à la résolution des problèmes sous 
 
 où C est un sous-ensemble non vide de ![\mathbb{R}^{n}](https://render.githubusercontent.com/render/math?math=%5Cmathbb%7BR%7D%5E%7Bn%7D)
 
-[Lagrangien Augmenté](../src/Lagrangien_augmente.md)
+[Lagrangien Augmenté](../build/Lagrangien_augmente.html)
