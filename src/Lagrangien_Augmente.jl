@@ -9,11 +9,11 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
 
 # Entrées
  *  algo 		   : l'indice inqiquant l'algorithme sans contraintes à utiliser
- 	* "newton" 	   : pour Newton
- 	* "cauchy" 	   : pour les régions de confiance avec le pas de Cauchy
- 	* "gct" 	   : pour les régions de confiance avec le gradient conjugué tronqué
+ 	- "newton" 	   : pour Newton
+ 	- "cauchy" 	   : pour les régions de confiance avec le pas de Cauchy
+ 	- "gct" 	   : pour les régions de confiance avec le gradient conjugué tronqué
  * fonc 		   : la fonction à minimiser
- * contrainte 	   : la contrainte [x est dans le domaine des contraintes ssi ``c(x)==0``]
+ * contrainte 	   : la contrainte [x est dans le domaine des contraintes ssi ``c(x)=0``]
  * gradfonc		   : le gradient de la fonction
  * hessfonc 	   : la hessienne de la fonction
  * grad_contrainte : le gradient de la contrainte
@@ -29,13 +29,13 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
 	* mu0,tho 	   : valeurs initiales des variables de l'algorithme
 
 # Sorties
-	* xmin 		   : une approximation de la solution du problème avec contraintes
-	* fxmin 	   : ``f(x_{min}``
-	* flag 		   : indicateur du déroulement de l'algorithme
-			0 	   : Convergence
-			1 	   : nombre maximal d'itération atteint
-   	   	   -1 	   : une erreur s'est produite
-	* niters 	   : nombre d'itérations réalisées
+* xmin 		   : une approximation de la solution du problème avec contraintes
+* fxmin 	   : ``f(x_{min}``
+* flag 		   : indicateur du déroulement de l'algorithme
+		0 	   : Convergence
+		1 	   : nombre maximal d'itération atteint
+   	   -1 	   : une erreur s'est produite
+* niters 	   : nombre d'itérations réalisées
 
 # Exemple d'appel
 ```julia
