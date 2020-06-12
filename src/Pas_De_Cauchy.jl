@@ -9,13 +9,13 @@ s1, e1 = Pas_De_Cauchy(gradient,Hessienne,delta)
 ```
 
 # Entrées
- * gradfk : le gradient de la fonction f appliqué au point ``x_k``
- * hessfk : la Hessienne de la fonction f appliqué au point ``x_k``
- * delta  : le rayon de la région de confiance
+ * **gradfk** : le gradient de la fonction f appliqué au point ``x_k``
+ * **hessfk** : la Hessienne de la fonction f appliqué au point ``x_k``
+ * **delta**  : le rayon de la région de confiance
 
 # Sorties
- * s : une approximation de la  solution du sous-problème
- * e : indice indiquant l'état de sortie:
+ * **s** : une approximation de la  solution du sous-problème
+ * **e** : indice indiquant l'état de sortie:
         si g != 0
             si on ne sature pas la boule
               e <- 1

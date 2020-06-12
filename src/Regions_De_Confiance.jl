@@ -10,33 +10,33 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
 ```
 
 # Entrées :
-    * algo        : string indicant la méthode à utiliser pour calculer le pas
-                        - "gct" : pour l'algorithme du gradient conjugué tronqué
-                        - "cauchy": pour le pas de Cauchy
-    * f           : la fonction à minimiser
-    * gradf       : le gradient de la fonction ``f``
-    * hessf       : la hessiene de la fonction à minimiser
-    * x0          : point de dapart
-    * options
-      * deltaMax      : utile pour les m-à-j de la region de confiance
-                        ``R_{k}=\left\{x_{k}+s ;\|s\| \leq \Delta_{k}\right\}``
-      * gamma1,gamma2 : 0 < gamma1 < 1 < gamma2 pour les m-à-j de ``R_{k}``
-      * eta1,eta2     : ``0 <\eta\1 < \eta_2 < 1`` pour les m-à-j de ``R_{k}``
-      * delta0        : le rayon de départ de la région de confiance
-      * max_iter      : le nombre maximale d'iterations
-      * tol           : la tolérence pour les critères d'arrêt
+   * **algo**        : string indicant la méthode à utiliser pour calculer le pas
+        - **"gct"**   : pour l'algorithme du gradient conjugué tronqué
+        - **"cauchy"**: pour le pas de Cauchy
+   * **f**           : la fonction à minimiser
+   * **gradf**       : le gradient de la fonction f
+   * **hessf**       : la hessiene de la fonction à minimiser
+   * **x0**          : point de dapart
+   * **options**
+     * **deltaMax**      : utile pour les m-à-j de la region de confiance
+                      ``R_{k}=\left\{x_{k}+s ;\|s\| \leq \Delta_{k}\right\}``
+     * **gamma1,gamma2** : ``0 < \gamma_{1} < 1 < \gamma_{2}`` pour les m-à-j de ``R_{k}``
+     * **eta1,eta2**     : ``0 < \eta_{1} < \eta_{2} < 1`` pour les m-à-j de ``R_{k}``
+     * **delta0**        : le rayon de départ de la région de confiance
+     * **max_iter**      : le nombre maximale d'iterations
+     * **tol**           : la tolérence pour les critères d'arrêt
 
 
 # Sorties:
 
-    * x_min    : une approximation de la solution du problème : ``\min_{x \in \mathbb{R}^{n}} f(x)``
-    * fx_min   : ``f(x_{min}``
-    * flag     : un entier indiquant le critère sur lequel le programme à arrêter
-	      0    : Convergence
-	      1    : stagnation du ``x``
-	      2    : stagnation du ``f``
-          3    : nombre maximal d'itération dépassé
-    * nb_iters : le nombre d'iteration qu'à fait le programme
+   * **xmin**    : une approximation de la solution du problème : ``min_{x \in \mathbb{R}^{n}} f(x)``
+   * **fxmin**   : ``f(x_{min})``
+   * **flag**    : un entier indiquant le critère sur lequel le programme à arrêter
+      - **0**    : Convergence
+      - **1**    : stagnation du ``x``
+      - **2**    : stagnation du ``f``
+      - **3**    : nombre maximal d'itération dépassé
+   * **nb_iters** : le nombre d'iteration qu'à fait le programme
 
 # Exemple d'appel
 ```julia
@@ -46,7 +46,7 @@ gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
 hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
 x0 = [1; 0]
 option = []
-xk, nb_iters, f_xk, flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
+xmin, fxmin, flag,nb_iters = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
 ```
 """
 function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,options)
@@ -138,6 +138,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
          end
          nb_iters = nb_iters +1
     end
-
-    return xk, f(xk), flag, nb_iters
+    xmin = xk
+    fxmin = f(xmin) 
+    return xmin, fxmin, flag, nb_iters
 end
