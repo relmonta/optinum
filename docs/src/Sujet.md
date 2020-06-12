@@ -8,22 +8,6 @@ dient Conjugué Tronqué.
 La seconde partie du projet exploite la partie précédente pour résoudre des problèmes
 d’optimisation avec contraintes par l’algorithme du Lagrangien augmenté.
 
-<<<<<<< HEAD
-# Optimisation sans contraintes
-
-Dans cette partie, on s’intéresse à la résolution du problème
-
-``\hspace*{2.5} \min _{x \in \mathbb{R}^{m}} f(x) \\``
-où la fonction ``f`` est de classe ``C^{2}`` sur ``R^{n}`` . On cherche donc à exploiter l’information fournie
-par ses dérivées première et seconde, que l’on représente en tout point x par le vecteur
-gradient ``\nabla f (x) \in R^{n} ``et la matrice Hessienne ``\nabla^{2} f (x) \in R^{nxn} ``.
-
-[1/- Algorithme de Newton local] (../src/Algorithme_de_newton.md)
-
-[2/- Région de confiance-Partie 1: Avec le pas de cauchy] (../src/Region_de_confiance_avec_pas_de_cauchy.md)
-
-[3/- Région de confiance-Partie 2: Avec l'agorithme du Gradient Conjugué Tronqué] (../src/Region_de_confiance_avec_gradient_conjugue_tronque.md)
-=======
 ## Optimisation sans contraintes
 
 Dans cette partie, on s’intéresse à la résolution du problème
@@ -51,4 +35,3 @@ Dans cette partie, nous nous intéressons à la résolution des problèmes sous 
 où C est un sous-ensemble non vide de ![\mathbb{R}^{n}](https://render.githubusercontent.com/render/math?math=%5Cmathbb%7BR%7D%5E%7Bn%7D)
 
 [Lagrangien Augmenté](../src/Lagrangien_augmente.md)
->>>>>>> 1ed6fad691fbcd515100743f97d4b49761add08a
