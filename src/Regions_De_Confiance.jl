@@ -139,6 +139,6 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
          nb_iters = nb_iters +1
     end
     xmin = xk
-    fxmin = f(xmin) 
+    fxmin = f(xmin)
     return xmin, fxmin, flag, nb_iters
 end
