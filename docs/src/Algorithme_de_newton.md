@@ -44,6 +44,5 @@ une approximation de la solution du problème ![\min _{x \in \mathbb{R}^{m}} f(x
   a. Calculer d k solution du système : ![\nabla^{2} f (x_{k}) d_{k} = - \nabla f (x_{k})](https://render.githubusercontent.com/render/math?math=%5Cnabla%5E%7B2%7D%20f%20(x_%7Bk%7D)%20d_%7Bk%7D%20%3D%20-%20%5Cnabla%20f%20(x_%7Bk%7D))
   
   b. Mise à jour : ![x_{k+1} = x_{k}+ d_{k} , k = k + 1](https://render.githubusercontent.com/render/math?math=x_%7Bk%2B1%7D%20%3D%20x_%7Bk%7D%2B%20d_%7Bk%7D%20%2C%20k%20%3D%20k%20%2B%201)
-###### 2.Retourner : 
-   ![x_{k}](https://render.githubusercontent.com/render/math?math=x_%7Bk%7D) .
+###### 2.Retourner :  ![x_{k}](https://render.githubusercontent.com/render/math?math=x_%7Bk%7D) .
 
