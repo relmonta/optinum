@@ -14,6 +14,11 @@ makedocs(
                 "Les Régions de Confiance" => "Regions_de_confiance.md",    
                 "Lagrangien augmenté" => "Lagrangien_augmente.md"                
                 ],
+             "Travail à réaliser" => [
+                "Pour l'algorithme de Newton" => "Questions_Newton.md",
+		"Pour Région de confiance avec pas de cauchy" => "Questions_Pas_De_Cauchy.md",
+		"Pour Région de confiance avec le gradient conjugué tronqué" => "Questions_GCT.md",
+             ],
             "Mise en place" => "mise_en_place.md", 
             "Génération du rapport" => "generate_pdf.md",
             "Documentation des fonctions" =>"fct_index.md"          
