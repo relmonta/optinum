@@ -32,17 +32,17 @@ est définie positive (par continuité de ![\nabla^{2} f](https://render.githubu
 
 ## Algorithme
 
-###### Données:
+#### Données:
 
 f , ![x_{0}](https://render.githubusercontent.com/render/math?math=x_%7B0%7D) première approximation de la solution cherchée, ![\epsilon > 0](https://render.githubusercontent.com/render/math?math=%5Cepsilon%20%3E%200) précision demandée.
 
-###### Sorties
+#### Sorties
 
 une approximation de la solution du problème ![\min _{x \in \mathbb{R}^{m}} f(x)](https://render.githubusercontent.com/render/math?math=%5Cmin%20_%7Bx%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bm%7D%7D%20f(x)) .
 
-###### 1.Tant que le test de convergence est non satisfait 
+#### 1.Tant que le test de convergence est non satisfait 
   a. Calculer d k solution du système : ![\nabla^{2} f (x_{k}) d_{k} = - \nabla f (x_{k})](https://render.githubusercontent.com/render/math?math=%5Cnabla%5E%7B2%7D%20f%20(x_%7Bk%7D)%20d_%7Bk%7D%20%3D%20-%20%5Cnabla%20f%20(x_%7Bk%7D))
   
   b. Mise à jour : ![x_{k+1} = x_{k}+ d_{k} , k = k + 1](https://render.githubusercontent.com/render/math?math=x_%7Bk%2B1%7D%20%3D%20x_%7Bk%7D%2B%20d_%7Bk%7D%20%2C%20k%20%3D%20k%20%2B%201)
-###### 2.Retourner :  ![x_{k}](https://render.githubusercontent.com/render/math?math=x_%7Bk%7D) .
+#### 2.Retourner :  ![x_{k}](https://render.githubusercontent.com/render/math?math=x_%7Bk%7D) .
 
