@@ -29,5 +29,5 @@ include("test/test_Lagrangien_Augmente.jl")
 ```
 
 ```julia
-test_Lagrangien_Aug(true) 
+test_Lagrangien_Augmente(true) 
 ```
