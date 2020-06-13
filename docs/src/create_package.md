@@ -10,7 +10,7 @@ greet() = print("Hello World!")
 
 end # module
 ```
-ensuite vous pouvez activer le module pour pouvoir l'utiliser avec un 
+ensuite vous pouvez activer le module pour pouvoir l'utiliser en faisant :
 ```julia
 pkg> activate .
 julia> import Module
