@@ -4,10 +4,10 @@ include("../src/Regions_De_Confiance.jl")
 include("../src/Pas_De_Cauchy.jl")
 include("../src/Gradient_Conjugue_Tronque.jl")
 
-"#afficher_resultats nous affiche les sorties de l'algorithme de Région de confiance"
+"#afficher_resultats affiche les sorties de l'algorithme des Régions de confiance"
 function afficher_resultats(algo,nom_fct,point_init,xmin,fxmin,flag,sol_exacte,nbiters)
 	println("-------------------------------------------------------------------------")
-	printstyled("Résultats de l'algorithme du Région de confiance avec ",algo," appliquée à "*nom_fct*" et au point initial "*point_init*" :\n",bold=true,color=:blue)
+	printstyled("Résultats de l'algorithme des Régions de confiance avec ",algo," appliquée à "*nom_fct*" et au point initial "*point_init*" :\n",bold=true,color=:blue)
 	println("  * solution trouvée (xsol) = ",xmin)
 	println("  * f(xsol) = ",fxmin)
 	println("  * nombre d'itération = ",nbiters)
@@ -16,7 +16,7 @@ function afficher_resultats(algo,nom_fct,point_init,xmin,fxmin,flag,sol_exacte,n
 end
 
 
-" #test de l'algorithme de la region de confiance "
+" #test de l'algorithme des régions de confiance "
 
 """
    #Entrées :
@@ -120,8 +120,8 @@ end
 
 
 "#tester les résultats obtenues"
-res = @testset "région de confiance " begin 
-	res = @testset "région de confiance avec le pas de cauchy " begin 
+res = @testset "régions de confiance " begin 
+	res = @testset "régions de confiance avec le pas de cauchy " begin 
            @test isapprox(RC_x_min11,sol_exacte_fct1 ,atol=normerreur)
            @test RC_x_min12 ≈ sol_exacte_fct1 atol=normerreur
            @test RC_x_min21 ≈ sol_exacte_fct2 atol=normerreur
@@ -129,7 +129,7 @@ res = @testset "région de confiance " begin
            @test RC_x_min23 ≈ sol_exacte_fct2 atol=normerreur
 	end
 
-	res = @testset "région de confiance avec le gradient conjugué tronqué " begin 
+	res = @testset "régions de confiance avec le gradient conjugué tronqué " begin 
            @test isapprox(gct_x_min11,sol_exacte_fct1 ,atol=normerreur)
            @test gct_x_min12 ≈ sol_exacte_fct1 atol=normerreur
            @test gct_x_min21 ≈ sol_exacte_fct2 atol=normerreur
