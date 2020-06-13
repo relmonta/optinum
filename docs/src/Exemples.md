@@ -8,11 +8,11 @@ Dans les exemples suivants appliqués sur les fonctions :
 1. [`Lagrangien_Augmente`](@ref)
 
 nous allons utiliser la fonction suivante : ``\\``
-``\begin{aligned}\hspace*{1.5cm} \mathbb{R}^{2} \quad &\rightarrow \mathbb{R} \\ \hspace*{1.5cm} \left(x_{1}, x_{2}\right) &\rightarrow 100\left(x_{2}-x_{1}^{2}\right)^{2}+\left(1-x_{1}\right)^{2} \end{aligned} \\``
+``\begin{aligned}\hspace*{1.5cm} f: \mathbb{R}^{2} \quad &\rightarrow \mathbb{R} \\ \hspace*{1.5cm} \left(x_{1}, x_{2}\right) &\rightarrow 100\left(x_{2}-x_{1}^{2}\right)^{2}+\left(1-x_{1}\right)^{2} \end{aligned} \\``
 dont le gradient est : ``\hspace*{0.5cm}`` 
-`` \left[\begin{array}{l} -400 x_{1}(x_{2}-x_{1}^{2})-2(1-x_{1}) & 200 (x_{2}-x_{1}^{2}) \end{array}\right]^{T} \\``
+`` \nabla f(x) = \left[\begin{array}{l} -400 x_{1}(x_{2}-x_{1}^{2})-2(1-x_{1}) & 200 (x_{2}-x_{1}^{2}) \end{array}\right]^{T} \\``
 et la hessienne est : ``\hspace*{0.5cm}``
- `` \left[ \begin{array}{cc} -400 (x_{2}-3 x_{1}^{2})+2 & -400 x_{1} \\ -400 x_{1} & 200 \end{array}\right]``
+`` \nabla^2 f(x) = \left[ \begin{array}{cc} -400 (x_{2}-3 x_{1}^{2})+2 & -400 x_{1} \\ -400 x_{1} & 200 \end{array}\right]``
 
 ```@example 1
 using Optinum
