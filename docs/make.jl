@@ -24,7 +24,7 @@ makedocs(
             "Exemples d'appels" =>"Exemples.md",
             "Annexes" => "Annexes.md",
             "Mise en place" => "mise_en_place.md", 
-            "Création de Module en Julia" => "create_package.md",
+            "Création de Modules en Julia" => "create_package.md",
             "Génération du rapport" => "generate_pdf.md",
             "Documentation des fonctions" =>"fct_index.md"          
 
