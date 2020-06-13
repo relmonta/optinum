@@ -12,19 +12,20 @@ version plus récente doit être téléchargée.
 
 ## Lancement des tests
 
-Dans le dossier tests faire :
+Dans le dossier ```optinum/``` faire :
 
 ```julia
-include("runtests.jl") 
+(@v1.) pkg> activate .
+(Optinum) pkg> test
 ```
 
 ## lancement d'un seul test
 faire include du fichier contenant la fonction de test 
-et exécuter cette fonction avec le paramétre 'true' pour l'affichage
+et exécuter cette fonction avec le paramètre 'true' pour l'affichage
 #### exemple (tester l'algorithme du Lagrangien augmenté ) :
 
 ```julia
-include("test_Lagrangien_Augmente.jl") 
+include("test/test_Lagrangien_Augmente.jl") 
 ```
 
 ```julia
