@@ -35,7 +35,7 @@ function Gradient_Conjugue_Tronque(fk,gradfk,hessfk,options)
     "# Si option est vide on initialise les 3 paramètres par défaut"
     if options == []
         deltak = 2
-        max_iter = 1000
+        max_iter = 100
         tol = 1e-6
     else
         deltak = options[1]

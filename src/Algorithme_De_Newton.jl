@@ -17,8 +17,8 @@ xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
        * **tol**      : pour les condition d'arrêts
 
 # Sorties:
-   * **x_min**    : une approximation de la solution du problème  : ``\min_{x \in \mathbb{R}^{n}} f(x)``
-   * **fx_min**   : ``f(x_{min})``
+   * **xmin**    : une approximation de la solution du problème  : ``\min_{x \in \mathbb{R}^{n}} f(x)``
+   * **f_min**   : ``f(x_{min})``
    * **flag**     : entier indiquant le critère sur lequel le programme à arrêter
       * **0**    : Convergence
       * **1**    : stagnation du xk
@@ -27,13 +27,14 @@ xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
    * **nb_iters** : le nombre d'itérations faites par le programme
 
 # Exemple d'appel
-```julia
+```@example
+using Optinum
 f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
 gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
 hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
 x0 = [1; 0]
 options = []
-xk,fx_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,options)
+xmin,f_min,flag,nb_iters = Algorithme_De_Newton(f,gradf,hessf,x0,options)
 ```
 """
 function Algorithme_De_Newton(f::Function,gradf::Function,hessf::Function,x0,options)
@@ -93,7 +94,7 @@ function Algorithme_De_Newton(f::Function,gradf::Function,hessf::Function,x0,opt
 
                 nb_iters = nb_iters +1
         end
-
-        fx_min = f(xk)
-        return xk,fx_min,flag,nb_iters
+        xmin = xk
+        f_min = f(xk)
+        return xmin,f_min,flag,nb_iters
 end

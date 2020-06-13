@@ -35,7 +35,7 @@ function test_Lagrangien_Augmente(afficher)
 	epsilon = 1e-8
 	tol = 1e-5
 	itermax = 1000
-	option = [epsilon,tol,itermax,lambda0,mu0,tho]
+	options = [epsilon,tol,itermax,lambda0,mu0,tho]
 
 	"#ensemble d'algorithmes d'optimisation sans contraintes"
 	algos = ["newton","gct","cauchy"]
@@ -48,7 +48,6 @@ function test_Lagrangien_Augmente(afficher)
 
 	"#norme de l'écart entre la solution trouvée et celle attendue"
 	normerreur = 1e-4
-
 
 
 	for algo in algos 
@@ -73,10 +72,9 @@ function test_Lagrangien_Augmente(afficher)
 
 			=#
 
-
 			#résolution du problème avec le Lagrangien augmenté
 			xmin1,fxmin1,flag,nbiters = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
-			hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,option)
+			hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,options)
 
 			#affichage des résultats du test
 			if (afficher)
