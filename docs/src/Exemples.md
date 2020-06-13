@@ -69,10 +69,10 @@ nothing # hide
 ### Algorithme du Lagrangien augmenté pour contraintes d’égalité
 
 Dans cet exemple nous allons prendre la contrainte suivante : ``\\``
-``\begin{aligned}\hspace*{1.5cm} \mathbb{R}^{2} \quad &\rightarrow \mathbb{R} \\ \hspace*{1.5cm} \left(x_{1}, x_{2}\right) &\rightarrow x_{1}^2 + x_{2}^2 -1.5=0 \end{aligned} \\``
+`` c(x) = x_{1}^2 + x_{2}^2 -1.5 = 0 \\``
 dont le gradient est : ``\hspace*{0.5cm}`` 
 `` \left[\begin{array}{l} 2x_{1} & 2 x_{2} \end{array}\right]^{T} \\``
-et la hessienne est : ``\hspace*{0.5cm}``
+et la hessienne est :``\hspace*{0.5cm}``
  `` \left[ \begin{array}{cc} 2 & 0 \\ 0 & 2 \end{array}\right]``
 
 ```@example 1
