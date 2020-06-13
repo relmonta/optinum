@@ -1,15 +1,14 @@
 language: julia
-
 os:
   - osx
   - linux
-  - windows
-  
+  - windows  
 julia:
-  - 1.4  
+  - 1.4 
+  - 1.5
+notifications:
+  email: false
 jobs:
-  allow_failures:
-    - julia: nightly
   include:
     - stage: Documentation
       julia: 1.4
