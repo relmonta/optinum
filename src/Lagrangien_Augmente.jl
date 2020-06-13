@@ -39,7 +39,18 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
 
 # Exemple d'appel
 ```julia
-
+using LinearAlgebra
+f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
+gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
+hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
+algo = "gct" # ou newton|gct
+x0 = [1; 0]
+options = []
+contrainte(x) =  (x[1]^2) + (x[2]^2) -1.5
+grad_contrainte(x) = [2*x[1] ;2*x[2]]
+hess_contrainte(x) = [2 0;0 2]
+phi(x) = 0
+output = Lagrangien_Augmente(algo,f,contrainte,gradf,hessf,grad_contrainte,hess_contrainte,(x)->norm(contrainte(x),2),(x)->grad_contrainte(x)',phi,x0,options)
 ```
 """
 function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::Function,
