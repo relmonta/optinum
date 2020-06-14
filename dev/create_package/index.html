@@ -7,11 +7,11 @@ end # module</code></pre><p>ensuite vous pouvez activer le module pour pouvoir l
 julia&gt; import Module
 
 julia&gt; Module.greet()
-Hello World!</code></pre><h3 id="Ajout-des-dépendances-au-Module-1"><a class="docs-heading-anchor" href="#Ajout-des-dépendances-au-Module-1">Ajout des dépendances au Module</a><a class="docs-heading-anchor-permalink" href="#Ajout-des-dépendances-au-Module-1" title="Permalink"></a></h3><p>Pour ajouter des dépendances au Module (les packages utilisés dans le Module)</p><pre><code class="language-julia">pkg&gt; add Module1 Module2
+Hello World!</code></pre><h3 id="Ajout-des-dépendances-au-Module-1"><a class="docs-heading-anchor" href="#Ajout-des-dépendances-au-Module-1">Ajout des dépendances au Module</a><a class="docs-heading-anchor-permalink" href="#Ajout-des-dépendances-au-Module-1" title="Permalink"></a></h3><p>Pour ajouter des dépendances au Module (les packages utilisés dans le Module):</p><pre><code class="language-julia">pkg&gt; add Module1 Module2
  Resolving package versions...
  Updating &quot;/Module/Project.toml&quot;
  + ...
- + ...</code></pre><p>les dépendances résultantes sont ajoutées au fichier <code>Manifest.toml</code></p><p>voici un exemple de fichier <code>Project.toml</code></p><pre><code class="language-julia">name = &quot;Module&quot;
+ + ...</code></pre><p>les dépendances résultantes sont ajoutées au fichier <code>Manifest.toml</code></p><p>voici un exemple de fichier <code>Project.toml</code>:</p><pre><code class="language-julia">name = &quot;Module&quot;
 uuid = &quot;d9fbbd2f-b07c-4129-9383-1eb96f1f244d&quot;
 authors = [&lt;nom &amp; adresse mail&gt;]
 version = &quot;0.1.0&quot;
@@ -20,14 +20,14 @@ version = &quot;0.1.0&quot;
 LinearAlgebra = &quot;37e2e46d-f89d-539d-b4ee-838fcccc9c8e&quot;
 Markdown = &quot;d6f4376e-aef5-505a-96c1-9c027394607a&quot;
 Test = &quot;8dfed614-e22c-5e08-85e1-65c5234f0b40&quot;
-</code></pre><p>maintenant on peut faire une mise à jour du fichier <code>src/Module.jl</code></p><pre><code class="language-julia">module Module
+</code></pre><p>maintenant on peut faire une mise à jour du fichier <code>src/Module.jl</code>:</p><pre><code class="language-julia">module Module
 
 import Module1
 import Module2
 
 greet() = print(&quot;Hello World!&quot;)
 
-end # module</code></pre><h3 id="Ajouter-des-tests-1"><a class="docs-heading-anchor" href="#Ajouter-des-tests-1">Ajouter des tests</a><a class="docs-heading-anchor-permalink" href="#Ajouter-des-tests-1" title="Permalink"></a></h3><p>les tests à réaliser doivent être inclus dans le fichier <code>test/runtests.jl</code>  une fois fait, on peut lancer les tests : </p><pre><code class="language-julia">(Module) pkg&gt; test
+end # module</code></pre><h3 id="Ajouter-des-tests-1"><a class="docs-heading-anchor" href="#Ajouter-des-tests-1">Ajouter des tests</a><a class="docs-heading-anchor-permalink" href="#Ajouter-des-tests-1" title="Permalink"></a></h3><p>les tests à réaliser doivent être inclus dans le fichier <code>test/runtests.jl</code> une fois fait, on peut lancer les tests : </p><pre><code class="language-julia">(Module) pkg&gt; test
    Testing Module
  Resolving package versions...
 ...
@@ -38,4 +38,4 @@ end # module</code></pre><h3 id="Ajouter-des-tests-1"><a class="docs-heading-anc
   Updating `/Module/test/Project.toml`
   [8dfed614] + Test
   Updating `/Module/test/Manifest.toml`
-  [...]</code></pre><p>comme pour l&#39;environnement principal les dépendances sont ajoutées dans un fichier <code>test/Manifest.toml</code></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../mise_en_place/">« Mise en place</a><a class="docs-footer-nextpage" href="../generate_pdf/">Génération du rapport »</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Sunday 14 June 2020 13:18">Sunday 14 June 2020</span>. Using Julia version 1.4.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+  [...]</code></pre><p>comme pour l&#39;environnement principal les dépendances sont ajoutées dans un fichier <code>test/Manifest.toml</code>.</p><p>Consultez <a href="https://julialang.github.io/Pkg.jl/v1/creating-packages/">cette page</a> savoir plus sur la création des packages en Julia.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../mise_en_place/">« Mise en place</a><a class="docs-footer-nextpage" href="../generate_pdf/">Génération du rapport »</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Sunday 14 June 2020 22:24">Sunday 14 June 2020</span>. Using Julia version 1.4.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
