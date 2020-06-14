@@ -120,7 +120,7 @@ end
 
 
 "#tester les résultats obtenues"
-res = @testset "régions de confiance " begin 
+res = @testset "La méthode des régions de confiance " begin 
 	res = @testset "régions de confiance avec le pas de cauchy " begin 
            @test isapprox(RC_x_min11,sol_exacte_fct1 ,atol=normerreur)
            @test RC_x_min12 ≈ sol_exacte_fct1 atol=normerreur

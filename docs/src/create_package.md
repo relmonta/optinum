@@ -1,8 +1,9 @@
 ## Créer un Module en Julia
 
-Pour générer un nouveau module, utilisez ```pkg> generate Module```,
-deux fichiers seront crées : ```Project.toml``` qui contient le nom du package, son UUID unique, sa version, l'auteur et les éventuelles dépendances
- et le fichier ```src/Module.jl``` qui contient :
+Pour générer un nouveau module, utilisez `pkg> generate Module`,
+deux fichiers seront crées : `Project.toml` qui contient le nom du package, son UUID unique, sa version, l'auteur et les éventuelles dépendances 
+et le fichier `src/Module.jl` qui contient :
+
  ```julia
 module Module
 
@@ -11,6 +12,7 @@ greet() = print("Hello World!")
 end # module
 ```
 ensuite vous pouvez activer le module pour pouvoir l'utiliser en faisant :
+
 ```julia
 pkg> activate .
 julia> import Module
@@ -20,7 +22,7 @@ Hello World!
 ```
 ### Ajout des dépendances au Module
 
-Pour ajouter des dépendances au Module (les packages utilisés dans le Module)
+Pour ajouter des dépendances au Module (les packages utilisés dans le Module):
 
 ```julia
 pkg> add Module1 Module2
@@ -29,9 +31,10 @@ pkg> add Module1 Module2
  + ...
  + ...
 ```
-les dépendances résultantes sont ajoutées au fichier ```Manifest.toml```
+les dépendances résultantes sont ajoutées au fichier `Manifest.toml`
 
-voici un exemple de fichier ```Project.toml```
+voici un exemple de fichier `Project.toml`:
+
 ```julia
 name = "Module"
 uuid = "d9fbbd2f-b07c-4129-9383-1eb96f1f244d"
@@ -45,7 +48,8 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 ```
 
-maintenant on peut faire une mise à jour du fichier ```src/Module.jl```
+maintenant on peut faire une mise à jour du fichier `src/Module.jl`:
+
 ```julia
 module Module
 
@@ -59,8 +63,9 @@ end # module
 
 ### Ajouter des tests
 
-les tests à réaliser doivent être inclus dans le fichier ```test/runtests.jl``` 
+les tests à réaliser doivent être inclus dans le fichier `test/runtests.jl`
 une fois fait, on peut lancer les tests : 
+
 ```julia
 (Module) pkg> test
    Testing Module
@@ -71,6 +76,7 @@ une fois fait, on peut lancer les tests :
 ##### Ajouter des dépendances spécifiques aux tests
 pour ajouter des dépendances spécifiques aux tests (ou à la génération de la documentation)
 il faut activer l'environnement test/ et ajouter les modules utilisés:
+
 ```julia
 (Module) pkg> activate ./test
 [ Info: activating environment at `/Module/test/Project.toml`.
@@ -81,4 +87,6 @@ il faut activer l'environnement test/ et ajouter les modules utilisés:
   Updating `/Module/test/Manifest.toml`
   [...]
 ```
-comme pour l'environnement principal les dépendances sont ajoutées dans un fichier ```test/Manifest.toml```
+comme pour l'environnement principal les dépendances sont ajoutées dans un fichier `test/Manifest.toml`.
+
+Consultez [cette page](https://julialang.github.io/Pkg.jl/v1/creating-packages/) savoir plus sur la création des packages en Julia.

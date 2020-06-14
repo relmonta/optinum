@@ -37,7 +37,7 @@ delta3 = 10
 s3, e3 = Pas_De_Cauchy(g3,H3,delta3)
 
 
-res = @testset "cauchy" begin 
+res = @testset "Pas de Cauchy" begin 
            @test e1 == 0
            @test e2 == 1
            @test e3 == 1

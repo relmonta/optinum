@@ -130,10 +130,10 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 				eta = eta /mu
 			"#Étape c"
 			else
-
+				
 				mu = tho*mu
 				epsk = eps0/mu
-			eta = etac / (mu^alpha)
+				eta = etac / (mu^alpha)
 			end
 		end
 		iter = iter +1

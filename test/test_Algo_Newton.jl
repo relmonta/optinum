@@ -84,7 +84,7 @@ end
 
 "# tests avec les annotations de la librairie Test"
 
-res = @testset "newton" begin 
+res = @testset "L'algorithme de Newton" begin 
            @test isapprox(x_min11, sol_exacte_fct1 ,atol=normerreur)
            @test x_min12 ≈ sol_exacte_fct1 atol=normerreur
            @test x_min21 ≈ sol_exacte_fct2 atol=normerreur
