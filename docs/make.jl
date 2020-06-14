@@ -26,7 +26,8 @@ makedocs(
             "Mise en place" => "mise_en_place.md", 
             "Création de Modules en Julia" => "create_package.md",
             "Génération du rapport" => "generate_pdf.md",
-            "Documentation des fonctions" =>"fct_index.md"          
+            "Documentation des fonctions" =>"fct_index.md",
+            "Foire aux Questions" =>"FAQ.md"          
 
             ]
     )
