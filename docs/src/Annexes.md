@@ -31,18 +31,32 @@ On considère des fonctions quadratiques de la forme ``q(s)=s^{\top} g+\frac{1}{
 
 ###### Quadratique 1
 
-``g=\left[\begin{array}{l} 0 \\ 0 \end{array}\right]\\``
-
-``H=\left[\begin{array}{ll} 7 & 0 \\ 0 & 2 \end{array}\right]\\``
+``g=\left[\begin{array}{l} 0 \\ 0 \end{array}\right]``,``H=\left[\begin{array}{ll} 7 & 0 \\ 0 & 2 \end{array}\right]\\``
 
 ###### Quadratique 2
-``g=\left[\begin{array}{l} 6 \\ 2 \end{array}\right]\\``
-
-``H=\left[\begin{array}{ll} 7 & 0 \\ 0 & 2 \end{array}\right]\\``
+``g=\left[\begin{array}{l} 6 \\ 2 \end{array}\right]``,``H=\left[\begin{array}{ll} 7 & 0 \\ 0 & 2 \end{array}\right]\\``
 
 
 ###### Quadratique 3
 
-``g=\left[\begin{array}{l} -2 \\ 1 \end{array}\right]\\``
+``g=\left[\begin{array}{l} -2 \\ 1 \end{array}\right]``,``H=\left[\begin{array}{ll} -2 & 0 \\ 0 & 10 \end{array}\right]\\``
 
-``H=\left[\begin{array}{ll} -2 & 0 \\ 0 & 10 \end{array}\right]\\``
+## C. Cas tests pour la résolution du sous-problème par l’algorithme du Gradient Conjugué Tronqué
+
+On reprendra les 3 quadratiques testées avec le pas de Cauchy, auxquelles on ajoutera :
+
+###### Quadratique 4
+
+``g=\left[\begin{array}{l} 0 \\ 0 \end{array}\right]``, ``H=\left[\begin{array}{ll} -2 & 0 \\ 0 & 10 \end{array}\right]\\``
+
+###### Quadratique 5
+
+``g=\left[\begin{array}{l} 2 \\ 3 \end{array}\right]``,``H=\left[\begin{array}{ll} 4 & 6 \\ 6 & 5 \end{array}\right]\\``
+
+###### Quadratique 6
+
+``g=\left[\begin{array}{l} 2 \\ 0 \end{array}\right]``, ``H=\left[\begin{array}{ll} 4 & 0 \\ 0 & -15 \end{array}\right]\\``
+
+
+
+
