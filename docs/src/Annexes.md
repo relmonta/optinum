@@ -69,7 +69,7 @@ On s'intéresse à la valeur minimale de f1 sur un ensemble défini par une cont
 
 On choisira comme point initial
 
-``x_{c 11}=\left\[\begin{array}{l} 0 \\ 1 \\ 1 \end{array}\right\]`` (réalisable) ou ``x_{c 12}=\left\[\begin{array}{l} 0.5 \\ 1.25 \\ 1 \end{array}\right\]`` (non réalisable) .
+``\begin{equation}x_{c 11}=\left[\begin{array}{l} 0 \\ 1 \\ 1 \end{array}\right]\end{equation}`` (réalisable) ou ``\begin{equation}x_{c 12}=\left[\begin{array}{l} 0.5 \\ 1.25 \\ 1 \end{array}\right]\end{equation}`` (non réalisable) .
    
 #### Retour sur f2
   On cherche à minimiser la fonction f2 décrite dans la partie précédente, en se restreignant maintenant à une sphère. Le problème s'écrit :
@@ -78,8 +78,9 @@ On choisira comme point initial
 
 On choisira comme point initial
 
-``x_{c 21}=\left\[\begin{array}{c} 1  \\ 0 \end{array}\right\]``  (non réalisable)  
-ou  ``x_{c 22}=\left\[\begin{array}{c} \sqrt{3} / 2 \\ \sqrt{3} / 2 \end{array}\right\]`` (réalisable).
+``\begin{equation}x_{c 21}=\left[\begin{array}{c} 1 \\ 0 \end{array}\right]\end{equation}``  (non réalisable)  
+ou  
+``\begin{equation}x_{c 22}=\left[\begin{array}{c} \sqrt{3} / 2 \\ \sqrt{3} / 2 \end{array}\right]\end{equation}`` (réalisable).
 
 #### Un problème avec contraintes d'inégalité (supplément)
 
