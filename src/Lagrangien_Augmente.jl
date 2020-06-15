@@ -4,7 +4,7 @@ Résolution des problèmes de minimisation sous contraintes d'égalités
 # Syntaxe
 ```julia
 Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
-			hess_contrainte,norm_contrainte,jac_contrainte,phi,x0,option)
+			hess_contrainte,jac_contrainte,phi,x0,option)
 ```
 
 # Entrées
@@ -18,7 +18,6 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
   * **hessfonc** 	   : la hessienne de la fonction
   * **grad_contrainte** : le gradient de la contrainte
   * **hess_contrainte** : la hessienne de la contrainte
-  * **norm_contrainte** : la norme de la contrainte
   * **jac_contrainte** : la jacobienne de la contrainte
   * **x0** 			   : la première composante du point de départ du Lagrangien
   * **options**
@@ -50,11 +49,11 @@ contrainte(x) =  (x[1]^2) + (x[2]^2) -1.5
 grad_contrainte(x) = [2*x[1] ;2*x[2]]
 hess_contrainte(x) = [2 0;0 2]
 phi(x) = 0
-output = Lagrangien_Augmente(algo,f,contrainte,gradf,hessf,grad_contrainte,hess_contrainte,(x)->norm(contrainte(x),2),(x)->grad_contrainte(x)',phi,x0,options)
+output = Lagrangien_Augmente(algo,f,contrainte,gradf,hessf,grad_contrainte,hess_contrainte,(x)->grad_contrainte(x)',phi,x0,options)
 ```
 """
 function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::Function,
-	hessfonc::Function,grad_contrainte::Function,hess_contrainte::Function,norm_contrainte::Function,
+	hessfonc::Function,grad_contrainte::Function,hess_contrainte::Function,
 	jac_contrainte::Function,phi::Function,x0,options)
 
 	if options == []
@@ -90,10 +89,10 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 	gradL0 = (gradfonc(x0) + transpose(lambda0)*grad_contrainte(x0) + mu0*transpose(jac_contrainte(x0))*contrainte(x0))
 
 	"#boucle principale"
-	while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((norm_contrainte(xmin) .> (norm_contrainte(x0)*tol+ epsilon)) && iter < itermax ) )
+	while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((norm(contrainte(xmin)) .> (norm(contrainte(x0))*tol+ epsilon)) && iter < itermax ) )
 
 		"#la fonction Lagrangien"
-		L(x) = (fonc(x) + (transpose(lambda))*contrainte(x) + 0.5*mu*(norm_contrainte(x)^2) )
+		L(x) = (fonc(x) + (transpose(lambda))*contrainte(x) + 0.5*mu*(norm(contrainte(x))^2) )
 
 		"#la fonction gradient de Lagrangien"
 		gradL(x) =  (gradfonc(x) + grad_contrainte(x)*lambda + mu*transpose(jac_contrainte(x))*contrainte(x))
@@ -117,7 +116,7 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 		end
 
 		"#Test de convergence de l'algorithme global"
-		if (norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (norm_contrainte(xlocal) <= (norm_contrainte(x0)*tol+epsilon))
+		if (norm(gradL(xlocal),2) <= tol*(norm(gradL0,2) +epsilon)) && (norm(contrainte(xlocal)) <= (norm(contrainte(x0))*tol+epsilon))
 			xmin = xlocal
 			break
 
@@ -130,7 +129,7 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 				eta = eta /mu
 			"#Étape c"
 			else
-				
+
 				mu = tho*mu
 				epsk = eps0/mu
 				eta = etac / (mu^alpha)
