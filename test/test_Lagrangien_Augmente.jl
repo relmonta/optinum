@@ -21,7 +21,7 @@ end
 """
    #Entrées :
 	#afficher : boolean , si true on affiche les sorties de chaque test
-	
+
 """
 
 function test_Lagrangien_Augmente(afficher)
@@ -50,7 +50,7 @@ function test_Lagrangien_Augmente(afficher)
 	normerreur = 1e-4
 
 
-	for algo in algos 
+	for algo in algos
 
 			"# Test sur fct1 avec x01 comme solution initiale"
 			"#résolution du problème avec la libraire JumP"
@@ -74,7 +74,7 @@ function test_Lagrangien_Augmente(afficher)
 
 			#résolution du problème avec le Lagrangien augmenté
 			xmin1,fxmin1,flag,nbiters = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
-			hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x01,options)
+			hess_contrainte1,jac_contrainte1,phi,x01,options)
 
 			#affichage des résultats du test
 			if (afficher)
@@ -85,7 +85,7 @@ function test_Lagrangien_Augmente(afficher)
 
 			#résolution du problème avec le Lagrangien augmenté
 			xmin2 ,fxmin2,flag,nbiters = Lagrangien_Augmente(algo,fct1,contrainte1,grad_fct1,hess_fct1,grad_contrainte1,
-			hess_contrainte1,norm_contrainte1,jac_contrainte1,phi,x02,[])
+			hess_contrainte1,jac_contrainte1,phi,x02,[])
 
 			#affichage des résultats du test
 			if (afficher)
@@ -122,20 +122,20 @@ function test_Lagrangien_Augmente(afficher)
 
 			#résolution du problème avec le Lagrangien augmenté
 			xmin3,fxmin3,flag,nbiters = Lagrangien_Augmente(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,
-			hess_contrainte2,norm_contrainte2,jac_contrainte2,phi,x03,[])
+			hess_contrainte2,jac_contrainte2,phi,x03,[])
 
 
 			#affichage des résultats du test
 			if (afficher)
 				afficher_resultats(algo,"fonction 2","x03",xmin3,fxmin3,flag,sol_exacte_fct2,nbiters)
 			end
-			
-			
+
+
 			"# Test sur fct2 avec x04 comme solution initiale"
 
 			#résolution du problème avec le Lagrangien augmenté
 			xmin4 ,fxmin4,flag,nbiters = Lagrangien_Augmente(algo,fct2,contrainte2,grad_fct2,hess_fct2,grad_contrainte2,
-			hess_contrainte2,norm_contrainte2,jac_contrainte2,phi,x04,[])
+			hess_contrainte2,jac_contrainte2,phi,x04,[])
 
 			#affichage des résultats du test
 			if (afficher)
@@ -156,7 +156,7 @@ function test_Lagrangien_Augmente(afficher)
 
 			"#tester les résultats obtenues"
 			nom_algo = "Lagrangien augmenté avec "*algo
-			
+
 			try
 				res = @testset "$nom_algo"  begin
 		          	 	@test isapprox(xmin1,sol_exacte_fct1 ,atol=normerreur)
@@ -165,10 +165,10 @@ function test_Lagrangien_Augmente(afficher)
 		           	 	@test xmin4 ≈ sol_exacte_fct2 atol=normerreur
 		           	 end
 			catch
-				println("\n")			
+				println("\n")
 			end
 			println("\n")
-			
+
 	end
 
 	return

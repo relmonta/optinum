@@ -53,8 +53,6 @@ jac_contrainte1(x) = [1 ;0; 1]'
 
 hess_contrainte1(x) = [0 0 0;0 0 0;0 0 0]
 
-norm_contrainte1(x) = abs(x[1]+x[3]-1)
-
 
 #contrainte : x1^{2} + x2^{2} = 1.5 (x appartient au cercle de centre (0,0) et de rayon 1.5 )
 contrainte2(x) =  (x[1]^2) + (x[2]^2) -1.5
@@ -66,7 +64,6 @@ jac_contrainte2(x) = [2*x[1] ;2*x[2]]'
 
 hess_contrainte2(x) = [2 0;0 2]
 
-norm_contrainte2(x) = norm((x[1]^2) + (x[2]^2) -1.5)
 
 #fonction utilisé dans le calcul du Lagrangien augmenté
 phi(x) =  0
