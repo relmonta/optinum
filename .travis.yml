@@ -9,7 +9,6 @@ julia:
   - 1.0.5
 before_script:
   - julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/mathn7/Test_Optinum.git"))'
-  - julia -e 'using Pkg; Pkg.instantiate(); Pkg.develop(PackageSpec(path=pwd()))'
 notifications:
   email: false
 jobs:
