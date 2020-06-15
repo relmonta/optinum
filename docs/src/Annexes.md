@@ -60,3 +60,29 @@ On reprendra les 3 quadratiques testées avec le pas de Cauchy, auxquelles on aj
 
 
 
+## D. Problèmes avec contraintes
+
+#### Retour sur f1 
+On s'intéresse à la valeur minimale de f1 sur un ensemble défini par une contrainte linéaire. La formulation du problème sera alors 
+
+``\min _{x \in \mathbb{R}^{3}} f_{1}(x) \text { s.t. } x_{1}+x_{3}=1``
+
+On choisira comme point initial
+
+``x_{c 11}=\left\[\begin{array}{l} 0 \\ 1 \\ 1 \end{array}\right\]`` (réalisable) ou ``x_{c 12}=\left\[\begin{array}{l} 0.5 \\ 1.25 \\ 1 \end{array}\right\]`` (non réalisable) .
+   
+#### Retour sur f2
+  On cherche à minimiser la fonction f2 décrite dans la partie précédente, en se restreignant maintenant à une sphère. Le problème s'écrit :
+
+``\min _{x \in \mathbb{R}^{2}} f_{2}(x) \quad \text { s.t. } \quad x_{1}^{2}+x_{2}^{2}=1.5``
+
+On choisira comme point initial
+
+``x_{c 21}=\left\[\begin{array}{c} 1  \\ 0 \end{array}\right\]``  (non réalisable)  
+ou  ``x_{c 22}=\left\[\begin{array}{c} \sqrt{3} / 2 \\ \sqrt{3} / 2 \end{array}\right\]`` (réalisable).
+
+#### Un problème avec contraintes d'inégalité (supplément)
+
+``\left\{\begin{array}{lll} \min _{(x, y) \in \mathbb{R}^{2}} f_{3}(x, y) & = & (x-1)^{2}+(y-2.5)^{2} \\ x-2 y+2 & \geq & 0 \\ -x-2 y+6 & \geq & 0 \\ -x+2 y+2 & \geq & 0 \\ x & \geq & 0 \\ y & \geq & 0 \end{array}\right.``
+
+L'origine porra être prise comme point initial.
