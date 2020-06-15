@@ -143,17 +143,6 @@ function test_Lagrangien_Augmente(afficher)
 			end
 
 
-			if (afficher)
-				println("\n")
-				printstyled("############################################ \n",bold=true,color=:green)
-				printstyled("#                                          # \n",bold=true,color=:green)
-				print("         ",nbTests_reussis," tests réussis sur ",nbTests_total,"\n")
-				printstyled("#                                          # \n",bold=true,color=:green)
-				printstyled("############################################",bold=true,color=:green)
-				println("")
-			end
-
-
 			"#tester les résultats obtenues"
 			nom_algo = "Lagrangien augmenté avec "*algo
 
