@@ -124,7 +124,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         ###
         """
         # condition 1 : la CN1
-        if norm(gradk,2)<=tol*norm(grad0,2) + eps
+        if norm(gradk,2)<=tol*(norm(grad0,2) + eps) 
            flag = 0
            break
         end
