@@ -12,15 +12,15 @@ d’optimisation avec contraintes par l’algorithme du Lagrangien augmenté.
 
 Dans cette partie, on s’intéresse à la résolution du problème
 
-![\min _{x \in \mathbb{R}^{n}} f(x) ](https://render.githubusercontent.com/render/math?math=%5Cmin%20_%7Bx%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bm%7D%7D%20f(x)%20)
+``\min _{x \in \mathbb{R}^{n}} f(x)``
 
-où la fonction ``f`` est de classe ![C^{2}](https://render.githubusercontent.com/render/math?math=C%5E%7B2%7D) sur ![R^{n}](https://render.githubusercontent.com/render/math?math=R%5E%7Bn%7D) . On cherche donc à exploiter l’information fournie
+où la fonction ``f`` est de classe ``C^{2}`` sur ``R^{n}`` . On cherche donc à exploiter l’information fournie
 par ses dérivées première et seconde, que l’on représente en tout point x par le vecteur
-gradient ![\nabla f (x) \in R^{n}](https://render.githubusercontent.com/render/math?math=%5Cnabla%20f%20(x)%20%5Cin%20R%5E%7Bn%7D) et la matrice Hessienne ![\nabla^{2} f (x) \in R^{nxn}](https://render.githubusercontent.com/render/math?math=%5Cnabla%5E%7B2%7D%20f%20(x)%20%5Cin%20R%5E%7Bnxn%7D).
+gradient ``\nabla f (x) \in R^{n}`` et la matrice Hessienne ``\nabla^{2} f (x) \in R^{nxn}``.
 
 [1) Algorithme de Newton local](Algorithme_de_newton.md)
 
-[2) Région de confiance](Regions_de_confiance.md)
+[2) La méthode des régions de confiance](Regions_de_confiance.md)
 
 
 
@@ -29,8 +29,8 @@ gradient ![\nabla f (x) \in R^{n}](https://render.githubusercontent.com/render/m
 Dans cette partie, nous nous intéressons à la résolution des problèmes sous contraintes.Le problème se présente donc sous la forme suivante :
 
 
-![\min _{x \in \mathbb{R}^{n}} f(x)](https://render.githubusercontent.com/render/math?math=%5Cmin%20_%7Bx%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%7D%7D%20f(x)) sous la contrainte ![x \in C](https://render.githubusercontent.com/render/math?math=x%20%5Cin%20C)
+``\min _{x \in \mathbb{R}^{n}} f(x)`` sous la contrainte ``x \in C``
 
-où C est un sous-ensemble non vide de ![\mathbb{R}^{n}](https://render.githubusercontent.com/render/math?math=%5Cmathbb%7BR%7D%5E%7Bn%7D)
+où C est un sous-ensemble non vide de ``\mathbb{R}^{n}``.
 
-[Lagrangien Augmenté](Lagrangien_augmente.md)
+[3) Lagrangien Augmenté](Lagrangien_augmente.md)
