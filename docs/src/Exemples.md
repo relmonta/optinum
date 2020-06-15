@@ -83,6 +83,6 @@ contrainte(x) =  (x[1]^2) + (x[2]^2) -1.5
 grad_contrainte(x) = [2*x[1] ;2*x[2]]
 hess_contrainte(x) = [2 0;0 2]
 phi(x) = 0
-output = Lagrangien_Augmente(algo,f,contrainte,gradf,hessf,grad_contrainte,hess_contrainte,(x)->norm(contrainte(x),2),(x)->grad_contrainte(x)',phi,x0,options)
+output = Lagrangien_Augmente(algo,f,contrainte,gradf,hessf,grad_contrainte,hess_contrainte,(x)->grad_contrainte(x)',phi,x0,options)
 println(output) # (xmin1,fxmin1,flag,nbiters)
 ```
