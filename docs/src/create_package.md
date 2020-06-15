@@ -75,7 +75,7 @@ une fois fait, on peut lancer les tests :
 ```
 ##### Ajouter des dépendances spécifiques aux tests
 pour ajouter des dépendances spécifiques aux tests (ou à la génération de la documentation)
-il faut activer l'environnement test/ et ajouter les modules utilisés:
+il faut activer l'environnement `test/` et ajouter les modules utilisés:
 
 ```julia
 (Module) pkg> activate ./test
@@ -83,7 +83,7 @@ il faut activer l'environnement test/ et ajouter les modules utilisés:
 (test) pkg> add Module3
  Resolving package versions...
   Updating `/Module/test/Project.toml`
-  [8dfed614] + Test
+  [8dfed614] + Module3
   Updating `/Module/test/Manifest.toml`
   [...]
 ```
