@@ -39,7 +39,7 @@ xmin,f_min,flag,nb_iters = Algorithme_De_Newton(f,gradf,hessf,x0,options)
 """
 function Algorithme_De_Newton(f::Function,gradf::Function,hessf::Function,x0,options)
 
-        "# Si option est vide on initialise les 3 paramètres par défaut"
+        "# Si options est vide on initialise les 3 paramètres par défaut"
         if options == []
                 eps = 1e-8
                 max_iter = 100

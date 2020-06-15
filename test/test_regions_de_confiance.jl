@@ -37,9 +37,10 @@ tol = 1e-8
 maxits = 5000
 delta0_1 = 2
 delta0_2 = 1
+eps = 1e-8
 
-option1 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_1,maxits,tol]
-option2 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_2,maxits,tol]
+option1 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_1,maxits,tol,eps]
+option2 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_2,maxits,tol,eps]
 
 
 normerreur = 1e-2

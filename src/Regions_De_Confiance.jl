@@ -10,6 +10,7 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
 ```
 
 # Entrées :
+
    * **algo**        : string indicant la méthode à utiliser pour calculer le pas
         - **"gct"**   : pour l'algorithme du gradient conjugué tronqué
         - **"cauchy"**: pour le pas de Cauchy
@@ -25,6 +26,7 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
      * **delta0**        : le rayon de départ de la région de confiance
      * **max_iter**      : le nombre maximale d'iterations
      * **tol**           : la tolérence pour les critères d'arrêt
+     * **eps**           : epsilon pour les critères d'arrêt
 
 
 # Sorties:
@@ -60,6 +62,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         delta0 = 2
         max_iter = 1000
         tol = 1e-15
+    	eps = 1e-8
     else
         deltaMax = options[1]
         gamma1 = options[2]
@@ -69,6 +72,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         delta0 = options[6]
         max_iter = options[7]
         tol = options[8]
+        eps = options[9]
     end
     # Initialisation des variables
     nb_iters = 1
@@ -76,7 +80,6 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
     grad0 = gradf(x0)
     xk = x0
     deltak = delta0
-    eps = 1e-8
     flag = 0
     ###
     #                        Début                            #
@@ -121,7 +124,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         ###
         """
         # condition 1 : la CN1
-        if norm(gradk,2)<=tol*norm(grad0,2)
+        if norm(gradk,2)<=tol*norm(grad0,2) + eps
            flag = 0
            break
         end
