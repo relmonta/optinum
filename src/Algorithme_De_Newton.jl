@@ -14,7 +14,7 @@ xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
    * **options** :
        * **eps**      : pour fixer les conditions d'arrêt
        * **max_iter** : le nombre maximal d'iterations
-       * **tol**      : pour les condition d'arrêts
+       * **tol**      : pour les conditions d'arrêts
 
 # Sorties:
    * **xmin**    : une approximation de la solution du problème  : ``\min_{x \in \mathbb{R}^{n}} f(x)``

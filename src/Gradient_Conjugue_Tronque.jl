@@ -14,7 +14,7 @@ sk = Gradient_Conjugue_Tronque(fk,gradfk,hessfk,option)
    * **options**
       - **delta**    : le rayon de la région de confiance
       - **max_iter** : le nombre maximal d'iterations
-      - **tol**      : la tolerance pour la condition d'arrêt sur le gradient
+      - **tol**      : la tolérance pour la condition d'arrêt sur le gradient
 
 
 # Sorties:

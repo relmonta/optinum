@@ -1,6 +1,6 @@
 @doc doc"""
 Minimise une fonction en utilisant l'algorithme des régions de confiance avec
-    - le pas de Couchy
+    - le pas de Cauchy
 ou
     - le pas issu de l'algorithme du gradient conjugue tronqué
 
@@ -16,7 +16,7 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
    * **f**           : la fonction à minimiser
    * **gradf**       : le gradient de la fonction f
    * **hessf**       : la hessiene de la fonction à minimiser
-   * **x0**          : point de dapart
+   * **x0**          : point de départ
    * **options**
      * **deltaMax**      : utile pour les m-à-j de la région de confiance
                       ``R_{k}=\left\{x_{k}+s ;\|s\| \leq \Delta_{k}\right\}``
@@ -135,7 +135,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
             flag = 2
             break
         end
-        # condition 4 : le max des itérations a été dépassé 
+        # condition 4 : le max des itérations a été dépassé
         if nb_iters >= max_iter
             flag = 3
             break

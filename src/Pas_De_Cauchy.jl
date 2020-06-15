@@ -1,7 +1,7 @@
 @doc doc"""
-Approximation de la solution du le sous-problème ``q_k(s) = s^{t}g + (1/2)s^{t}Hs`` 
+Approximation de la solution du sous-problème ``q_k(s) = s^{t}g + (1/2)s^{t}Hs`` 
         avec ``s=-t g_k,t > 0,||s||< \delta_k ``
-                        
+
 
 # Syntaxe
 ```julia
