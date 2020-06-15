@@ -22,8 +22,8 @@ makedocs(
 		        "Pour Région de confiance avec le gradient conjugué tronqué" => "Questions_GCT.md",
 		        "Pour Lagrangien Augmenté" => "Questions_Lagrangien_Augmente.md"
              ],
-            "Exemples d'appels" =>"Exemples.md",
             "Annexes" => "Annexes.md",
+            "Exemples d'appels" =>"Exemples.md",
             "Mise en place" => "mise_en_place.md", 
             "Création de Modules en Julia" => "create_package.md",
             "Génération du rapport" => "generate_pdf.md",
