@@ -49,8 +49,6 @@ contrainte1(x) =  x[1]+x[3]-1
 
 grad_contrainte1(x) = [1 ;0; 1]
 
-jac_contrainte1(x) = [1 ;0; 1]'
-
 hess_contrainte1(x) = [0 0 0;0 0 0;0 0 0]
 
 
@@ -59,8 +57,6 @@ contrainte2(x) =  (x[1]^2) + (x[2]^2) -1.5
 cont2(x,y) =  (x^2) + (y^2) -1.5
 
 grad_contrainte2(x) = [2*x[1] ;2*x[2]]
-
-jac_contrainte2(x) = [2*x[1] ;2*x[2]]'
 
 hess_contrainte2(x) = [2 0;0 2]
 
