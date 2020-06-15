@@ -32,10 +32,10 @@ Si convergence de l'algorithme global, s'arrêter , sinon aller en b
 
   b. Si ``\|c(x_{k+1})\| \leq \eta_{k}``, mettre à jour (entre autres) les multiplicateurs :
   
-``\left\{\begin{array}{l}\lambda_{k+1}=\lambda_{k}+\mu_{k} c\left(x_{k+1}\right) \\ \mu_{k+1}=\mu_{k} \\\epsilon_{k+1}=\epsilon_{k} / \mu_{k} \\\eta_{k+1}=\eta_{k} / \mu_{k}^{\beta} \\k=k+1\end{array}\right.](https://render.githubusercontent.com/render/math?math=%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bl%7D%5Clambda_%7Bk%2B1%7D%3D%5Clambda_%7Bk%7D%2B%5Cmu_%7Bk%7D%20c%5Cleft(x_%7Bk%2B1%7D%5Cright)%20%5C%5C%5Cmu_%7Bk%2B1%7D%3D%5Cmu_%7Bk%7D%20%5C%5C%5Cepsilon_%7Bk%2B1%7D%3D%5Cepsilon_%7Bk%7D%20%2F%20%5Cmu_%7Bk%7D%20%5C%5C%5Ceta_%7Bk%2B1%7D%3D%5Ceta_%7Bk%7D%20%2F%20%5Cmu_%7Bk%7D%5E%7B%5Cbeta%7D%20%5C%5Ck%3Dk%2B1%5Cend%7Barray%7D%5Cright.)
+``\left\{\begin{array}{l}\lambda_{k+1}=\lambda_{k}+\mu_{k} c\left(x_{k+1}\right) \\ \mu_{k+1}=\mu_{k} \\\epsilon_{k+1}=\epsilon_{k} / \mu_{k} \\\eta_{k+1}=\eta_{k} / \mu_{k}^{\beta} \\k=k+1\end{array}\right.``
   
   c. Autrement, mettre à jour (entre autres) le paramétre de pénalité :
   
 ``\left\{\begin{array}{l}\lambda_{k+1} =\lambda_{k} \\\mu_{k+1} =\tau \mu_{k} \\\epsilon_{k+1} =\epsilon_{0} / \mu_{k+1} \\\eta_{k+1} =\hat{\eta}_{0} / \mu_{k+1}^{\alpha} \\k=k+1\end{array}\right.``
   
-### 2. Retourner ![x_{k},\lambda_{k},\mu_{k}](https://render.githubusercontent.com/render/math?math=x_%7Bk%7D%2C%5Clambda_%7Bk%7D%2C%5Cmu_%7Bk%7D) . 
+### 2. Retourner ``x_{k},\lambda_{k},\mu_{k}`` . 
