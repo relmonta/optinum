@@ -15,18 +15,18 @@ makedocs(
                 "Les Régions de Confiance" => "Regions_de_confiance.md",    
                 "Lagrangien augmenté" => "Lagrangien_augmente.md"                
                 ],
+	     "Documentation des fonctions" =>"fct_index.md",
              "Travail à réaliser" => [
                 "Pour l'algorithme de Newton" => "Questions_Newton.md",
 		        "Pour Région de confiance avec pas de cauchy" => "Questions_Pas_De_Cauchy.md",
 		        "Pour Région de confiance avec le gradient conjugué tronqué" => "Questions_GCT.md",
 		        "Pour Lagrangien Augmenté" => "Questions_Lagrangien_Augmente.md"
              ],
-            "Exemples d'appels" =>"Exemples.md",
             "Annexes" => "Annexes.md",
+            "Exemples d'appels" =>"Exemples.md",
             "Mise en place" => "mise_en_place.md", 
             "Création de Modules en Julia" => "create_package.md",
             "Génération du rapport" => "generate_pdf.md",
-            "Documentation des fonctions" =>"fct_index.md",
             "Foire aux Questions" =>"FAQ.md"          
 
             ]
