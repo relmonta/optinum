@@ -51,7 +51,7 @@ options = []
 xmin, fxmin, flag,nb_iters = Regions_De_Confiance(algo,f,gradf,hessf,x0,options)
 ```
 """
-function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,options,epsk)
+function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,options)
 
     if options == []
         deltaMax = 10
@@ -86,7 +86,6 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
     while true
         gradk = gradf(xk)
         hessk = hessf(xk)
-
         # calcul du point sk avec l'algorithme du point de cauchy
         if algo=="cauchy"
             sk, ~ = Pas_De_Cauchy(gradk,hessk,deltak)
@@ -123,17 +122,17 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         ###
         """
         # condition 1 : la CN1
-        if norm(gradk,2)<=tol*(norm(grad0,2) + eps) 
+        if norm(gradk,2)<=tol*(norm(grad0,2)) + eps 
            flag = 0
            break
         end
         # condition 2 : la stagnation de x (et le x courant a été changé)
-        if (norm(sk,2) <= tol*(norm(xk,2) +eps )) && xk_moins_1 != xk
+        if (norm(sk,2) <= tol*(norm(xk,2)+eps ) ) && xk_moins_1 != xk
            flag = 1
            break
         end
         # condition 3 : la stagnation de f (et le x courant a été changé)
-        if (abs(f(xk_moins_1)-f(xk)) <= tol*( abs(f(xk))+eps )) && xk != xk_moins_1
+        if (abs(f(xk_moins_1)-f(xk)) <= tol*(abs(f(xk))+eps)) && xk != xk_moins_1
             flag = 2
             break
         end
@@ -142,11 +141,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
             flag = 3
             break
         end
-        #condition 5 : la condition du lagrangien augmente ||gradf(xk)||<epsk
-        if norm(gradk,2)<epsk+eps
-            flag = 4
-            break
-        end
+
         nb_iters = nb_iters +1
     end
     xmin = xk

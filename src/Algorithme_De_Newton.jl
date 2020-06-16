@@ -50,7 +50,7 @@ function Algorithme_De_Newton(f::Function,gradf::Function,hessf::Function,x0,opt
                 tol = options[3]
 
         end
-
+        eps = 1e-8
         xk = x0
         flag = 0
         nb_iters = 1

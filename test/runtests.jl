@@ -3,8 +3,8 @@ using Test
 using Optinum
 using Test_Optinum
 
-test_Algo_Newton(false,Algorithme_De_Newton)
-test_pas_de_cauchy(false,Pas_De_Cauchy)
-test_regions_de_confiance(false,Regions_De_Confiance)
-test_Lagrangien_Augmente(false,Lagrangien_Augmente)
+Test_Optinum.test_Algo_Newton(false,Optinum.Algorithme_De_Newton)
+Test_Optinum.test_pas_de_cauchy(false,Optinum.Pas_De_Cauchy)
+Test_Optinum.test_regions_de_confiance(false,Optinum.Regions_De_Confiance)
+Test_Optinum.test_Lagrangien_Augmente(false,Optinum.Lagrangien_Augmente)
 

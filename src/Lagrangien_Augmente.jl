@@ -56,11 +56,11 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 	hessfonc::Function,grad_contrainte::Function,hess_contrainte::Function,phi::Function,x0,options)
 
 	if options == []
-		epsilon = 1e-30
-		tol = 1e-3
+		epsilon = 1e-8
+		tol = 1e-5
 		itermax = 1000
-		lambda0 = 0.3
-		mu0 = 0.5
+		lambda0 = 2
+		mu0 = 10
 		tho = 2
 	else
 		epsilon = options[1]
@@ -88,7 +88,7 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 	gradL0 = (gradfonc(x0) + transpose(lambda0)*grad_contrainte(x0) + mu0*transpose(grad_contrainte(x0)')*contrainte(x0))
 
 	"#boucle principale"
-	while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((norm(contrainte(xmin)) .> (norm(contrainte(x0))*tol+ epsilon)) && iter < itermax ) )
+	while  ((norm(gradfonc(xmin),2)> tol*(norm(gradfonc(x0),2) +epsilon)) || ((norm(contrainte(xmin)) .> (norm(contrainte(x0))*tol+ epsilon)) && iter < itermax) )
 
 		"#la fonction Lagrangien"
 		L(x) = (fonc(x) + (transpose(lambda))*contrainte(x) + 0.5*mu*(norm(contrainte(x))^2) )
@@ -100,16 +100,16 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 		hessL(x) = (hessfonc(x) + (transpose(lambda))*hess_contrainte(x) + mu*(transpose(grad_contrainte(x)'))*grad_contrainte(x)' .+ phi(x) )
 
 		"#Étape a"
-		"#Résolution du problème sans contraintes : min L(x,lambdak ,muk)"
+		"#Résolution du problème sans contraintes : min L(x, lambdak, muk)"
 		if algo=="newton"
-
-		xlocal,~ = Algorithme_De_Newton(L,gradL,hessL,xmin,[])
+			xlocal,~ = Algorithme_De_Newton(L,gradL,hessL,xmin,[])
 
 		elseif algo=="cauchy"
-			xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,[],epsk)
+			xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,[10,0.5,2.00,0.25,0.75,2,1000,1e-15,epsk])
 
 		elseif algo=="gct"
-			xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,[],epsk)
+			xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,[10,0.5,2.00,0.25,0.75,2,1000,1e-15,epsk])
+
 		else
 			flag = -1
 		end
