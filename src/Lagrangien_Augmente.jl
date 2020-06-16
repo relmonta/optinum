@@ -106,10 +106,10 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 		xlocal,~ = Algorithme_De_Newton(L,gradL,hessL,xmin,[])
 
 		elseif algo=="cauchy"
-			xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,[])
+			xlocal,~ = Regions_De_Confiance("cauchy",L,gradL,hessL,xmin,[],epsk)
 
 		elseif algo=="gct"
-			xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,[])
+			xlocal,~ = Regions_De_Confiance("gct",L,gradL,hessL,xmin,[],epsk)
 		else
 			flag = -1
 		end

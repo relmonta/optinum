@@ -51,7 +51,7 @@ options = []
 xmin, fxmin, flag,nb_iters = Regions_De_Confiance(algo,f,gradf,hessf,x0,options)
 ```
 """
-function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,options)
+function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,options,epsk)
 
     if options == []
         deltaMax = 10
@@ -61,8 +61,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         eta2 = 0.75
         delta0 = 2
         max_iter = 1000
-        tol = 1e-15
-    	eps = 1e-8
+        tol = 1e-10            	
     else
         deltaMax = options[1]
         gamma1 = options[2]
@@ -71,8 +70,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         eta2 = options[5]
         delta0 = options[6]
         max_iter = options[7]
-        tol = options[8]
-        eps = options[9]
+        tol = options[8]    
     end
     # Initialisation des variables
     nb_iters = 1
@@ -81,6 +79,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
     xk = x0
     deltak = delta0
     flag = 0
+    eps = 1e-8
     ###
     #                        Début                            #
     ###
@@ -141,6 +140,11 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         # condition 4 : le max des itérations a été dépassé
         if nb_iters >= max_iter
             flag = 3
+            break
+        end
+        #condition 5 : la condition du lagrangien augmente ||gradf(xk)||<epsk
+        if norm(gradk,2)<epsk+eps
+            flag = 4
             break
         end
         nb_iters = nb_iters +1
